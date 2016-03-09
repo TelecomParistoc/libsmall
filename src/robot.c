@@ -19,13 +19,13 @@ static void sensorsCallback() {
 }
 
 void initRobot() {
-    initToolboxDriver();
+	initToolboxDriver();
 	initMotionController();
 
-    setRobotDistance(0);
-    setRobotHeading(0);
-    //TODO : RESET AX12
-    
+	setRobotDistance(0);
+	setRobotHeading(0);
+	axReset();
+
 	enableSensorCallback(1);
 	disableSensorCallback(2);
 	disableSensorCallback(3);
@@ -38,7 +38,7 @@ void initRobot() {
 	enableCollisionCallback(3);
 	enableCollisionCallback(4);
 	enableCollisionCallback(5);
-    setCollisionsCallback(collisionsCallback);
+	setCollisionsCallback(collisionsCallback);
 }
 
 void onGameStart(void (*callback)(void)) {
