@@ -9,6 +9,10 @@ extern "C" {
  * other operations */
 void initRobot();
 
+/* calls the given function at the start of the game (when the start jack is
+ * unplugged) */
+void onGameStart(void (*callback)(void));
+
 #ifdef __cplusplus
 }
 #endif
