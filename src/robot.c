@@ -1,4 +1,4 @@
-##include "robot.h"
+#include "robot.h"
 
 void fishSensorManager();
 
@@ -16,7 +16,7 @@ void initRobot() {
     setRobotDistance(0);
     setRobotHeading(0);
     //TODO : RESET AX12
-    
+
 	enableSensorCallback(1);
 	disableSensorCallback(2);
 	disableSensorCallback(3);
