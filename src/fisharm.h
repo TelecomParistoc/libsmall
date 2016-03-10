@@ -25,11 +25,11 @@ void onArmDown(void (*callback)(void));
 void initFishAx12();
 
 /* functions to move the Ax-12 */
-void magnetOn() {
-void magnetOff() {
-void armUp() {
-void armMid() {
-void armDown() {
+void magnetOn();
+void magnetOff();
+void armUp();
+void armMid();
+void armDown();
 
 #ifdef __cplusplus
 }
