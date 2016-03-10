@@ -1,5 +1,5 @@
-#include <libsmall/fisharm.h>
-#include <libsmall/robot.h>
+#include <small/fisharm.h>
+#include <small/robot.h>
 #include <stdio.h>
 
 int main () {
