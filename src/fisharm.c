@@ -74,8 +74,8 @@ void onArmDown(void (*callback)(void)) {
 }
 
 void initFishAx12() {
-	axSetTorqueSpeed(AXMAGNETCONTROL, -1, AXSPEED, 0);
 	axSetTorqueSpeed(AXFISHARM      , -1, AXSPEED, 0);
+	axSetTorqueSpeed(AXMAGNETCONTROL, -1, AXSPEED, 0);
 }
 
 void magnetOn() {

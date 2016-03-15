@@ -25,7 +25,7 @@ build/%.d : %.c
 build/$(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $@ $(LDFLAGS)
 
-tests: LDFLAGS = -lrobot
+tests: LDFLAGS = -lrobot -lrobotdriver
 tests: $(TESTS)
 
 clean:

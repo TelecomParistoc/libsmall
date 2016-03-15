@@ -20,8 +20,8 @@ static void sensorsCallback() {
 }
 
 void initRobot() {
-	initToolboxDriver();
 	initMotionController();
+	initToolboxDriver();
 
 	setRobotDistance(0);
 	setRobotHeading(0);
