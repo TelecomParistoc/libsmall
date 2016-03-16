@@ -20,7 +20,7 @@
 #define ON              532
 #define OFF             300
 
-#define AXSPEED 200
+#define AXSPEED 100
 
 static void (*captureCallback)(void) = NULL;
 static void (*releaseCallback)(void) = NULL;
@@ -80,7 +80,7 @@ void waitForFish() {
 }
 
 void initFishAx12() {
-	//axSetTorqueSpeed(AXMAGNETCONTROL, -1, AXSPEED, 0);
+	axSetTorqueSpeed(AXMAGNETCONTROL, -1, AXSPEED, 0);
 	axSetTorqueSpeed(AXFISHARM      , -1, AXSPEED, 0);
 }
 
