@@ -7,7 +7,7 @@ CFLAGS = -O2 -std=gnu99 -Wall -Werror -fpic
 LDFLAGS= -shared -lrobotdriver
 PREFIX = /usr/local
 VPATH = build/
-TESTS = tests/fishingtest
+TESTS = tests/fishingtest tests/moveToFish
 
 vpath %.c src/
 vpath %.h src/
@@ -25,7 +25,7 @@ build/%.d : %.c
 build/$(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $@ $(LDFLAGS)
 
-tests: LDFLAGS = -lrobot -lrobotdriver
+tests: LDFLAGS = -lrobot -lrobotdriver -lpathfollower
 tests: $(TESTS)
 
 clean:

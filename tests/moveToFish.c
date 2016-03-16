@@ -19,15 +19,16 @@ int main()
     {
         {250, 300},
         {300, 100},
-        {500, 20}
+        {500, 20},
+	{550, 10}
     };
 
     initRobot();
 	initFishAx12();
 	onArmDown(waitForFish);
 
-    setCurrentLocation(200,1110);
-    followPath(path, 3, 0, onTheEndOfTheRoad);
+    setCurrentLocation(0,900);
+    followPath(path, 4, 0, onTheEndOfTheRoad);
 
     while(1);
 
