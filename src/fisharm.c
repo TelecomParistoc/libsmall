@@ -3,6 +3,7 @@
 #include <robotdriver/headingcontroller.h>
 #include <robotdriver/motordriver.h>
 #include <robotdriver/toolboxdriver.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "fisharm.h"
 
@@ -73,9 +74,14 @@ void onArmDown(void (*callback)(void)) {
 	armDownCallback = callback;
 }
 
+void waitForFish() {
+	onFishCapture(armMid);
+	printf("Waiting for a fish\n");
+}
+
 void initFishAx12() {
+	//axSetTorqueSpeed(AXMAGNETCONTROL, -1, AXSPEED, 0);
 	axSetTorqueSpeed(AXFISHARM      , -1, AXSPEED, 0);
-	axSetTorqueSpeed(AXMAGNETCONTROL, -1, AXSPEED, 0);
 }
 
 void magnetOn() {

@@ -31,6 +31,8 @@ void armUp();
 void armMid();
 void armDown();
 
+void waitForFish();
+
 #ifdef __cplusplus
 }
 #endif

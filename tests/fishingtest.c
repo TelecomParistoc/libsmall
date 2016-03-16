@@ -5,11 +5,9 @@
 
 int main () {
 	initRobot();
-//	printf("Pos 121 : %d\n", axGetPosition(121));
-	printf("Pos 148 : %d\n", axGetPosition(148));
-	/*initFishAx12();
-	onFishCapture(armMid);
-	armDown();*/
+	initFishAx12();
+	onArmDown(waitForFish);
+	armDown();
 	while(1);
 	return 0;
 }
