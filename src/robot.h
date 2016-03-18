@@ -13,6 +13,8 @@ void initRobot();
  * unplugged) */
 void onGameStart(void (*callback)(void));
 
+void setRGB(char red, char green, char blue);
+
 #ifdef __cplusplus
 }
 #endif

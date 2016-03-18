@@ -5,6 +5,7 @@
 
 int main () {
 	initRobot();
+	printf("C'est parti\n");
 	initFishAx12();
 	onArmDown(waitForFish);
 	onArmMid(magnetOff);

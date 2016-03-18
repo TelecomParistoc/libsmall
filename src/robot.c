@@ -40,9 +40,18 @@ void initRobot() {
 	enableCollisionCallback(4);
 	enableCollisionCallback(5);
 	setCollisionsCallback(collisionsCallback);
+
+	for(int i = 1 ; i < 5 ; i ++)
+		setPWM(i, 255);
 }
 
 void onGameStart(void (*callback)(void)) {
     enableSensorCallback(1);
     gameStartCallback = callback;
+}
+
+void setRGB(char red, char green, char blue){
+	setPWM(1, 255 - blue );
+	setPWM(2, 255 - green);
+	setPWM(3, 255 - red  );
 }
