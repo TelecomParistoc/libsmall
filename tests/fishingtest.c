@@ -7,6 +7,9 @@ int main () {
 	initRobot();
 	initFishAx12();
 	onArmDown(waitForFish);
+	onArmMid(magnetOff);
+	onMagnetOff(magnetOn);
+	onMagnetOn(armUp);
 	armDown();
 	while(1);
 	return 0;
