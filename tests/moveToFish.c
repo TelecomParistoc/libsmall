@@ -10,6 +10,9 @@
 void onTheEndOfTheRoad()
 {
     printf("I've travelled a long way, go fishing !\n");
+    initRobot();
+	initFishAx12();
+	onArmDown(waitForFish);
     armDown();
 }
 
@@ -20,12 +23,8 @@ int main()
         {250, 300},
         {300, 100},
         {500, 20},
-	{550, 10}
+	    {550, 10}
     };
-
-    initRobot();
-	initFishAx12();
-	onArmDown(waitForFish);
 
     setCurrentLocation(0,900);
     followPath(path, 4, 0, onTheEndOfTheRoad);
