@@ -54,6 +54,8 @@ void initRobot() {
 
 	for(int i = 1 ; i < 5 ; i ++)
 		setPWM(i, 255);
+
+	initFishAx12();
 }
 
 void onGameStart(void (*callback)(void)) {

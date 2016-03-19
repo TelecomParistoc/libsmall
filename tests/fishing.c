@@ -13,7 +13,6 @@ void startFishing();
 int main() {
 	initRobot();
 	setCurrentLocation(180,1004);
-	initFishAx12();
 	struct robotPoint path[] = {
 		{555, 1100},
 		{842, 1100},
