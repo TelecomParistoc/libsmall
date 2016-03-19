@@ -4,3 +4,4 @@ tests/moveToFish
 tests/yeux
 tests/fishing
 *.swp
+.DS_Store
