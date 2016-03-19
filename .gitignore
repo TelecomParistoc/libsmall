@@ -2,4 +2,5 @@ build/
 tests/fishingtest
 tests/moveToFish
 tests/yeux
+tests/fishing
 *.swp

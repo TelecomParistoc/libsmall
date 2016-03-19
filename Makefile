@@ -7,7 +7,7 @@ CFLAGS = -O2 -std=gnu99 -Wall -Werror -fpic
 LDFLAGS= -shared -lrobotdriver
 PREFIX = /usr/local
 VPATH = build/
-TESTS = tests/fishingtest tests/moveToFish tests/robottest
+TESTS = tests/fishingtest tests/moveToFish tests/yeux tests/fishing
 
 vpath %.c src/
 vpath %.h src/
@@ -29,7 +29,7 @@ tests: LDFLAGS = -lrobot -lrobotdriver -lpathfollower
 tests: $(TESTS)
 
 clean:
-	rm -f build/*.o build/*.so build/*.d tests/fishingtest tests/moveToFish tests/yeux
+	rm -f build/*.o build/*.so build/*.d tests/fishingtest tests/moveToFish tests/robottest tests/yeux tests/fishing
 
 install: build/$(TARGET)
 	mkdir -p $(DESTDIR)$(PREFIX)/lib
