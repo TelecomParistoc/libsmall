@@ -29,7 +29,7 @@ tests: LDFLAGS = -lrobot -lrobotdriver -lpathfollower
 tests: $(TESTS)
 
 clean:
-	rm -f build/*.o build/*.so build/*.d
+	rm -f build/*.o build/*.so build/*.d tests/fishingtest tests/moveToFish tests/yeux
 
 install: build/$(TARGET)
 	mkdir -p $(DESTDIR)$(PREFIX)/lib

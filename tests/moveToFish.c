@@ -2,6 +2,7 @@
 #include <pathfollower/pathfollower.h>
 #include <robotdriver/speedcontroller.h>
 #include <robotdriver/motioncontroller.h>
+#include <robotdriver/toolboxdriver.h>
 #include <librobot/fisharm.h>
 #include <librobot/robot.h>
 #include <stdio.h>
@@ -50,7 +51,8 @@ void move2()
         {1000, 15},
 	    {1050, 10}
     };
-
+    axStopPolling();
+    printf("Moving to the net\n");
     followPath(path, 4, 0, onTheEndOfTheSecondRoad);
 }
 
