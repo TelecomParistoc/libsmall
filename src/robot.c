@@ -5,6 +5,7 @@
 #include <robotdriver/toolboxdriver.h>
 #include <stdlib.h>
 #include "robot.h"
+#include "fisharm.h"
 
 void fishSensorManager();
 
