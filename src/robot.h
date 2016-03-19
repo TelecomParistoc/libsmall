@@ -13,7 +13,21 @@ void initRobot();
  * unplugged) */
 void onGameStart(void (*callback)(void));
 
+/* calls the given function when a collision sensor detects a new obstacle.
+ * the callback should be like void myCallback(int collisionSensor) {...}. The
+ * argument collisionSensor is the sensor that detected a new obstacle */
+void onCollisionDetect(void (*callback)(int));
+/* calls the given function when a collision sensor stops detecting an obstacle.
+ * the callback should be like void myCallback(int collisionSensor) {...}. The
+ * argument collisionSensor is the sensor that stopped detecting an obstacle */
+void onCollisionEnd(void (*callback)(int));
+
+/* returns the current table configuration, describing how the shells are placed */
+int getTableConfig();
+
+/* set the color of the eyes (red greed and blue between 0 and 255) */
 void setRGB(char red, char green, char blue);
+
 
 #ifdef __cplusplus
 }
