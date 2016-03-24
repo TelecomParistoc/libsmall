@@ -16,15 +16,15 @@ void onTheEndOfTheFirstRoad()
     printf("I've travelled a long way, go fishing !\n");
 	initFishAx12();
 	onArmDown(waitForFish);
-    armDown();
     onArmMid(move2);
+    onMagnetOff(magnetOn);
+	onMagnetOn(armUp);
+    armDown();
 }
 
 void onTheEndOfTheSecondRoad()
 {
     printf("I've travelled a long way, go releasing !\n");
-    onMagnetOff(magnetOn);
-	onMagnetOn(armUp);
     magnetOff();
 }
 
