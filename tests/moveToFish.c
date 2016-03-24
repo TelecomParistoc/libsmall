@@ -7,6 +7,10 @@
 #include <stdio.h>
 
 
+void move1();
+void move2();
+
+
 void onTheEndOfTheFirstRoad()
 {
     printf("I've travelled a long way, go fishing !\n");
