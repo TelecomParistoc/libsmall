@@ -24,6 +24,8 @@ void onTheEndOfTheSecondRoad()
 {
     printf("I've travelled a long way, go releasing !\n");
 	magnetOff();
+    onMagnetOff(magnetOn);
+	onMagnetOn(armUp);
 }
 
 void move1()
@@ -46,7 +48,7 @@ void move2()
         {600, 50},
         {800, 50},
         {1000, 15},
-	    {1150, 10}
+	    {1050, 10}
     };
 
     followPath(path, 4, 0, onTheEndOfTheSecondRoad);
