@@ -7,15 +7,22 @@
 #include <stdio.h>
 
 
-void onTheEndOfTheRoad()
+void onTheEndOfTheFirstRoad()
 {
     printf("I've travelled a long way, go fishing !\n");
 	initFishAx12();
 	onArmDown(waitForFish);
     armDown();
+    onArmMid(move2);
 }
 
-int main()
+void onTheEndOfTheSecondRoad()
+{
+    printf("I've travelled a long way, go releasing !\n");
+	magnetOff();
+}
+
+void move1()
 {
     struct robotPoint path[] =
     {
@@ -24,10 +31,28 @@ int main()
         {500, 20},
 	    {550, 10}
     };
-    
+
+    followPath(path, 4, 0, onTheEndOfTheFirstRoad);
+}
+
+void move2()
+{
+    struct robotPoint path[] =
+    {
+        {600, 50},
+        {700, 50},
+        {800, 15},
+	    {850, 10}
+    };
+
+    followPath(path, 4, 0, onTheEndOfTheSecondRoad);
+}
+
+int main()
+{
     initRobot();
     setCurrentLocation(0,900);
-    followPath(path, 4, 0, onTheEndOfTheRoad);
+    move1();
 
     while(1);
 
