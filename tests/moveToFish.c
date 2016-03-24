@@ -23,9 +23,9 @@ void onTheEndOfTheFirstRoad()
 void onTheEndOfTheSecondRoad()
 {
     printf("I've travelled a long way, go releasing !\n");
-	magnetOff();
     onMagnetOff(magnetOn);
 	onMagnetOn(armUp);
+    magnetOff();
 }
 
 void move1()
