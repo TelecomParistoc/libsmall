@@ -44,9 +44,9 @@ void move2()
     struct robotPoint path[] =
     {
         {600, 50},
-        {700, 50},
-        {800, 15},
-	    {850, 10}
+        {800, 50},
+        {1000, 15},
+	    {1150, 10}
     };
 
     followPath(path, 4, 0, onTheEndOfTheSecondRoad);
