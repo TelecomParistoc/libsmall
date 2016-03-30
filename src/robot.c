@@ -60,7 +60,7 @@ void onGameStart(void (*callback)(void)) {
     enableSensorCallback(1);
     gameStartCallback = callback;
 }
-<<<<<<< HEAD
+
 void onCollisionDetect(void (*callback)(int)) {
     collisionDetectCallback = callback;
 }
@@ -73,7 +73,7 @@ int getTableConfig() {
 }
 
 void setRGB(char red, char green, char blue){
-	setPWM(1, 255 - blue );
+	setPWM(1, 255 - blue);
 	setPWM(2, 255 - green);
-	setPWM(3, 255 - red  );
+	setPWM(3, 255 - red);
 }
