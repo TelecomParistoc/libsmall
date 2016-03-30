@@ -31,8 +31,8 @@ static void sensorsCallback() {
 }
 
 void initRobot() {
-	initToolboxDriver();
 	initMotionController();
+	initToolboxDriver();
 
 	setRobotDistance(0);
 	setRobotHeading(0);
@@ -51,12 +51,16 @@ void initRobot() {
 	enableCollisionCallback(4);
 	enableCollisionCallback(5);
 	setCollisionsCallback(collisionsCallback);
+
+	for(int i = 1 ; i < 5 ; i ++)
+		setPWM(i, 255);
 }
 
 void onGameStart(void (*callback)(void)) {
     enableSensorCallback(1);
     gameStartCallback = callback;
 }
+<<<<<<< HEAD
 void onCollisionDetect(void (*callback)(int)) {
     collisionDetectCallback = callback;
 }
@@ -66,4 +70,10 @@ void onCollisionEnd(void (*callback)(int)) {
 
 int getTableConfig() {
     return getButton(1) + getButton(2)*2 + getButton(3)*3;
+}
+
+void setRGB(char red, char green, char blue){
+	setPWM(1, 255 - blue );
+	setPWM(2, 255 - green);
+	setPWM(3, 255 - red  );
 }

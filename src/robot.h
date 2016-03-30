@@ -25,6 +25,10 @@ void onCollisionEnd(void (*callback)(int));
 /* returns the current table configuration, describing how the shells are placed */
 int getTableConfig();
 
+/* set the color of the eyes (red greed and blue between 0 and 255) */
+void setRGB(char red, char green, char blue);
+
+
 #ifdef __cplusplus
 }
 #endif
