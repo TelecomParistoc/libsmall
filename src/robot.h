@@ -28,6 +28,17 @@ int getTableConfig();
 /* set the color of the eyes (red greed and blue between 0 and 255) */
 void setRGB(char red, char green, char blue);
 
+/* returns the selected team */
+int getTeam();
+/* teams defined as : */
+#define GREEN_TEAM 0
+#define PURPLE_TEAM 1
+
+/* returns the selected mode (test or match) */
+int getMode();
+/* mode defined as : */
+#define MATCH_MODE 0
+#define TEST_MODE 1
 
 #ifdef __cplusplus
 }

@@ -77,3 +77,11 @@ void setRGB(char red, char green, char blue){
 	setPWM(2, 255 - green);
 	setPWM(3, 255 - red);
 }
+
+// roof top buttons
+int getTeam() {
+    return getButton(5);
+}
+int getMode() {
+    return getButton(4);
+}
