@@ -5,6 +5,7 @@
 #include <robotdriver/toolboxdriver.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "robot.h"
 #include "fisharm.h"
 
 // Ax-12 that controls the arm
@@ -19,8 +20,8 @@
 
 #define AXMAGNETCONTROL 148
 #define ON              532
-#define OFF             300
-#define MAGNETSPEED     100
+#define OFF             280
+#define MAGNETSPEED      50
 
 static void (*captureCallback)(void) = NULL;
 static void (*releaseCallback)(void) = NULL;
@@ -85,6 +86,7 @@ void initFishAx12() {
 }
 
 void magnetOn() {
+	setRGB(0, 0, 0);
 	axMove(AXMAGNETCONTROL, ON, magnetOnCallback);
 }
 
@@ -98,6 +100,7 @@ void armUp() {
 
 void armMid() {
 	onFishCapture(NULL);
+	setRGB(0, 0, 255);
 	axMove(AXFISHARM, MID, armMidCallback);
 }
 
