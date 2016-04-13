@@ -4,6 +4,10 @@
 #include <robotdriver/motioncontroller.h>
 #include <robotdriver/speedcontroller.h>
 
+static void foo(){
+	queueSpeedChange(0.1, NULL);
+}
+
 int main (int argc, char *argv[]) {
 	initRobot();
 	onTryCapture(testCallback);
@@ -17,7 +21,8 @@ int main (int argc, char *argv[]) {
 	}
 	else {
 		setBlockingCallback(tryCapture);
-		queueSpeedChange(0.1, NULL);
+		onOpenPincers(foo);
+		openPincers();
 	}
 	while(1);
 	return 0;
