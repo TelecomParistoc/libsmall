@@ -19,7 +19,7 @@ int main () {
     onCollisionEnd(collisionEnd);
 
     onGameStart(gameStart);
-    
+
     while(1) {
         // config switch
         printf("Current config : %d\n", getTableConfig());
@@ -32,6 +32,7 @@ int main () {
             printf("Mode : match\n");
         else
             printf("Mode : test\n");
+        waitFor(100);
     }
     return 0;
 }
