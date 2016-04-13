@@ -3,5 +3,8 @@ tests/fishingtest
 tests/moveToFish
 tests/yeux
 tests/fishing
+tests/robottest
+tests/pincerstest
+tests/AX12position
 *.swp
 .DS_Store

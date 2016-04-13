@@ -5,18 +5,18 @@
 #include "pincers.h"
 
 // Ax-12 stuff
-#define PINCERSTORQUE 100
+#define PINCERSTORQUE 300
 
 // Left Ax-12
 #define AXLEFTPINCER  130
 #define AXLEFTIN      698
-#define AXLEFTCAPTURE 340
+#define AXLEFTCAPTURE 425
 #define AXLEFTOUT     235
 
 // Right Ax-12
 #define AXRIGHTPINCER  129
 #define AXRIGHTIN      362
-#define AXRIGHTCAPTURE 610
+#define AXRIGHTCAPTURE 600
 #define AXRIGHTOUT     798
 
 static void (*openPincersCallback)(void) = NULL;
