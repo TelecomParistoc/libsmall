@@ -11,5 +11,6 @@ int main (int argc, char *argv[]) {
 		openPincers();
 	if(atoi(argv[1]) == 0)
 		closePincers();
+	while(1);
 	return 0;
 }
