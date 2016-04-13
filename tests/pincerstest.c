@@ -1,12 +1,12 @@
 #include <stdlib.h>
-#include "robot.h"
-#include "pincers.h"
+#include <librobot/robot.h>
+#include <librobot/pincers.h>
 
 int main (int argc, char *argv[]) {
 	initRobot();
-	onTryCapture(testCallback());
+	onTryCapture(testCallback);
 	if(atoi(argv[1]) == 2)
-		tryPincers();
+		tryCapture();
 	if(atoi(argv[1]) == 1)
 		openPincers();
 	if(atoi(argv[1]) == 0)

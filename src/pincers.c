@@ -24,8 +24,8 @@ static void (*tryCaptureCallback)(void) = NULL;
 static void (*closePincersCallback)(void) = NULL;
 
 void initPincersAx12() {
-	axSetTorqueSpeed(AXLEFTPINCER , PINCERSTORQUE, -1, 0):
-	axSetTorqueSpeed(AXRIGHTPINCER, PINCERSTORQUE, -1, 0):
+	axSetTorqueSpeed(AXLEFTPINCER , PINCERSTORQUE, -1, 0);
+	axSetTorqueSpeed(AXRIGHTPINCER, PINCERSTORQUE, -1, 0);
 }
 
 void onOpenPincers(void (*callback)(void)) {
