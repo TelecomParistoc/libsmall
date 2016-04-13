@@ -31,7 +31,6 @@ tests: $(TESTS)
 clean:
 	rm -f build/*.o build/*.so build/*.d $(TESTS)
 
-
 install: build/$(TARGET)
 	mkdir -p $(DESTDIR)$(PREFIX)/lib
 	mkdir -p $(DESTDIR)$(PREFIX)/include/librobot
