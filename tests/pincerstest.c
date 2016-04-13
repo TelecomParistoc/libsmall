@@ -3,9 +3,17 @@
 #include <librobot/pincers.h>
 #include <robotdriver/motioncontroller.h>
 #include <robotdriver/speedcontroller.h>
+#include <robotdriver/headingcontroller.h>
 
-static void foo(){
-	queueSpeedChange(0.1, NULL);
+static void goForward(){
+	enableHeadingControl(0);
+	queueSpeedChange(0.15, NULL);
+}
+
+static void stopAndCatch(){
+	fastSpeedChange(0);
+	enableHeadingControl(1);
+	tryCapture();
 }
 
 int main (int argc, char *argv[]) {
@@ -20,8 +28,8 @@ int main (int argc, char *argv[]) {
 			closePincers();
 	}
 	else {
-		setBlockingCallback(tryCapture);
-		onOpenPincers(foo);
+		setBlockingCallback(stopAndCatch);
+		onOpenPincers(goForward);
 		openPincers();
 	}
 	while(1);

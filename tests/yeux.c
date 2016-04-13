@@ -3,7 +3,7 @@
 
 int main(){
 	initRobot();
-	setRGB(255, 0, 255);
+	setRGB(0, 0x66, 0xCC);
 	while(1);
 	return 0;
 }

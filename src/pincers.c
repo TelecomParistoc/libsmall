@@ -1,8 +1,12 @@
 #include <robotdriver/toolboxdriver.h>
+#include <pathfollower/pathfollower.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "robot.h"
 #include "pincers.h"
+
+#define RAYON 100
 
 // Ax-12 stuff
 #define PINCERSTORQUE 300
@@ -11,17 +15,24 @@
 #define AXLEFTPINCER  130
 #define AXLEFTIN      698
 #define AXLEFTCAPTURE 425
-#define AXLEFTOUT     235
+#define AXLEFTOUT     300
 
 // Right Ax-12
 #define AXRIGHTPINCER  129
 #define AXRIGHTIN      362
 #define AXRIGHTCAPTURE 600
-#define AXRIGHTOUT     798
+#define AXRIGHTOUT     730
 
 static void (*openPincersCallback)(void) = NULL;
 static void (*tryCaptureCallback)(void) = NULL;
 static void (*closePincersCallback)(void) = NULL;
+
+struct robotPoint getPosInCorner(double angle){
+	struct robotPoint pos;
+	pos.x = -RAYON*sin(angle*M_PI/180);
+	pos.y = -RAYON*cos(angle*M_PI/180);
+	return pos;
+}
 
 void initPincersAx12() {
 	axSetTorqueSpeed(AXLEFTPINCER , PINCERSTORQUE, -1, 0);
