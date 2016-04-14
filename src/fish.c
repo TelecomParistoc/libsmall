@@ -71,6 +71,11 @@ static void fish2(){
 	printf("Let's get some fish 2\n");
 	setRobotDistance(0);
 	onFishCapture(stop2);
+	if(hasFish()){
+		onFishCapture(NULL);
+		stop2();
+		return;
+	}
 	if(getTeam() == GREEN_TEAM) {
 		queueSpeedChange(-0.05, NULL);
 		queueStopAt(-400, end2);
