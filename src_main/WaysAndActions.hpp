@@ -35,16 +35,16 @@ bool start = false;
 void go()
 {start = true;}
 
+void exitAndClean()
+{
+    std::cout<<"Exiting"<<std::endl;
+    exit(0);
+}
+
 void allume()
 {
     std::cout<<"Jack grabed"<<std::endl;
     onGameStart(&go);
     /**A completer pour chaque robot**/
-    onStopGame(&exitAndClean);
-}
-
-void exitAndClean()
-{
-    std::cout<<"Exiting"<<std::endl;
-    exit(0);
+    onGameStop(&exitAndClean);
 }

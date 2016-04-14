@@ -45,7 +45,7 @@ int main()
 	initRobot();
 	initWaysAndActions();
 
-	onStopGame(&allume);
+	onGameStop(&allume);
 
 	onCollisionDetect(&checkCollisionAndReact);
 
