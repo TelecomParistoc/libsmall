@@ -73,6 +73,7 @@ void onArmMid(void (*callback)(void)) {
 
 void onArmDown(void (*callback)(void)) {
 	armDownCallback = callback;
+	printf("Changing arm down callback\n");
 }
 
 void waitForFish() {

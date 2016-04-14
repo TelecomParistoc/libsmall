@@ -29,6 +29,8 @@ static void (*closePincersCallback)(void) = NULL;
 void setPosInCorner(double angle){
 	double x = -RAYON*sin(angle*M_PI/180);
 	double y = -RAYON*cos(angle*M_PI/180);
+	printf("Angle : %f\n", angle);
+	printf("Trigo : X = %f || Y = %f\n", x, y);
 	setCurrentLocation(x, y);
 }
 

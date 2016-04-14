@@ -79,5 +79,5 @@ void catchShells(){
 	onTryCapture(back);
 	onOpenPincers(turn);
 	finish();
-	ffollow("water2rocks", openPincers);
+	ffollow("net2rocks", openPincers);
 }

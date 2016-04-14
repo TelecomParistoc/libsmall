@@ -10,9 +10,9 @@ int main(int argc, char* argv[]){
 	initRobot();
 	onEndFishing(catchShells);
 	if(atoi(argv[1]))
-		startFishingStep();
+		ffollow("start2water", startFishingStep);
 	else
-		startFishing();
+		ffollow("start2water", startFishing);
 	while(1);
 	return 0;
 }
