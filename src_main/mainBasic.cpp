@@ -10,36 +10,6 @@
 #include "WaysAndActions.hpp"
 
 
-bool isMovingToAction = false;
-bool started = false;
-bool blocked = false;
-bool pausePath = false;
-bool seeBlocked = false;
-
-int way = -1;
-
-void checkCollisionAndReact(int)
-{seeBlocked = true;}
-
-void endWay()
-{
-	std::cout<<"End of way "<<way<<std::endl;
-	way++;
-	if(way<(int)ways.size())
-		actions[way].start();
-	isMovingToAction = false;
-}
-
-void endAction()
-{
-	std::cout<<"End of action "<<way<<std::endl;
-	curPos = PathFollower::getCurrentPos();
-	PathFollower::setCurrentPosition(curPos.first,curPos.second);
-	if(way<(int)ways.size())
-		ffollow(ways[way].c_str(), &endWay);
-	isMovingToAction = true;
-}
-
 int main()
 {
 	initRobot();
@@ -59,8 +29,6 @@ int main()
 	Clock::time_point clk_start = Clock::now();
 
 	double seconds = 90;
-	endWay();
-	std::cout<<"Ici"<<std::endl;
 	while(std::chrono::duration_cast<milliseconds>(Clock::now()-clk_start).count()<seconds*1000)
 	{
 		if(start&&!started)
