@@ -40,12 +40,12 @@ void onClosePincers(void (*callback)(void)) {
 	closePincersCallback = callback;
 }
 
-static void openRight() {
-	axMove(AXRIGHTPINCER, AXRIGHTOUT, openPincersCallback);
+static void openLeft() {
+	axMove(AXLEFTPINCER , AXLEFTOUT , openPincersCallback);
 }
 
 void openPincers() {
-	axMove(AXLEFTPINCER , AXLEFTOUT , openRight);
+	axMove(AXRIGHTPINCER, AXRIGHTOUT, openLeft);
 }
 
 void tryCapture() {
@@ -53,12 +53,12 @@ void tryCapture() {
 	axMove(AXRIGHTPINCER, AXRIGHTCAPTURE, tryCaptureCallback);
 }
 
-static void closeLeft() {
-	axMove(AXLEFTPINCER, AXLEFTIN, closePincersCallback);
+static void closeRight() {
+	axMove(AXRIGHTPINCER, AXRIGHTIN, closePincersCallback);
 }
 
 void closePincers() {
-	axMove(AXRIGHTPINCER, AXRIGHTIN, closeLeft);
+	axMove(AXLEFTPINCER, AXLEFTIN, closeRight);
 }
 
 void testCallback() {
