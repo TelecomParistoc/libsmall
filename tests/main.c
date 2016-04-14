@@ -15,8 +15,11 @@ void start(){
 	printf("Let's go !\n");
 	waitFor(3000);
 	ffollow("start2water", startFishing);
-	while(!fishHasFinished())
+	printf("On est parti\n");
+	while(!fishHasFinished()){
+		printf("Nope\n");
 		waitFor(50);
+	}
 	fishStop();
 	ffollow("water2net", releaseFish);
 	while(!fishHasFinished())

@@ -47,7 +47,7 @@ static void end2(){
 		setCurrentLocation(800 - getRobotDistance(), 111);
 		printf("Position en x : %f\n", 800 - getRobotDistance());
 	}
-	armUp();
+	finish();
 }
 
 static void withFish2(){
@@ -206,7 +206,6 @@ static void fishstep(){
 void startFishing(){
 	straight = 1;
 	onFishCapture(NULL);
-	onArmUp(endFishingCallback);
 	if (straight)
 		onArmDown(fish);
 	else
