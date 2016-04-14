@@ -10,7 +10,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void releaseFish();
 static void fishstep();
 static void fishstep2();
 
