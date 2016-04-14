@@ -29,8 +29,8 @@ static void (*closePincersCallback)(void) = NULL;
 
 struct robotPoint getPosInCorner(double angle){
 	struct robotPoint pos;
-	pos.x = -RAYON*sin(angle*M_PI/180);
-	pos.y = -RAYON*cos(angle*M_PI/180);
+	pos.y = -RAYON*sin(angle*M_PI/180);
+	pos.x = -RAYON*cos(angle*M_PI/180);
 	return pos;
 }
 
