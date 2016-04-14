@@ -31,9 +31,11 @@ static void deliver(){
 	if(first) {
 		first = 0;
 		onClosePincers(catchSecond);
+		printf("Going to deliver first shell\n");
 		ffollow("rocks2start", openPincers);
 	} else {
 		onClosePincers(NULL);
+		printf("Going to deliver second shell\n");
 		ffollow("rocks2start2", openPincers);
 	}
 }
@@ -52,7 +54,6 @@ static void stopAndCatch(){
 
 static void getShell(){
 	if(getTableConfig() != 4){
-
 		setBlockingCallback(stopAndCatch);
 		enableHeadingControl(0);
 		queueSpeedChange(0.15, NULL);
