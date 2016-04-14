@@ -7,6 +7,7 @@ class Action
         Action(const std::function<void()>& start, const std::function<void()>& pause, const std::function<void()>& cont, const std::function<void()>& stop, const std::function<bool()>& isFinished);
         //provide C binding
         Action(void (*start)(void), void (*pause)(void), void (*cont)(void), void (*stop)(void), int (*isFinished)(void));
+	Action();
 
         void start();
         void pauseAction();

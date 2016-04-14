@@ -16,6 +16,8 @@ Action::Action(void (*start)(void), void (*pause)(void), void (*cont)(void), voi
 	isFinishedFunction(convertCtoCpp(isFinished))
 {}
 
+Action::Action(){}
+
 void Action::start()
 {startFunction();}
 
