@@ -25,22 +25,22 @@ void go()
 void checkCollisionAndReact(int)
 {seeBlocked = true;}
 
+void endWay()
+{
+	std::cout<<"End of way "<<way<<std::endl;
+	actions[way].start();
+	isMovingToAction = false;
+}
+
 void endAction()
 {
 	std::cout<<"End of action "<<way<<std::endl;
 	curPos = PathFollower::getCurrentPos();
 	PathFollower::setCurrentPosition(curPos.first,curPos.second);
 	way++;
-	if(way<ways.size())
+	if(way<(int)ways.size())
 		ffollow(ways[way].c_str(), &endWay);
 	isMovingToAction = true;
-}
-
-void endWay()
-{
-	std::cout<<"End of way "<<way<<std::endl;
-	actions[way].start();
-	isMovingToAction = false;
 }
 
 int main()
@@ -73,14 +73,14 @@ int main()
 			ffollow(ways[way].c_str(), &endWay);
 		}
 
-		if(!isMovingToAction){
-			if(actions[way].isFinished()) {
-				actions[way].stopAction();
+		if(!isMovingToAction)
+			if(actions[way].isFinished()){
 				endAction();
+				actions[way].stopAction();
 			}
-		}
 
 		if(seeBlocked)
+		{
 			if(PathFollower::isSpeedPositive())
 			{
 				if(!isRobotFront())
@@ -118,6 +118,7 @@ int main()
 								actions[way].pauseAction();
 						}
 			}
+		}
 
 		if(!seeBlocked)
 			if(blocked)

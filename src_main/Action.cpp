@@ -12,7 +12,7 @@ Action::Action(void (*start)(void), void (*pause)(void), void (*cont)(void), voi
 	startFunction(start),
 	pauseFunction(pause),
 	continueFunction(cont),
-	stopFunction(stop)
+	stopFunction(stop),
 	isFinishedFunction(convertCtoCpp(isFinished))
 {}
 

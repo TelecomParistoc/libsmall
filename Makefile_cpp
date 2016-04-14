@@ -21,9 +21,9 @@ all: build build/$(TARGET1) build/$(TARGET2)
 
 build:
 	mkdir -p build
-build/%.o: %.c build/%.d
+build/%.o: %.cpp build/%.d
 	$(CC) -c -o $@ $< $(CFLAGS)
-build/%.d : %.c
+build/%.d : %.cpp
 	$(CC) $(CFLAGS) -MM -MF $@ -MP $<
 build/$(TARGET1): $(OBJECTS1)
 	$(CC) $(CFLAGS) $(OBJECTS1) -o $@ $(LDFLAGS)
