@@ -4,10 +4,12 @@
 
 int main (int argc, char *argv[]) {
 	initRobot();
-	onClosePincers(testCallback());
-	if(atoi(argv[1]))
+	onTryCapture(testCallback());
+	if(atoi(argv[1]) == 2)
+		tryPincers();
+	if(atoi(argv[1]) == 1)
 		openPincers();
-	else
+	if(atoi(argv[1]) == 0)
 		closePincers();
 	return 0;
 }

@@ -8,16 +8,19 @@
 #define PINCERSTORQUE 100
 
 // Left Ax-12
-#define AXLEFTPINCER 130
-#define AXLEFTIN     557
-#define AXLEFTOUT    338
+#define AXLEFTPINCER  130
+#define AXLEFTIN      698
+#define AXLEFTCAPTURE 340
+#define AXLEFTOUT     235
 
 // Right Ax-12
-#define AXRIGHTPINCER 129
-#define AXRIGHTIN     557
-#define AXRIGHTOUT    338
+#define AXRIGHTPINCER  129
+#define AXRIGHTIN      362
+#define AXRIGHTCAPTURE 610
+#define AXRIGHTOUT     798
 
 static void (*openPincersCallback)(void) = NULL;
+static void (*tryCaptureCallback)(void) = NULL;
 static void (*closePincersCallback)(void) = NULL;
 
 void initPincersAx12() {
@@ -29,18 +32,33 @@ void onOpenPincers(void (*callback)(void)) {
 	openPincersCallback = callback;
 }
 
+void onTryCapture(void (*callback)(void)) {
+	tryCaptureCallback = callback;
+}
+
 void onClosePincers(void (*callback)(void)) {
 	closePincersCallback = callback;
 }
 
+static void openRight() {
+	axMove(AXRIGHTPINCER, AXRIGHTOUT, openPincersCallback);
+}
+
 void openPincers() {
-	axMove(AXLEFTPINCER , AXLEFTOUT , NULL);
-	axMove(AXTIGHTPINCER, AXRIGHTOUT, openPincersCallback);
+	axMove(AXLEFTPINCER , AXLEFTOUT , openRight);
+}
+
+void tryCapture() {
+	axMove(AXLEFTPINCER , AXLEFTCAPTURE , NULL);
+	axMove(AXRIGHTPINCER, AXRIGHTCAPTURE, tryCaptureCallback);
+}
+
+static void closeLeft() {
+	axMove(AXLEFTPINCER, AXLEFTIN, closePincersCallback);
 }
 
 void closePincers() {
-	axMove(AXLEFTPINCER , AXLEFTIN , NULL);
-	axMove(AXTIGHTPINCER, AXRIGHTIN, closePincersCallback);
+	axMove(AXRIGHTPINCER, AXRIGHTIN, closeLeft);
 }
 
 void testCallback() {
