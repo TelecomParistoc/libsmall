@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "robot.h"
 #include "fisharm.h"
+#include "pincers.h"
 
 void fishSensorManager();
 
@@ -38,7 +39,7 @@ void initRobot() {
 	setRobotDistance(0);
 	setRobotHeading(0);
 	axReset();
-    setRotationDirection(getTeam() == PURPLE_TEAM);
+	setRotationDirection(getTeam() == PURPLE_TEAM);
 
 	enableSensorCallback(1);
 	disableSensorCallback(2);
@@ -58,6 +59,7 @@ void initRobot() {
 		setPWM(i, 255);
 
 	initFishAx12();
+	initPincersAx12();
 }
 
 void onGameStart(void (*callback)(void)) {
