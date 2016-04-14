@@ -3,32 +3,36 @@
 #include <robotdriver/motioncontroller.h>
 #include <robotdriver/speedcontroller.h>
 #include <robotdriver/headingcontroller.h>
+#include <robotdriver/motordriver.h>
 #include <stdlib.h>
 
 static void stop(){
 	clearMotionQueue();
-	queueSpeedChange(0);
+	queueSpeedChange(0, NULL);
 	armMid();
 }
 
 static void fish(){
 	setRobotHeading(0);
 	setRobotDistance(0);
-	queueSpeedChange(0.10, NULL);
+	onFishCapture(stop);
+	queueSpeedChange(0.08, NULL);
 	queueStopAt(450, NULL);
+}
 
 static void turn(){
 	setRobotHeading(90);
 	onArmDown(fish);
-	onFishCapture(stop);
 	setTargetHeading(0, armDown);
+}
 
 static void recalibrate(){
+	setBlockingCallback(NULL);
 	fastSpeedChange(0);
 	enableHeadingControl(1);
 	setRobotDistance(0);
 	queueSpeedChange(0.15, NULL);
-	queueStopAt(30, turn);
+	queueStopAt(70, turn);
 }
 
 int main(){
