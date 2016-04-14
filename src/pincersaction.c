@@ -67,16 +67,17 @@ static void turn(){
 		setTargetHeading(180 + getHeading(), getShell);
 	else
 		getShell();
+}
 
 static void catchSecond() {
-	onOpenPincers(getShell);
+	onOpenPincers(turn);
 	finish();
 	ffollow("start2rocks", getShell);
 }
 
 void catchShells(){
 	onTryCapture(back);
-	onOpenPincers(getShell);
+	onOpenPincers(turn);
 	finish();
 	ffollow("water2rocks", openPincers);
 }
