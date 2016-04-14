@@ -21,7 +21,7 @@
 #define AXMAGNETCONTROL 148
 #define ON              532
 #define OFF             280
-#define MAGNETSPEED      50
+#define MAGNETSPEED     100
 
 static void (*captureCallback)(void) = NULL;
 static void (*releaseCallback)(void) = NULL;
@@ -106,4 +106,8 @@ void armMid() {
 
 void armDown() {
 	axMove(AXFISHARM, DOWN, armDownCallback);
+}
+
+void drop(){
+	axMove(AXFISHARM, MID - 20, armMid);
 }
