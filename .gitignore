@@ -8,5 +8,6 @@ tests/pincerstest
 tests/AX12position
 tests/posFish
 tests/testall
+tests/main
 *.swp
 .DS_Store
