@@ -47,6 +47,7 @@ void initRobot() {
 
 	setRobotDistance(0);
 	setRobotHeading(0);
+	setRobotLocation(41, 1003);
 	axReset();
 	setRotationDirection(getTeam() == PURPLE_TEAM);
 

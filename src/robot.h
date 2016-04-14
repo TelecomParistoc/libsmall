@@ -12,6 +12,7 @@ void initRobot();
 /* calls the given function at the start of the game (when the start jack is
  * unplugged) */
 void onGameStart(void (*callback)(void));
+void onGameStop(void (*callback)(void));
 
 /* calls the given function when a collision sensor detects a new obstacle.
  * the callback should be like void myCallback(int collisionSensor) {...}. The

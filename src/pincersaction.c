@@ -41,7 +41,7 @@ static void deliver(){
 static void back(){
 	setRobotDistance(0);
 	queueSpeedChange(-0.15, NULL);
-	queueStopAt(-100, deliver);
+	queueStopAt(-20, deliver);
 }
 
 static void stopAndCatch(){
@@ -52,6 +52,7 @@ static void stopAndCatch(){
 
 static void getShell(){
 	if(getTableConfig() != 4){
+
 		setBlockingCallback(stopAndCatch);
 		enableHeadingControl(0);
 		queueSpeedChange(0.15, NULL);
@@ -60,6 +61,12 @@ static void getShell(){
 		ffollow("rocks2start", closePincers);
 	}
 }
+
+static void turn(){
+	if(getTeam() == GREEN_TEAM || !first)
+		setTargetHeading(180 + getHeading(), getShell);
+	else
+		getShell();
 
 static void catchSecond() {
 	onOpenPincers(getShell);

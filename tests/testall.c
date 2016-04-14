@@ -8,12 +8,11 @@
 
 int main(int argc, char* argv[]){
 	initRobot();
-	setRobotLocation(41, 1003);
 	onEndFishing(catchShells);
 	if(atoi(argv[1]))
 		startFishingStep();
 	else
-		startFishing;
+		startFishing();
 	while(1);
 	return 0;
 }
