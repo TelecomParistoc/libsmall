@@ -154,10 +154,10 @@ void releaseFish(){
 
 static void withFish(){
 	if(getTeam() == GREEN_TEAM){
-		setCurrentLocation(391 + getRobotDistance(), 111);
+		setCurrentLocation(412 + getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 + getRobotDistance());
 	} else {
-		setCurrentLocation(391 - getRobotDistance(), 111);
+		setCurrentLocation(412 - getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 - getRobotDistance());
 	}
 	printf("Position du getPosition X = %f || Y = %f\n", getCurrentX(), getCurrentY());

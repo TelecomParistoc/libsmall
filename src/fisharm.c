@@ -107,7 +107,6 @@ void armMid() {
 
 void armDown() {
 	axMove(AXFISHARM, DOWN, armDownCallback, 1000);
-	exit(0);
 }
 
 void drop(){
