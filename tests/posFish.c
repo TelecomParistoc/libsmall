@@ -34,7 +34,7 @@ static void stop(){
 static void fish(){
 	setRobotDistance(0);
 	onFishCapture(stop);
-	queueSpeedChange(0.1, caca);
+	queueSpeedChange(0.05, caca);
 	queueStopAt(450, caca);
 }
 
@@ -44,20 +44,10 @@ static void turn(){
 	setTargetHeading(0, armDown);
 }
 
-static void recalibrate(){
-	setBlockingCallback(NULL);
-	fastSpeedChange(0);
-	enableHeadingControl(1);
-	setRobotDistance(0);
-	queueSpeedChange(0.15, NULL);
-	queueStopAt(70, turn);
-}
-
 int main(){
 	initRobot();
-	setBlockingCallback(recalibrate);
-	enableHeadingControl(0);
-	queueSpeedChange(-0.15, NULL);
+	setCurrentLocation(41, 1003);
+	ffollow("start2water", turn);
 	while(1);
 	return 0;
 }

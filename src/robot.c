@@ -4,6 +4,7 @@
 #include <robotdriver/motordriver.h>
 #include <robotdriver/toolboxdriver.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "robot.h"
 #include "fisharm.h"
 #include "pincers.h"
@@ -74,10 +75,14 @@ void onCollisionEnd(void (*callback)(int)) {
     collisionEndCallback = callback;
 }
 
-void setRobotFrontCallback(void (*callback)(int)) {
+int isRobotFront() {
+    //printf("check front (positive speed) %d %d %d\n",collisions[0],collisions[1],collisions[2]);
+    return collisions[1]||collisions[2];
 }
 
-void setRobotBehindCallback(void (*callback)(int)) {
+int isRobotBehind() {
+    //printf("check behind (negative speed) %d %d %d\n",collisions[0],collisions[1],collisions[2]);
+    return collisions[0];
 }
 
 int getTableConfig() {

@@ -22,10 +22,10 @@ void onCollisionDetect(void (*callback)(int));
  * argument collisionSensor is the sensor that stopped detecting an obstacle */
 void onCollisionEnd(void (*callback)(int));
 
-/* set the callback which must be called when a robot is detected in front (when moving forward)*/
-void setRobotFrontCallback(void (*callback)(int));
-/* set the callback which must be called when a robot is detected behind (when moving back) */
-void setRobotBehindCallback(void (*callback)(int));
+/* check if a robot is detected in front (when moving forward)*/
+int isRobotFront();
+/* check if a robot is detected behind (when moving backward) */
+int isRobotBehind();
 
 /* returns the current table configuration, describing how the shells are placed */
 int getTableConfig();
