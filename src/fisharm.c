@@ -14,14 +14,14 @@
 #define UP        790
 #define MID       600
 #define DOWN      480
-#define ARMSPEED  200
+#define ARMSPEED  400
 
 // Ax-12 that controls the magnet
 
 #define AXMAGNETCONTROL 124
 #define ON              520
 #define OFF             280
-#define MAGNETSPEED     100
+#define MAGNETSPEED     400
 
 static void (*captureCallback)(void) = NULL;
 static void (*releaseCallback)(void) = NULL;
@@ -107,6 +107,7 @@ void armMid() {
 
 void armDown() {
 	axMove(AXFISHARM, DOWN, armDownCallback, 1000);
+	exit(0);
 }
 
 void drop(){

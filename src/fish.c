@@ -16,6 +16,7 @@ static void fishstep2();
 static int step = 0;
 static int straight = 0;
 static int finished = 0;
+static int nbfish = 0;
 
 static void (*endFishingCallback)(void) = NULL;
 
@@ -47,7 +48,8 @@ static void end2(){
 		setCurrentLocation(800 - getRobotDistance(), 111);
 		printf("Position en x : %f\n", 800 - getRobotDistance());
 	}
-	finish();
+	onArmMid(finish);
+	armMid();
 }
 
 static void withFish2(){
@@ -81,10 +83,10 @@ static void fish2(){
 		return;
 	}
 	if(getTeam() == GREEN_TEAM) {
-		queueSpeedChange(-0.05, NULL);
+		queueSpeedChange(-(0.10 - 0.02 * nbfish), NULL);
 		queueStopAt(-400, end2);
 	} else {
-		queueSpeedChange(0.05, NULL);
+		queueSpeedChange(0.10 - 0.02 * nbfish, NULL);
 		queueStopAt(400, end2);
 	}
 }
@@ -132,13 +134,20 @@ static void end(){
 		setCurrentLocation(391 - getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 - getRobotDistance());
 	}
-	armUp();
+	onArmMid(finish);
+	armMid();
 }
 
 void releaseFish(){
+	nbfish ++;
 	onMagnetOff(drop);
 	onArmMid(magnetOn);
-	onMagnetOn(finish);
+	if(nbfish == 4){
+		onMagnetOn(armUp);
+		onArmUp(finish);
+	} else {
+		onMagnetOn(finish);
+	}
 	setCurrentLocation(getCurrentX(), getCurrentY());
 	magnetOff();
 }
@@ -169,10 +178,10 @@ static void fish(){
 	onArmDown(fish2);
 	onFishCapture(stop);
 	if(getTeam() == GREEN_TEAM){
-		queueSpeedChange(0.05, NULL);
+		queueSpeedChange(0.10-(0.02*nbfish), NULL);
 		queueStopAt(400, end);
 	} else {
-		queueSpeedChange(-0.05, NULL);
+		queueSpeedChange(-(0.10-(0.02*nbfish)), NULL);
 		queueStopAt(-400, end);
 	}
 }
