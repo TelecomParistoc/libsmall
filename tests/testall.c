@@ -1,5 +1,5 @@
 #include <pathfollower/pathfollower.h>
-#include <robotdriver/toolboxdriver.h>
+#include <robotdriver/imudriver.h>
 #include <librobot/robot.h>
 #include <librobot/fish.h>
 #include <librobot/pincersaction.h>
