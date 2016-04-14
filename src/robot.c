@@ -74,6 +74,12 @@ void onCollisionEnd(void (*callback)(int)) {
     collisionEndCallback = callback;
 }
 
+void setRobotFrontCallback(void (*callback)(int)) {
+}
+
+void setRobotBehindCallback(void (*callback)(int)) {
+}
+
 int getTableConfig() {
     return getButton(1) + getButton(2)*2 + getButton(3)*3;
 }
