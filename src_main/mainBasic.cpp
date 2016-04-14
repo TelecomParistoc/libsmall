@@ -56,10 +56,11 @@ int main()
 
 	typedef std::chrono::high_resolution_clock Clock;
 	typedef std::chrono::milliseconds milliseconds;
-	Clock::time_point clk_start;
+	Clock::time_point clk_start = Clock::now();
 
 	double seconds = 90;
 	endWay();
+	std::cout<<"Ici"<<std::endl;
 	while(std::chrono::duration_cast<milliseconds>(Clock::now()-clk_start).count()<seconds*1000)
 	{
 		if(start&&!started)

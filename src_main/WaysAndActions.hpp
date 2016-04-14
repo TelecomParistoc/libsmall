@@ -38,7 +38,7 @@ void go()
 void exitAndClean()
 {
     std::cout<<"Exiting"<<std::endl;
-    exit(0);
+    //exit(0);
 }
 
 void allume()
