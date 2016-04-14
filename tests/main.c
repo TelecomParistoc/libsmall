@@ -1,4 +1,5 @@
 #include <robotdriver/toolboxdriver.h>
+#include <robotdriver/speedcontroller.h>
 #include <librobot/fish.h>
 #include <librobot/pincers.h>
 #include <librobot/pincersaction.h>
@@ -62,6 +63,8 @@ void start(){
 
 int main(){
 	initRobot();
+	setMoveStartCallback(updateAngleStartingMove);
+	setMoveEndCallback(updatePositionEndingMove);
 	onGameStop(jackOn);
 	onGameStart(start);
 	while(1);
