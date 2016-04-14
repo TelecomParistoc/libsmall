@@ -13,10 +13,9 @@ static void stop(){
 }
 
 static void fish(){
-	setRobotHeading(0);
 	setRobotDistance(0);
 	onFishCapture(stop);
-	queueSpeedChange(0.08, NULL);
+	queueSpeedChange(0.1, NULL);
 	queueStopAt(450, NULL);
 }
 

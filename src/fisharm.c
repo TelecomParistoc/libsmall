@@ -13,7 +13,7 @@
 #define AXFISHARM 121
 #define UP        790
 #define MID       600
-#define DOWN      500
+#define DOWN      480
 #define ARMSPEED  200
 
 // Ax-12 that controls the magnet
