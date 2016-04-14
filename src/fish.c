@@ -4,11 +4,12 @@
 #include <robotdriver/speedcontroller.h>
 #include <robotdriver/headingcontroller.h>
 #include <robotdriver/motordriver.h>
+#include <robotdriver/toolboxdriver.h>
 #include <pathfollower/pathfollower.h>
 #include <stdlib.h>
 #include <stdio.h>
 
-static void realeaseFish();
+static void releaseFish();
 
 static int nbFish = 0;
 
@@ -18,19 +19,21 @@ static void caca() {
 
 static void withFish2(){
 	setCurrentLocation(800 + getRobotDistance(), 114);
-	ffollow("water2net", realeaseFish);
+	printf("Position en x : %f\n", 800 + getRobotDistance());
+	printf("Pos de getPosition :  X = %f || Y = %f\n)", getCurrentX(), getCurrentY());
+	ffollow("water2net", releaseFish);
 }
 
 static void stop2(){
 	clearMotionQueue();
 	queueSpeedChange(0, NULL);
+	onFishCapture(NULL);
 	onArmMid(withFish2);
 	armMid();
 }
 
 static void fish2(){
 	printf("Let's get some fish\n");
-	onArmDown(NULL);
 	setRobotDistance(0);
 	onFishCapture(stop2);
 	queueSpeedChange(-0.05, caca);
@@ -42,48 +45,47 @@ static void turn2(){
 	setTargetHeading(0, armDown);
 }
 
-static void realeaseFish(){
+static void next(){
+	if(nbFish < 4)
+		ffollow("net2water", turn2);
+	else
+		armUp();
+}
+
+static void releaseFish(){
 	onMagnetOff(drop);
 	onArmMid(magnetOn);
-	onMagnetOn(armUp);
+	onMagnetOn(next);
 	magnetOff();
 	nbFish ++;
-	if(nbFish < 4){
-		ffollow("net2water", turn2);
-	}
 }
 
 static void withFish(){
 	setCurrentLocation(391 + getRobotDistance(), 111);
-	ffollow("water2net", realeaseFish);
+	printf("Position en x : %f\n", 391 + getRobotDistance());
+	printf("Position du getPosition X = %f || Y = %f\n", getCurrentX(), getCurrentY());
+	ffollow("water2net", releaseFish);
 }
 
 static void stop(){
 	clearMotionQueue();
 	queueSpeedChange(0, NULL);
+	onFishCapture(NULL);
 	onArmMid(withFish);
 	armMid();
 }
 
 static void fish(){
 	printf("Let's get some fish\n");
-	onArmDown(NULL);
 	setRobotDistance(0);
 	onFishCapture(stop);
 	queueSpeedChange(0.05, caca);
 	queueStopAt(400, caca);
 }
 
-static void turn(){
+void startFishing(){
+	onFishCapture(NULL);
 	setRobotHeading(90);
 	onArmDown(fish);
 	setTargetHeading(0, armDown);
-}
-
-int main(){
-	initRobot();
-	setCurrentLocation(41, 1003);
-	ffollow("start2water", turn);
-	while(1);
-	return 0;
 }

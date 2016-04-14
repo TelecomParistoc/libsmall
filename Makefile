@@ -1,5 +1,5 @@
 TARGET = librobot.so
-SRCS = robot.c fisharm.c pincers.c
+SRCS = robot.c fisharm.c pincers.c fish.c
 HEADERS = $(addprefix src/, ${SRCS:.c=.h})
 OBJECTS = $(addprefix build/,${SRCS:.c=.o})
 CC=gcc
@@ -7,7 +7,7 @@ CFLAGS = -O2 -std=gnu99 -Wall -Werror -fpic
 LDFLAGS= -shared -lrobotdriver
 PREFIX = /usr/local
 VPATH = build/
-TESTS = tests/fishingtest tests/moveToFish tests/robottest tests/AX12position tests/yeux tests/pincerstest tests/posFish
+TESTS = tests/fishingtest tests/moveToFish tests/robottest tests/AX12position tests/yeux tests/pincerstest tests/posFish tests/fishing
 
 vpath %.c src/
 vpath %.h src/

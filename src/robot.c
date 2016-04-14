@@ -61,6 +61,8 @@ void initRobot() {
 
 	initFishAx12();
 	initPincersAx12();
+	setMoveStartCallback(updateAngleStartingMove);
+	setMoveEndCallback(updatePositionEndingMove);
 }
 
 void onGameStart(void (*callback)(void)) {
