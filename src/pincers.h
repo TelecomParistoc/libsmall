@@ -1,11 +1,13 @@
 #ifndef PINCERS_H
 #define PINCERS_H
 
+#include <pathfollower/pathfollower.h>
+
 // Sets max torque for pincers, called in initRobot
 void initPincersAx12();
 
 // Returns position when stuck in the corner with the angle
-getPosInCorner(double angle);
+struct robotPoint getPosInCorner(double angle);
 
 // Functions to drive the Ax-12 for pincers
 void onOpenPincers(void (*callback)(void));

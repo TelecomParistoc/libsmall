@@ -6,5 +6,6 @@ tests/fishing
 tests/robottest
 tests/pincerstest
 tests/AX12position
+tests/posFish
 *.swp
 .DS_Store
