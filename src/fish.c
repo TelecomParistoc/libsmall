@@ -131,17 +131,10 @@ static void end(){
 	armUp();
 }
 
-static void next(){
-	if(nbFish < 4)
-		ffollow("net2water", turn2);
-	else
-		armUp();
-}
-
-static void releaseFish(){
+static releaseFish(){
 	onMagnetOff(drop);
 	onArmMid(magnetOn);
-	onMagnetOn(next);
+	onMagnetOn(finish);
 	magnetOff();
 	nbFish ++;
 }
@@ -156,7 +149,6 @@ static void withFish(){
 	}
 	printf("Position du getPosition X = %f || Y = %f\n", getCurrentX(), getCurrentY());
 	finish();
-	ffollow("water2net", releaseFish);
 }
 
 static void stop(){
