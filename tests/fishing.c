@@ -8,9 +8,6 @@
 int main(){
 	initRobot();
 	startFishing();
-	while(1){
-		waitFor(100);
-		printf("Position du getPosition X = %f || Y = %f\n", getCurrentX(), getCurrentY());
-	}
+	while(1);
 	return 0;
 }
