@@ -97,4 +97,5 @@ void faceShell(){
 
 void setGetTimeCallback(double (* callback)(void)){
 	getTimeCallback = callback;
+	printf("Le callback est %p\n", getTimeCallback);
 }

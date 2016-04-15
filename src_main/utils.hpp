@@ -50,6 +50,7 @@ Clock::time_point clk_start;
 
 double getTime()
 {
+	std::cout<<"What time is it ?"<<std::endl;
 	return std::chrono::duration_cast<milliseconds>(Clock::now()-clk_start).count();
 }
 
