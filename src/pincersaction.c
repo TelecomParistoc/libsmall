@@ -30,7 +30,7 @@ static void deliver(){
 		onOpenPincers(faceShell);
 		finish();
 	} else {
-		onOpenPincers(finish);
+		onOpenPincers(closePincers);
 		finish();
 	}
 }
@@ -61,8 +61,6 @@ void faceShell(){
 		if(first)
 			setTargetHeading(200, openPincers);
 		else
-			setTargetHeading(250, openPincers);
-	} else {
-		finish();
+			setTargetHeading(240, openPincers);
 	}
 }
