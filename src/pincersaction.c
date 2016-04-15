@@ -37,7 +37,7 @@ static void deliver(){
 static void back(){
 	setRobotDistance(0);
 	queueSpeedChange(-0.15, NULL);
-	queueStopAt(-50, deliver);
+	queueStopAt(-70, deliver);
 }
 
 static void stopAndCatch(){
@@ -67,10 +67,8 @@ static void reopen(){
 
 static void turn(){
 	if(first){
-		if(getTeam() == GREEN_TEAM)
-			setTargetHeading(180 + getHeading(), getShell);
-		else
-			getShell();
+		onOpenPincers(getShell);
+		setTargetHeading(200, openPincers);
 	} else {
 		setTargetHeading(180 + getHeading(), reopen);
 	}
@@ -78,6 +76,5 @@ static void turn(){
 
 void catchShells(){
 	onTryCapture(back);
-	onOpenPincers(turn);
-	openPincers();
+	turn();
 }

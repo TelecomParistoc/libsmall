@@ -6,10 +6,10 @@
 #include "robot.h"
 #include "pincers.h"
 
-#define RAYON 453
+#define RAYON 473
 
 // Ax-12 stuff
-#define PINCERSTORQUE 300
+#define PINCERSTORQUE 400
 
 // Left Ax-12
 #define AXLEFTPINCER  130

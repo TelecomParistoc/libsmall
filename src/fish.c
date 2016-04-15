@@ -34,18 +34,17 @@ static void finish(){
 }
 
 void delayStart(){
-	printf("scheduleIn\n");
-	scheduleIn(3000, finish);
+	finish();
 }
 
 static void end2(){
 	onFishCapture(NULL);
 	if(getTeam() == GREEN_TEAM){
-		setCurrentLocation(800 + getRobotDistance(), 111);
+		setCurrentLocation(800 + getRobotDistance(), 110);
 		printf("Position en x : %f\n", 800 + getRobotDistance());
 	} else {
-		setCurrentLocation(800 - getRobotDistance(), 111);
-		printf("Position en x : %f\n", 800 - getRobotDistance());
+		setCurrentLocation(796 - getRobotDistance(), 110);
+		printf("Position en x : %f\n", 796 - getRobotDistance());
 	}
 	onArmMid(finish);
 	armMid();
@@ -53,11 +52,11 @@ static void end2(){
 
 static void withFish2(){
 	if(getTeam() == GREEN_TEAM) {
-		setCurrentLocation(800 + getRobotDistance(), 114);
-		printf("Position en x : %f\n", 800 + getRobotDistance());
+		setCurrentLocation(796 + getRobotDistance(), 110);
+		printf("Position en x : %f\n", 796 + getRobotDistance());
 	} else {
-		setCurrentLocation(800 - getRobotDistance(), 114);
-		printf("Position en x : %f\n", 800 - getRobotDistance());
+		setCurrentLocation(796 - getRobotDistance(), 110);
+		printf("Position en x : %f\n", 796 - getRobotDistance());
 	}
 	printf("Pos de getPosition :  X = %f || Y = %f\n)", getCurrentX(), getCurrentY());
 	finish();

@@ -47,8 +47,9 @@ void initRobot() {
 	initToolboxDriver();
 
 	setRobotDistance(0);
-	setRobotHeading(0);
-	setCurrentLocation(41, 1003);
+	setRobotHeading(90);
+	setTargetHeading(90, NULL);
+	setCurrentLocation(196,940);
 	axReset();
 	setRotationDirection(getTeam() == PURPLE_TEAM);
 
