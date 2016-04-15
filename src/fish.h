@@ -13,6 +13,7 @@ void releaseFish();
 void startFishing();
 void startFishingStep();
 void onEndFishing(void (*callback)(void));
+void onJump(void (*callback)(int));
 
 #ifdef __cplusplus
 }

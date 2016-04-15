@@ -5,18 +5,18 @@
 
 #include "Action.hpp"
 
-std::vector<std::string> ways;
-std::vector<Action> actions;
-std::pair<double,double> curPos = std::pair<double,double>(41,1003);
+static std::vector<std::string> ways;
+static std::vector<Action> actions;
+static std::pair<double,double> curPos = std::pair<double,double>(41,1003);
 
 
-bool isMovingToAction = false;
-bool started = false;
-bool blocked = false;
-bool pausePath = false;
-bool seeBlocked = false;
+static bool isMovingToAction = false;
+static bool started = false;
+static bool pausePath = false;
+static bool blocked = false;
+static bool seeBlocked = false;
 
-int way = -1;
+static int way = -1;
 
 void checkCollisionAndReact(int)
 {seeBlocked = true;}
@@ -40,7 +40,7 @@ void endAction()
 	isMovingToAction = true;
 }
 
-bool start = false;
+static bool start = false;
 
 void go()
 {

@@ -19,6 +19,7 @@ static int finished = 0;
 static int nbfish = 0;
 
 static void (*endFishingCallback)(void) = NULL;
+static void (*jumpCallback)(int) = NULL;
 
 int fishHasFinished(){
 	return finished;
@@ -236,4 +237,8 @@ void startFishingStep(){
 
 void onEndFishing(void (*callback)(void)){
 	endFishingCallback = callback;
+}
+
+void onJump(void (*callback)(int)){
+	jumpCallback = callback;
 }
