@@ -8,8 +8,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void turn();
-
 static int first = 1;
 static int finished = 0;
 
@@ -27,11 +25,14 @@ static void finish(){
 
 static void deliver(){
 	setPosInCorner(getHeading());
-	if(first)
+	if(first){
 		first = 0;
-	onOpenPincers(finish);
-	onClosePincers(turn);
-	finish();
+		onOpenPincers(faceShell);
+		finish();
+	} else {
+		onOpenPincers(finish);
+		finish();
+	}
 }
 
 static void back(){
@@ -48,33 +49,20 @@ static void stopAndCatch(){
 }
 
 static void getShell(){
+	setBlockingCallback(stopAndCatch);
+	enableHeadingControl(0);
+	queueSpeedChange(0.15, NULL);
+}
+
+void faceShell(){
+	onTryCapture(back);
+	onOpenPincers(getShell);
 	if(getTableConfig() != 4){
-		setBlockingCallback(stopAndCatch);
-		enableHeadingControl(0);
-		queueSpeedChange(0.15, NULL);
-	}
-	else{
-		onOpenPincers(finish);
-		onClosePincers(turn);
+		if(first)
+			setTargetHeading(200, openPincers);
+		else
+			setTargetHeading(250, openPincers);
+	} else {
 		finish();
 	}
-}
-
-static void reopen(){
-	onOpenPincers(getShell);
-	openPincers();
-}
-
-static void turn(){
-	if(first){
-		onOpenPincers(getShell);
-		setTargetHeading(200, openPincers);
-	} else {
-		setTargetHeading(180 + getHeading(), reopen);
-	}
-}
-
-void catchShells(){
-	onTryCapture(back);
-	turn();
 }

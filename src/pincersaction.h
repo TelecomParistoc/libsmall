@@ -7,7 +7,7 @@ extern "C" {
 
 int pincersHasFinished();
 void pincersStop();
-void catchShells();
+void faceShell();
 
 #ifdef __cplusplus
 }

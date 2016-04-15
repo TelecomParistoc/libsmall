@@ -11,7 +11,7 @@
 void initWaysAndActions()
 {
 	curPos = std::pair<double,double>(196, 940);
-	ways = {"start2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2rocks", "rocks2start", "start2rocks", "rocks2start2"};
+	ways = {"start2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2rocks", "rocks2rocks", "rocks2start"};
 
 	actions.push_back(Action(&delayStart, NULL, NULL, &fishStop, &fishHasFinished));
 	actions.push_back(Action(&startFishing, NULL, NULL, &fishStop, &fishHasFinished));
@@ -22,9 +22,8 @@ void initWaysAndActions()
 	actions.push_back(Action(&releaseFish, NULL, NULL, &fishStop, &fishHasFinished));
 	actions.push_back(Action(&turn2, NULL, NULL, &fishStop, &fishHasFinished));
 	actions.push_back(Action(&releaseFish, NULL, NULL, &fishStop, &fishHasFinished));
-	actions.push_back(Action(&catchShells, NULL, NULL, &pincersStop, &pincersHasFinished));
+	actions.push_back(Action(&faceShell, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
-	actions.push_back(Action(&closePincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	setRGB(255, 0, 0);
 }
