@@ -47,7 +47,7 @@ static void end2(){
 		setCurrentLocation(816 - getRobotDistance(), 110);
 		printf("Position en x : %f\n", 796 - getRobotDistance());
 	}
-
+	jumpCallback(8);
 	armUp();
 	finish();
 }
