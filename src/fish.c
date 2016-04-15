@@ -40,14 +40,13 @@ void delayStart(){
 
 static void end2(){
 	onFishCapture(NULL);
-	/*if(getTeam() == GREEN_TEAM){
+	if(getTeam() == GREEN_TEAM){
 		setCurrentLocation(816 + getRobotDistance(), 110);
 		printf("Position en x : %f\n", 800 + getRobotDistance());
 	} else {
 		setCurrentLocation(816 - getRobotDistance(), 110);
 		printf("Position en x : %f\n", 796 - getRobotDistance());
-	}*/
-	setRobotDistance(0);
+	}
 	jumpCallback(12);
 	armUp();
 	if(getTableConfig() == 4)
@@ -56,14 +55,13 @@ static void end2(){
 }
 
 static void withFish2(){
-	/*if(getTeam() == GREEN_TEAM) {
-		setCurrentLocation(796 + getRobotDistance(), 110);
-		printf("Position en x : %f\n", 796 + getRobotDistance());
+	if(getTeam() == GREEN_TEAM) {
+		setCurrentLocation(816 + getRobotDistance(), 110);
+		printf("Position en x : %f\n", 816 + getRobotDistance());
 	} else {
-		setCurrentLocation(796 - getRobotDistance(), 110);
-		printf("Position en x : %f\n", 796 - getRobotDistance());
-	}*/
-	setRobotDistance(0);
+		setCurrentLocation(816 - getRobotDistance(), 110);
+		printf("Position en x : %f\n", 816 - getRobotDistance());
+	}
 	printf("Pos de getPosition :  X = %f || Y = %f\n)", getCurrentX(), getCurrentY());
 	finish();
 }
@@ -131,14 +129,13 @@ void turn2(){
 
 static void end(){
 	onFishCapture(NULL);
-	/*if(getTeam() == GREEN_TEAM){
+	if(getTeam() == GREEN_TEAM){
 		setCurrentLocation(391 + getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 + getRobotDistance());
 	} else {
 		setCurrentLocation(391 - getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 - getRobotDistance());
-	}*/
-	setRobotDistance(0);
+	}
 	onArmMid(finish);
 	armMid();
 }
@@ -160,14 +157,13 @@ void releaseFish(){
 }
 
 static void withFish(){
-	/*if(getTeam() == GREEN_TEAM){
+	if(getTeam() == GREEN_TEAM){
 		setCurrentLocation(412 + getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 + getRobotDistance());
 	} else {
 		setCurrentLocation(412 - getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 - getRobotDistance());
-	}*/
-	setRobotDistance(0);
+	}
 	printf("Position du getPosition X = %f || Y = %f\n", getCurrentX(), getCurrentY());
 	finish();
 }
