@@ -1,4 +1,5 @@
 #include "robot.h"
+#include "fish.h"
 #include "pincers.h"
 #include "pincersaction.h"
 #include <robotdriver/motioncontroller.h>
@@ -25,11 +26,30 @@ static void finish(){
 	finished = 1;
 }
 
+static void jobDone(){
+	setRGB(0, 255, 0);
+}
+
+static void flee(){
+	setRobotDistance(0);
+	queueSpeedChange(-0.15, NULL);
+	queueStopAt(-500, closePincers);
+}
+
+static void shortcut(){
+	setRobotDistance(0);
+	queueSpeedChange(0.15, NULL);
+	queueStopAt(500, flee);
+}
+
 static void deliver(){
 	setPosInCorner(getHeading());
 	if(first){
 		first = 0;
-		onOpenPincers(faceShell);
+		if(getTimeCallback() > 78000)
+			onOpenPincers(shortcut);
+		else
+			onOpenPincers(faceShell);
 		finish();
 	} else {
 		onOpenPincers(closePincers);
@@ -63,6 +83,7 @@ static void getShell(){
 }
 
 void faceShell(){
+	onClosePincers(jobDone);
 	onTryCapture(back);
 	onOpenPincers(getShell);
 	setActiveDetectors(none);
