@@ -30,7 +30,6 @@ void fishStop(){
 
 static void finish(){
 	finished = 1;
-	setRGB(255, 0, 0);
 	printf("Fish action finished\n");
 }
 
