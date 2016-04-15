@@ -11,6 +11,7 @@
 
 void initWaysAndActions()
 {
+	curPos = std::pair<double,double>(196, 940);
 	ways = {"start2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2rocks", "rocks2start", "start2rocks", "rocks2start2"};
 
 	actions.push_back(Action(&delayStart, NULL, NULL, &fishStop, &fishHasFinished));
