@@ -67,6 +67,7 @@ static void back(){
 static void stopAndCatch(){
 	setBlockingCallback(NULL);
 	fastSpeedChange(0);
+	setTargetHeading(getHeading(), NULL);
 	enableHeadingControl(1);
 	tryCapture();
 }
@@ -92,7 +93,7 @@ void faceShell(){
 		if(first)
 			setTargetHeading(200, openPincers);
 		else
-			setTargetHeading(240, openPincers);
+			setTargetHeading(240, getShell);
 	}
 }
 
