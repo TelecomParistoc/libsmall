@@ -36,6 +36,11 @@ void setPosInCorner(double angle){
 }
 
 void initPincersAx12() {
+	axSetTorqueSpeed(AXLEFTPINCER , 1023, -1, 0);
+	axSetTorqueSpeed(AXRIGHTPINCER, 1023, -1, 0);
+}
+
+void refrainPincersAx12() {
 	axSetTorqueSpeed(AXLEFTPINCER , PINCERSTORQUE, -1, 0);
 	axSetTorqueSpeed(AXRIGHTPINCER, PINCERSTORQUE, -1, 0);
 }
@@ -57,20 +62,23 @@ static void openLeft() {
 }
 
 void openPincers() {
-	axMove(AXRIGHTPINCER, AXRIGHTOUT, openLeft, 2000);
+	initPincersAx12();
+	axMove(AXRIGHTPINCER, AXRIGHTOUT, openLeft, 500);
 }
 
 void tryCapture() {
+	refrainPincersAx12();
 	axMove(AXLEFTPINCER , AXLEFTCAPTURE , NULL, 1000);
 	axMove(AXRIGHTPINCER, AXRIGHTCAPTURE, tryCaptureCallback, 2000);
 }
 
 static void closeRight() {
+	initPincersAx12();
 	axMove(AXRIGHTPINCER, AXRIGHTIN, closePincersCallback, 2000);
 }
 
 void closePincers() {
-	axMove(AXLEFTPINCER, AXLEFTIN, closeRight, 2000);
+	axMove(AXLEFTPINCER, AXLEFTIN, closeRight, 500);
 }
 
 void testCallback() {

@@ -79,4 +79,5 @@ static void turn(){
 void catchShells(){
 	onTryCapture(back);
 	onOpenPincers(turn);
+	openPincers();
 }
