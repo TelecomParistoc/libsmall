@@ -19,11 +19,11 @@ void toggleLed()
 	if(!hasBegun)
 	{
 		scheduleIn(200, toggleLed);
-		setLED(1, light);
+		setLED(3, light);
 		light = 1-light;
 	}
 	else
-		setLED(1, 1);
+		setLED(3, 1);
 }
 
 void initWaysAndActions()
@@ -48,6 +48,9 @@ void initWaysAndActions()
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	setRGB(255, 0, 0);
+	setLED(1,0);
+	setLED(2,0);
+	setLED(3,0);
 	toggleLed();
 }
 
@@ -55,6 +58,14 @@ void jump(int w)
 {
 	std::cout<<"Jumping to "<<w<<" and current : "<<way<<std::endl;
 	way = w;
+}
+
+void go()
+{
+	std::cout<<"GO"<<std::endl;
+	start = true;
+	setLED(2,1);
+	endWay();
 }
 
 void allume()
@@ -69,11 +80,11 @@ void allume()
 	onJump(&jump);
 	setGetTimeCallback(&getTime);
 
-	setLED(2, 1);
+	hasBegun = true;
 
 	srand(time(NULL));
-	if(rand()%2==13)
-		setLED(3, 1);
+	if(rand()%100==1)
+		setLED(1, 1);
 }
 
 void endCallback()
@@ -84,5 +95,8 @@ void endCallback()
 	forceStop(1);
 	setTargetHeading(getRobotHeading(),NULL);
 
-	waitFor(250);
+	setLED(1,1);
+	setLED(2,0);
+	setLED(3,0);
+	waitFor(1000);
 }

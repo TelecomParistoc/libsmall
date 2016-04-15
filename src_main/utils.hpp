@@ -56,16 +56,12 @@ double getTime()
 
 static bool start = false;
 
-void go()
-{
-	std::cout<<"GO !"<<std::endl;
-	start = true;
-	endWay();
-}
+void endCallback();
 
 void exitAndClean()
 {
     std::cout<<"Exiting because of jack"<<std::endl;
+    endCallback();
     exit(0);
 }
 
