@@ -46,10 +46,11 @@ static void deliver(){
 	setPosInCorner(getHeading());
 	if(first){
 		first = 0;
-		if(getTimeCallback() > 78000)
+		if(getTimeCallback() > 70000)
 			onOpenPincers(shortcut);
 		else
 			onOpenPincers(faceShell);
+		printf("Time : %f\n", getTimeCallback());
 		finish();
 	} else {
 		onOpenPincers(closePincers);
