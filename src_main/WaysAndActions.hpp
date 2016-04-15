@@ -19,11 +19,11 @@ void toggleLed()
 	if(!hasBegun)
 	{
 		scheduleIn(200, toggleLed);
-		setLED(0, light);
+		setLED(1, light);
 		light = 1-light;
 	}
 	else
-		setLED(0, 1);
+		setLED(1, 1);
 }
 
 void initWaysAndActions()
@@ -69,11 +69,11 @@ void allume()
 	onJump(&jump);
 	setGetTimeCallback(&getTime);
 
-	setLED(1, 1);
+	setLED(2, 1);
 
 	srand(time(NULL));
 	if(rand()%2==13)
-		setLED(2, 1);
+		setLED(3, 1);
 }
 
 void endCallback()
