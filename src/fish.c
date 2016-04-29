@@ -11,6 +11,8 @@
 #include <stdio.h>
 
 static void releaseFish();
+static void schedulestep();
+static void schedulestep2();
 
 static int nbFish = 0;
 static int step = 0;
@@ -49,10 +51,10 @@ static void fish2(){
 	onFishCapture(stop2);
 	if(getTeam() == GREEN_TEAM) {
 		queueSpeedChange(-0.05, caca);
-		queueStopAt(-400, caca);
+		queueStopAt(-400, armUp);
 	} else {
 		queueSpeedChange(0.05, caca);
-		queueStopAt(400, caca);
+		queueStopAt(400, armUp);
 	}
 }
 
@@ -87,7 +89,7 @@ static void turn2(){
 		onArmDown(fish2);
 	else
 		onArmDown(fishstep2);
-	if(getTeam == GREEN_TEAM)
+	if(getTeam() == GREEN_TEAM)
 		setTargetHeading(0, armDown);
 	else
 		setTargetHeading(180, armDown);
@@ -139,10 +141,10 @@ static void fish(){
 	onFishCapture(stop);
 	if(getTeam() == GREEN_TEAM){
 		queueSpeedChange(0.05, caca);
-		queueStopAt(400, caca);
+		queueStopAt(400, armUp);
 	} else {
 		queueSpeedChange(-0.05, caca);
-		queueStopAt(i-400, caca);
+		queueStopAt(-400, armUp);
 	}
 }
 
