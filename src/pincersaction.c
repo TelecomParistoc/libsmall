@@ -8,6 +8,7 @@
 static int first = 1;
 
 static void deliver(){
+	setCurrentLocation(getPosInCorner(getCurrentHeading()).x, getPosInCorner(getCurrentHeading()).y);
 	if(first){
 		onOpenPincers(catch);
 		first = 0;
