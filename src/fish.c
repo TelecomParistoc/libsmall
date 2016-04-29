@@ -22,8 +22,13 @@ static void caca() {
 }
 
 static void withFish2(){
-	setCurrentLocation(800 + getRobotDistance(), 114);
-	printf("Position en x : %f\n", 800 + getRobotDistance());
+	if(getTeam() == GREEN_TEAM) {
+		setCurrentLocation(800 + getRobotDistance(), 114);
+		printf("Position en x : %f\n", 800 + getRobotDistance());
+	} else {
+		setCurrentLocation(800 - getRobotDistance(), 114);
+		printf("Position en x : %f\n", 800 - getRobotDistance());
+	}
 	printf("Pos de getPosition :  X = %f || Y = %f\n)", getCurrentX(), getCurrentY());
 	ffollow("water2net", releaseFish);
 }
@@ -41,8 +46,13 @@ static void fish2(){
 	printf("Let's get some fish\n");
 	setRobotDistance(0);
 	onFishCapture(stop2);
-	queueSpeedChange(-0.05, caca);
-	queueStopAt(-400, caca);
+	if(getTeam() == GREEN_TEAM) {
+		queueSpeedChange(-0.05, caca);
+		queueStopAt(-400, caca);
+	} else {
+		queueSpeedChange(0.05, caca);
+		queueStopAt(400, caca);
+	}
 }
 
 static void schedulestep2(){
@@ -51,12 +61,20 @@ static void schedulestep2(){
 
 static void fishstep2(){
 	printf("Let's get some fish\n");
-	setRobotDistance(-100 * step);
+	if(getTeam() == GREEN_TEAM)
+		setRobotDistance(-100 * step);
+	else
+		setRobotDistance(100 * step);
 	onFishCapture(stop2);
 	if(step < 4) {
 		step ++;
-		queueSpeedChange(-0.05, caca);
-		queueStopAt(-100 * step, schedulestep2);
+		if(getTeam() == GREEN_TEAM) {
+			queueSpeedChange(-0.05, caca);
+			queueStopAt(-100 * step, schedulestep2);
+		} else {
+			queueSpeedChange(0.05, caca);
+			queueStopAt(100 * step, schedulestep2);
+		}
 	} else {
 		setCurrentLocation(800 + getRobotDistance(), 114);
 		armUp();
@@ -78,7 +96,10 @@ static void next(){
 	if(nbFish < 4)
 		ffollow("net2water", turn2);
 	else {
-		setCurrentLocation(391 + getRobotDistance(), 111);
+		if(getTeam() == GREEN_TEAM)
+			setCurrentLocation(391 + getRobotDistance(), 111);
+		else
+			setCurrentLocation(391 - getRobotDistance(), 111);
 		armUp();
 	}
 }
@@ -92,8 +113,13 @@ static void releaseFish(){
 }
 
 static void withFish(){
-	setCurrentLocation(391 + getRobotDistance(), 111);
-	printf("Position en x : %f\n", 391 + getRobotDistance());
+	if(getTeam() == GREEN_TEAM){
+		setCurrentLocation(391 + getRobotDistance(), 111);
+		printf("Position en x : %f\n", 391 + getRobotDistance());
+	} else {
+		setCurrentLocation(391 - getRobotDistance(), 111);
+		printf("Position en x : %f\n", 391 - getRobotDistance());
+	}
 	printf("Position du getPosition X = %f || Y = %f\n", getCurrentX(), getCurrentY());
 	ffollow("water2net", releaseFish);
 }
@@ -110,8 +136,13 @@ static void fish(){
 	printf("Let's get some fish\n");
 	setRobotDistance(0);
 	onFishCapture(stop);
-	queueSpeedChange(0.05, caca);
-	queueStopAt(400, caca);
+	if(getTeam() == GREEN_TEAM){
+		queueSpeedChange(0.05, caca);
+		queueStopAt(400, caca);
+	} else {
+		queueSpeedChange(-0.05, caca);
+		queueStopAt(i-400, caca);
+	}
 }
 
 static void schedulestep(){
@@ -120,12 +151,20 @@ static void schedulestep(){
 
 static void fishstep(){
 	printf("Let's get some fish\n");
-	setRobotDistance(100 * step);
+	if(getTeam() == GREEN_TEAM)
+		setRobotDistance(100 * step);
+	else
+		setRobotDistance(-100 * step);
 	onFishCapture(stop);
 	if(step < 4) {
 		step ++;
-		queueSpeedChange(0.05, caca);
-		queueStopAt(100 * step, schedulestep);
+		if(getTeam() == GREEN_TEAM){
+			queueSpeedChange(0.05, caca);
+			queueStopAt(100 * step, schedulestep);
+		} else {
+			queueSpeedChange(-0.05, caca);
+			queueStopAt(-100 * step, schedulestep);
+		}
 	} else {
 		armUp();
 	}
