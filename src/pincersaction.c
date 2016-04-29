@@ -4,6 +4,7 @@
 #include <robotdriver/motioncontroller.h>
 #include <robotdriver/speedcontroller.h>
 #include <robotdriver/headingcontroller.h>
+#include <robotdriver/imudriver.h>
 #include <pathfollower/pathfollower.h>
 #include <stdlib.h>
 
