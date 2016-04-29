@@ -8,7 +8,8 @@
 
 int main(int argc, char* argv[]){
 	initRobot();
-	onEndFoshing(catchShells);
+	setRobotLocation(41, 1003);
+	onEndFishing(catchShells);
 	if(atoi(argv[1]))
 		startFishingStep();
 	else
