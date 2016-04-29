@@ -11,8 +11,8 @@
 #include <stdio.h>
 
 static void releaseFish();
-static void schedulestep();
-static void schedulestep2();
+static void fishstep();
+static void fishstep2();
 
 static int nbFish = 0;
 static int step = 0;
