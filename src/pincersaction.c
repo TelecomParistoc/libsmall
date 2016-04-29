@@ -32,21 +32,29 @@ static void deliver(){
 		onOpenPincers(closePincers);
 		ffollow("rocks2start2", openPincers);
 	}
+}
 
-	static void getFirst(){
-		enableHeadingControl(0);
-		queueSpeedChange(0.15, NULL);
-	}
+static void back(){
+	setRobotDistance(0);
+	queueSpeedChange(-0.15, NULL);
+	queueStopAt(-100, deliver);
+}
 
-	static void stopAndCatch(){
-		fastSpeedChange(0);
-		enableHeadingControl(1);
-		tryCapture();
-	}
 
-	void catchShells(){
-		onTryCapture(deliver);
-		setBlockingCallback(stopAndCatch);
-		onOpenPincers(getFirst);
-		ffollow("water2rocks", openPincers);
-	}
+static void getFirst(){
+	enableHeadingControl(0);
+	queueSpeedChange(0.15, NULL);
+}
+
+static void stopAndCatch(){
+	fastSpeedChange(0);
+	enableHeadingControl(1);
+	tryCapture();
+}
+
+void catchShells(){
+	onTryCapture(back);
+	setBlockingCallback(stopAndCatch);
+	onOpenPincers(getFirst);
+	ffollow("water2rocks", openPincers);
+}
