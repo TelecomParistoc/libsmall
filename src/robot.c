@@ -16,7 +16,7 @@ static void (*gameStopCallback)(void) = NULL;
 static void (*collisionDetectCallback)(int) = NULL;
 static void (*collisionEndCallback)(int) = NULL;
 static int collisions[3] = {0, 0, 0};
-static lastJack = 0;
+static int lastJack = 0;
 static collisionConfig_t collConfig = all;
 
 static void collisionsCallback() {
@@ -69,8 +69,8 @@ void initRobot() {
 
 	initFishAx12();
 	initPincersAx12();
-	setMoveStartCallback(updateAngleStartingMove);
-	setMoveEndCallback(updatePositionEndingMove);
+	//setMoveStartCallback(updateAngleStartingMove);
+	//setMoveEndCallback(updatePositionEndingMove);
 
     lastJack = getSensor(1);
 }
@@ -108,6 +108,7 @@ int isRobotFront() {
         case none:
             return 0;
     }
+    return 0;
 }
 
 int isRobotBehind() {
