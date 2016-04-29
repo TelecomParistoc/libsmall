@@ -3,6 +3,6 @@
 
 void startFishing();
 void startFishingStep();
-void onEndFishing(void (*callback)(void)){
+void onEndFishing(void (*callback)(void));
 
 #endif
