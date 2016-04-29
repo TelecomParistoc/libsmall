@@ -1,5 +1,5 @@
-#include <librobot/robot.h>
-#include <librobot/fisharm.h>
+#include <robot.h>
+#include <fisharm.h>
 #include <robotdriver/motioncontroller.h>
 #include <robotdriver/speedcontroller.h>
 #include <robotdriver/headingcontroller.h>
