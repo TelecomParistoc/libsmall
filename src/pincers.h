@@ -7,7 +7,7 @@
 void initPincersAx12();
 
 // Returns position when stuck in the corner with the angle
-struct robotPoint getPosInCorner(double angle);
+void setPosInCorner(double angle);
 
 // Functions to drive the Ax-12 for pincers
 void onOpenPincers(void (*callback)(void));

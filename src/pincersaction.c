@@ -1,9 +1,11 @@
+#include "robot.h"
 #include "pincers.h"
 #include "pincersaction.h"
 #include <robotdriver/motioncontroller.h>
 #include <robotdriver/speedcontroller.h>
 #include <robotdriver/headingcontroller.h>
 #include <pathfollower/pathfollower.h>
+#include <stdlib.h>
 
 static void stopAndCatch();
 
@@ -20,7 +22,7 @@ static void catchSecond() {
 }
 
 static void deliver(){
-	setCurrentLocation(getPosInCorner(getCurrentHeading()).x, getPosInCorner(getCurrentHeading()).y);
+	setCurrentLocation(getHeading());
 	if(first) {
 		if(getTableConfiguration != 4)
 			onOpenPincers(catchSecond);
