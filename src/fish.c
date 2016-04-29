@@ -12,6 +12,8 @@
 static void releaseFish();
 
 static int nbFish = 0;
+static int step = 0;
+static int straight = 0;
 
 static void caca() {
 	printf("lol\n");
@@ -25,6 +27,7 @@ static void withFish2(){
 }
 
 static void stop2(){
+	step = 0;
 	clearMotionQueue();
 	queueSpeedChange(0, NULL);
 	onFishCapture(NULL);
@@ -40,9 +43,30 @@ static void fish2(){
 	queueStopAt(-400, caca);
 }
 
+static void schedulestep2(){
+	scheduleIn(2000, fishstep2);
+}
+
+static void fishstep2(){
+	printf("Let's get some fish\n");
+	setRobotDistance(-100 * step);
+	onFishCapture(stop2);
+	if(step < 4) {
+		step ++;
+		queueSpeedChange(-0.05, caca);
+		queueStopAt(-100 * step, schedulestep2);
+	}
+}
+
 static void turn2(){
-	onArmDown(fish2);
-	setTargetHeading(0, armDown);
+	if (straight)
+		onArmDown(fish2);
+	else
+		onArmDown(fishstep2);
+	if(getTeam == GREEN_TEAM)
+		setTargetHeading(0, armDown);
+	else
+		setTargetHeading(180, armDown);
 }
 
 static void next(){
@@ -83,9 +107,41 @@ static void fish(){
 	queueStopAt(400, caca);
 }
 
+static void schedulestep(){
+	scheduleIn(2000, fishstep);
+}
+
+static void fishstep2(){
+	printf("Let's get some fish\n");
+	setRobotDistance(100 * step);
+	onFishCapture(stop);
+	if(step < 4) {
+		step ++;
+		queueSpeedChange(0.05, caca);
+		queueStopAt(100 * step, schedulestep);
+	}
+}
+
 void startFishing(){
 	onFishCapture(NULL);
 	setRobotHeading(90);
+	if (straight)
+		onArmDown(fish);
+	else
+		onArmDown(fishstep);
+	if(getTeam() == GREEN_TEAM)
+		setTargetHeading(0, armDown);
+	else
+		setTargetHeading(180, armDown);
+}
+
+void startFishingStep(){
+	straight = 1;
+	onFishCapture(NULL);
+	setRobotHeading(90);
 	onArmDown(fish);
-	setTargetHeading(0, armDown);
+	if(getTeam() == GREEN_TEAM)
+		setTargetHeading(0, armDown);
+	else
+		setTargetHeading(180, armDown);
 }
