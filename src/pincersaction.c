@@ -24,7 +24,7 @@ static void catchSecond() {
 static void deliver(){
 	setCurrentLocation(getHeading());
 	if(first) {
-		if(getTableConfiguration != 4)
+		if(getTableConfig() != 4)
 			onOpenPincers(catchSecond);
 		else
 			onOpenPincers(closePincers);
