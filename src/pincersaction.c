@@ -28,7 +28,7 @@ static void stopAndCatch(){
 	tryCapture();
 }
 
-void catch(){
+void catchShells(){
 	onTryCapture(deliver);
 	setBlockingCallback(stopAndCatch);
 	onOpenPincers(goForward);
