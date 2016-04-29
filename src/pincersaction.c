@@ -23,7 +23,7 @@ static void catchSecond() {
 }
 
 static void deliver(){
-	setCurrentLocation(getHeading());
+	setPosInCorner(getHeading());
 	if(first) {
 		if(getTableConfig() != 4)
 			onOpenPincers(catchSecond);
