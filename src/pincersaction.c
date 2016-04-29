@@ -21,36 +21,32 @@ static void catchSecond() {
 
 static void deliver(){
 	setCurrentLocation(getPosInCorner(getCurrentHeading()).x, getPosInCorner(getCurrentHeading()).y);
-	if(first){
-		onOpenPincers(catchSecond);
+	if(first) {
+		if(getTableConfiguration != 4)
+			onOpenPincers(catchSecond);
+		else
+			onOpenPincers(closePincers);
 		first = 0;
-	else{
-		onOpenPincers(closePincers);
-	}
-	if(first)
 		ffollow("rocks2start", openPincers);
-	else
+	} else {
+		onOpenPincers(closePincers);
 		ffollow("rocks2start2", openPincers);
-
-static void getFirst(){
-	if(getTableConfiguration == 4) {
-		closePincers();
-		ffollow("rocks2start", catchSecond);
-		first = 0;
 	}
-	enableHeadingControl(0);
-	queueSpeedChange(0.15, NULL);
-}
 
-static void stopAndCatch(){
-	fastSpeedChange(0);
-	enableHeadingControl(1);
-	tryCapture();
-}
+	static void getFirst(){
+		enableHeadingControl(0);
+		queueSpeedChange(0.15, NULL);
+	}
 
-void catchShells(){
-	onTryCapture(deliver);
-	setBlockingCallback(stopAndCatch);
-	onOpenPincers(getFirst);
-	ffollow("water2rocks", openPincers);
-}
+	static void stopAndCatch(){
+		fastSpeedChange(0);
+		enableHeadingControl(1);
+		tryCapture();
+	}
+
+	void catchShells(){
+		onTryCapture(deliver);
+		setBlockingCallback(stopAndCatch);
+		onOpenPincers(getFirst);
+		ffollow("water2rocks", openPincers);
+	}
