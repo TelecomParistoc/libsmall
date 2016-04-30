@@ -18,8 +18,8 @@
 
 // Ax-12 that controls the magnet
 
-#define AXMAGNETCONTROL 148
-#define ON              532
+#define AXMAGNETCONTROL 124
+#define ON              520
 #define OFF             280
 #define MAGNETSPEED     100
 
@@ -73,6 +73,7 @@ void onArmMid(void (*callback)(void)) {
 
 void onArmDown(void (*callback)(void)) {
 	armDownCallback = callback;
+	printf("Changing arm down callback\n");
 }
 
 void waitForFish() {
@@ -87,27 +88,27 @@ void initFishAx12() {
 
 void magnetOn() {
 	setRGB(0, 0, 0);
-	axMove(AXMAGNETCONTROL, ON, magnetOnCallback);
+	axMove(AXMAGNETCONTROL, ON, magnetOnCallback, 2000);
 }
 
 void magnetOff() {
-	axMove(AXMAGNETCONTROL, OFF, magnetOffCallback);
+	axMove(AXMAGNETCONTROL, OFF, magnetOffCallback, 2000);
 }
 
 void armUp() {
-	axMove(AXFISHARM, UP, armUpCallback);
+	axMove(AXFISHARM, UP, armUpCallback, 1000);
 }
 
 void armMid() {
 	onFishCapture(NULL);
 	setRGB(0, 0, 255);
-	axMove(AXFISHARM, MID, armMidCallback);
+	axMove(AXFISHARM, MID, armMidCallback, 1000);
 }
 
 void armDown() {
-	axMove(AXFISHARM, DOWN, armDownCallback);
+	axMove(AXFISHARM, DOWN, armDownCallback, 1000);
 }
 
 void drop(){
-	axMove(AXFISHARM, MID - 20, armMid);
+	axMove(AXFISHARM, MID - 20, armMid, 1000);
 }

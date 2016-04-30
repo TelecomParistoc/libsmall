@@ -5,7 +5,7 @@
 #include "robot.h"
 #include "pincers.h"
 
-#define RAYON 423
+#define RAYON 453
 
 // Ax-12 stuff
 #define PINCERSTORQUE 300
@@ -27,8 +27,10 @@ static void (*tryCaptureCallback)(void) = NULL;
 static void (*closePincersCallback)(void) = NULL;
 
 void setPosInCorner(double angle){
-	double x = -RAYON*sin(angle*M_PI/180);
-	double y = -RAYON*cos(angle*M_PI/180);
+	double x = -RAYON*cos(angle*M_PI/180);
+	double y = -RAYON*sin(angle*M_PI/180);
+	printf("Angle : %f\n", angle);
+	printf("Trigo : X = %f || Y = %f\n", x, y);
 	setCurrentLocation(x, y);
 }
 
@@ -50,24 +52,24 @@ void onClosePincers(void (*callback)(void)) {
 }
 
 static void openLeft() {
-	axMove(AXLEFTPINCER , AXLEFTOUT , openPincersCallback);
+	axMove(AXLEFTPINCER , AXLEFTOUT , openPincersCallback, 2000);
 }
 
 void openPincers() {
-	axMove(AXRIGHTPINCER, AXRIGHTOUT, openLeft);
+	axMove(AXRIGHTPINCER, AXRIGHTOUT, openLeft, 2000);
 }
 
 void tryCapture() {
-	axMove(AXLEFTPINCER , AXLEFTCAPTURE , NULL);
-	axMove(AXRIGHTPINCER, AXRIGHTCAPTURE, tryCaptureCallback);
+	axMove(AXLEFTPINCER , AXLEFTCAPTURE , NULL, 1000);
+	axMove(AXRIGHTPINCER, AXRIGHTCAPTURE, tryCaptureCallback, 2000);
 }
 
 static void closeRight() {
-	axMove(AXRIGHTPINCER, AXRIGHTIN, closePincersCallback);
+	axMove(AXRIGHTPINCER, AXRIGHTIN, closePincersCallback, 2000);
 }
 
 void closePincers() {
-	axMove(AXLEFTPINCER, AXLEFTIN, closeRight);
+	axMove(AXLEFTPINCER, AXLEFTIN, closeRight, 2000);
 }
 
 void testCallback() {

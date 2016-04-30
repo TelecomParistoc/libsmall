@@ -7,6 +7,7 @@
 #include <robotdriver/imudriver.h>
 #include <pathfollower/pathfollower.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 static void catchSecond();
 
@@ -27,14 +28,13 @@ static void finish(){
 
 static void deliver(){
 	setPosInCorner(getHeading());
-	onOpenPincers(closePincers);
 	if(first) {
 		first = 0;
-		onClosePincers(catchSecond);
+		onOpenPincers(catchSecond);
 		printf("Going to deliver first shell\n");
 		ffollow("rocks2start", openPincers);
 	} else {
-		onClosePincers(NULL);
+		onOpenPincers(NULL);
 		printf("Going to deliver second shell\n");
 		ffollow("rocks2start2", openPincers);
 	}
@@ -43,10 +43,11 @@ static void deliver(){
 static void back(){
 	setRobotDistance(0);
 	queueSpeedChange(-0.15, NULL);
-	queueStopAt(-20, deliver);
+	queueStopAt(-50, deliver);
 }
 
 static void stopAndCatch(){
+	setBlockingCallback(NULL);
 	fastSpeedChange(0);
 	enableHeadingControl(1);
 	tryCapture();
@@ -63,22 +64,31 @@ static void getShell(){
 	}
 }
 
+static void reopen(){
+	onOpenPincers(getShell);
+	openPincers();
+}
+
 static void turn(){
-	if(getTeam() == GREEN_TEAM || !first)
-		setTargetHeading(180 + getHeading(), getShell);
-	else
-		getShell();
+	if(first){
+		if(getTeam() == GREEN_TEAM)
+			setTargetHeading(180 + getHeading(), getShell);
+		else
+			getShell();
+	} else {
+		setTargetHeading(180 + getHeading(), reopen);
+	}
 }
 
 static void catchSecond() {
-	onOpenPincers(turn);
 	finish();
-	ffollow("start2rocks", getShell);
+	onClosePincers(turn);
+	ffollow("start2rocks", closePincers);
 }
 
 void catchShells(){
 	onTryCapture(back);
 	onOpenPincers(turn);
 	finish();
-	ffollow("water2rocks", openPincers);
+	ffollow("net2rocks", openPincers);
 }
