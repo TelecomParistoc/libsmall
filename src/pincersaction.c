@@ -30,8 +30,10 @@ static void deliver(){
 	onOpenPincers(closePincers);
 	if(first) {
 		first = 0;
+		onClosePincers(getSecond);
 		ffollow("rocks2start", openPincers);
 	} else {
+		onClosePincers(NULL);
 		ffollow("rocks2start2", openPincers);
 	}
 }
@@ -48,7 +50,6 @@ static void stopAndCatch(){
 	tryCapture();
 }
 
-
 static void getShell(){
 	if(getTableConfig() != 4){
 		setBlockingCallback(stopAndCatch);
@@ -61,6 +62,8 @@ static void getShell(){
 }
 
 static void catchSecond() {
+	onOpenPincers(getShell);
+	finish();
 	ffollow("start2rocks", getShell);
 }
 
