@@ -10,7 +10,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void releaseFish();
 static void fishstep();
 static void fishstep2();
 
@@ -55,7 +54,6 @@ static void withFish2(){
 	}
 	printf("Pos de getPosition :  X = %f || Y = %f\n)", getCurrentX(), getCurrentY());
 	finish();
-	ffollow("water2net", releaseFish);
 }
 
 static void stop2(){
@@ -111,7 +109,7 @@ static void fishstep2(){
 	}
 }
 
-static void turn2(){
+void turn2(){
 	printf("On va dans l'autre sens\n");
 	if(getTeam() == GREEN_TEAM)
 		setTargetHeading(0, armDown);
@@ -131,7 +129,7 @@ static void end(){
 	armUp();
 }
 
-static releaseFish(){
+void releaseFish(){
 	onMagnetOff(drop);
 	onArmMid(magnetOn);
 	onMagnetOn(finish);
