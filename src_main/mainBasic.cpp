@@ -23,21 +23,21 @@ void checkCollisionAndReact(int)
 
 void endWay()
 {
-    std::cout<<"End of way "<<way<<std::endl;
-    way++;
-    if(way<(int)ways.size())
-        actions[way].start();
-    isMovingToAction = false;
+	std::cout<<"End of way "<<way<<std::endl;
+	way++;
+	if(way<(int)ways.size())
+		actions[way].start();
+	isMovingToAction = false;
 }
 
 void endAction()
 {
-    std::cout<<"End of action "<<way<<std::endl;
-    curPos = PathFollower::getCurrentPos();
-    PathFollower::setCurrentPosition(curPos.first,curPos.second);
-    if(way<(int)ways.size())
-        ffollow(ways[way].c_str(), &endWay);
-    isMovingToAction = true;
+	std::cout<<"End of action "<<way<<std::endl;
+	curPos = PathFollower::getCurrentPos();
+	PathFollower::setCurrentPosition(curPos.first,curPos.second);
+	if(way<(int)ways.size())
+		ffollow(ways[way].c_str(), &endWay);
+	isMovingToAction = true;
 }
 
 int main()
@@ -129,9 +129,8 @@ int main()
 						actions[way].continueAction();
 				}
 
-			/*curPos = PathFollower::getCurrentPos();
-			  curDir = PathFollower::getCurrentDirection();
-			  std::cout<<curPos.first<<" "<<curPos.second<<";"<<curDir.first<<" "<<curDir.second<<std::endl;*/
+			curPos = PathFollower::getCurrentPos();
+			std::cout<<curPos.first<<" "<<curPos.second<<std::endl;
 		}
 
 		waitFor(50);
