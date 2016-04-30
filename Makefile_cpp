@@ -34,10 +34,10 @@ clean:
 	rm -f build/*.o build/*.d
 
 update_initd: build/$(TARGET2)
-    cp build/$(TARGET2) $(DEST)/$(TARGET2)
-    cp $(SCRIPT) $(DEST)/$(DEST_SCRIPT)
-    chmod u+x $(DEST)/$(DEST_SCRIPT)
-    ln -s $(DEST)/$(DEST_SCRIPT) /etc/rc3.d/S50robot_loop
+	cp build/$(TARGET2) $(DEST)/$(TARGET2)
+	cp $(SCRIPT) $(DEST)/$(DEST_SCRIPT)
+	chmod u+x $(DEST)/$(DEST_SCRIPT)
+	ln -s $(DEST)/$(DEST_SCRIPT) /etc/rc3.d/S50robot_loop
 
 
 -include $(subst .cpp,.d,$(SRC1))
