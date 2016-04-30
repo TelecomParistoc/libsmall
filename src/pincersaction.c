@@ -30,7 +30,7 @@ static void deliver(){
 	onOpenPincers(closePincers);
 	if(first) {
 		first = 0;
-		onClosePincers(getSecond);
+		onClosePincers(catchSecond);
 		ffollow("rocks2start", openPincers);
 	} else {
 		onClosePincers(NULL);
