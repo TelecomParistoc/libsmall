@@ -42,6 +42,7 @@ static void withFish2(){
 		printf("Position en x : %f\n", 800 - getRobotDistance());
 	}
 	printf("Pos de getPosition :  X = %f || Y = %f\n)", getCurrentX(), getCurrentY());
+	finish();
 	ffollow("water2net", releaseFish);
 }
 
@@ -133,6 +134,7 @@ static void withFish(){
 		printf("Position en x : %f\n", 391 - getRobotDistance());
 	}
 	printf("Position du getPosition X = %f || Y = %f\n", getCurrentX(), getCurrentY());
+	finish();
 	ffollow("water2net", releaseFish);
 }
 

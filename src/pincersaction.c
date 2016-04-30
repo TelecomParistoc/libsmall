@@ -72,5 +72,6 @@ void catchShells(){
 	onTryCapture(back);
 	setBlockingCallback(stopAndCatch);
 	onOpenPincers(getFirst);
+	finish();
 	ffollow("water2rocks", openPincers);
 }
