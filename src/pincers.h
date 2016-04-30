@@ -1,7 +1,9 @@
 #ifndef PINCERS_H
 #define PINCERS_H
 
-#include <pathfollower/pathfollower.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 // Sets max torque for pincers, called in initRobot
 void initPincersAx12();
@@ -17,5 +19,9 @@ void openPincers();
 void tryCapture();
 void closePincers();
 void testCallback();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

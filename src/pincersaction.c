@@ -28,16 +28,11 @@ static void finish(){
 
 static void deliver(){
 	setPosInCorner(getHeading());
-	if(first) {
+	if(first)
 		first = 0;
-		onOpenPincers(catchSecond);
-		printf("Going to deliver first shell\n");
-		ffollow("rocks2start", openPincers);
-	} else {
-		onOpenPincers(NULL);
-		printf("Going to deliver second shell\n");
-		ffollow("rocks2start2", openPincers);
-	}
+	onOpenPincers(finish);
+	onClosePincers(turn);
+	finish();
 }
 
 static void back(){
@@ -60,7 +55,9 @@ static void getShell(){
 		queueSpeedChange(0.15, NULL);
 	}
 	else{
-		ffollow("rocks2start", closePincers);
+		onOpenPincers(finish);
+		onClosePincers(turn);
+		finish();
 	}
 }
 
@@ -80,15 +77,7 @@ static void turn(){
 	}
 }
 
-static void catchSecond() {
-	finish();
-	onClosePincers(turn);
-	ffollow("start2rocks", closePincers);
-}
-
 void catchShells(){
 	onTryCapture(back);
 	onOpenPincers(turn);
-	finish();
-	ffollow("net2rocks", openPincers);
 }
