@@ -47,7 +47,6 @@ void endAction()
 int main()
 {
 	initRobot();
-	setRGB(255, 0, 0);
 
 	initWaysAndActions();
 
