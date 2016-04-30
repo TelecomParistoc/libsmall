@@ -11,6 +11,19 @@
 static void stopAndCatch();
 
 static int first = 1;
+static int finished = 0;
+
+int pincersHasFinidhed(){
+	return finished;
+}
+
+void pincersStop(){
+	finished = 0;
+}
+
+static void finish(){
+	finished = 1;
+}
 
 static void getSecond(){
 	setBlockingCallback(stopAndCatch);

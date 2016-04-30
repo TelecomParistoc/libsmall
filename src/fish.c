@@ -17,11 +17,20 @@ static void fishstep2();
 static int nbFish = 0;
 static int step = 0;
 static int straight = 0;
+static int finished = 0;
 
 static void (*endFishingCallback)(void) = NULL;
 
-static void caca() {
-	printf("lol\n");
+int fishHasFinidhed(){
+	return finished;
+}
+
+void fishStop(){
+	finished = 0;
+}
+
+static void finish(){
+	finished = 1;
 }
 
 static void withFish2(){
@@ -50,10 +59,10 @@ static void fish2(){
 	setRobotDistance(0);
 	onFishCapture(stop2);
 	if(getTeam() == GREEN_TEAM) {
-		queueSpeedChange(-0.05, caca);
+		queueSpeedChange(-0.05, NULL);
 		queueStopAt(-400, armUp);
 	} else {
-		queueSpeedChange(0.05, caca);
+		queueSpeedChange(0.05, NULL);
 		queueStopAt(400, armUp);
 	}
 }
@@ -72,10 +81,10 @@ static void fishstep2(){
 	if(step < 4) {
 		step ++;
 		if(getTeam() == GREEN_TEAM) {
-			queueSpeedChange(-0.05, caca);
+			queueSpeedChange(-0.05, NULL);
 			queueStopAt(-100 * step, schedulestep2);
 		} else {
-			queueSpeedChange(0.05, caca);
+			queueSpeedChange(0.05, NULL);
 			queueStopAt(100 * step, schedulestep2);
 		}
 	} else {
@@ -140,10 +149,10 @@ static void fish(){
 	setRobotDistance(0);
 	onFishCapture(stop);
 	if(getTeam() == GREEN_TEAM){
-		queueSpeedChange(0.05, caca);
+		queueSpeedChange(0.05, NULL);
 		queueStopAt(400, armUp);
 	} else {
-		queueSpeedChange(-0.05, caca);
+		queueSpeedChange(-0.05, NULL);
 		queueStopAt(-400, armUp);
 	}
 }
@@ -162,10 +171,10 @@ static void fishstep(){
 	if(step < 4) {
 		step ++;
 		if(getTeam() == GREEN_TEAM){
-			queueSpeedChange(0.05, caca);
+			queueSpeedChange(0.05, NULL);
 			queueStopAt(100 * step, schedulestep);
 		} else {
-			queueSpeedChange(-0.05, caca);
+			queueSpeedChange(-0.05, NULL);
 			queueStopAt(-100 * step, schedulestep);
 		}
 	} else {
