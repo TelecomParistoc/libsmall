@@ -32,6 +32,10 @@ static void finish(){
 	finished = 1;
 }
 
+void delayStart(){
+	scheduleIn(3000, finish);
+}
+
 static void end2(){
 	onFishCapture(NULL);
 	if(getTeam() == GREEN_TEAM){

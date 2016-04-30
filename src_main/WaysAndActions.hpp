@@ -14,7 +14,7 @@ std::pair<double,double> curPos = std::pair<double,double>(41,1003);
 
 void initWaysAndActions()
 {
-	actions.push_back(Action());
+	actions.push_back(Action(&delayStart, NULL, NULL, &fishStop, &fishHasFinished));
 	actions.push_back(Action(&startFishing, NULL, NULL, &fishStop, &fishHasFinished));
 	actions.push_back(Action(&releaseFish, NULL, NULL, &fishStop, &fishHasFinished));
 	actions.push_back(Action(&turn2, NULL, NULL, &fishStop, &fishHasFinished));
