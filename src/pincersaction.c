@@ -42,6 +42,12 @@ static void back(){
 	queueStopAt(-100, deliver);
 }
 
+static void stopAndCatch(){
+	fastSpeedChange(0);
+	enableHeadingControl(1);
+	tryCapture();
+}
+
 
 static void getShell(){
 	if(getTableConfig() != 4){
@@ -52,12 +58,6 @@ static void getShell(){
 	else{
 		ffollow("rocks2start", closePincers);
 	}
-}
-
-static void stopAndCatch(){
-	fastSpeedChange(0);
-	enableHeadingControl(1);
-	tryCapture();
 }
 
 static void catchSecond() {
