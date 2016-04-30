@@ -11,6 +11,10 @@ static void collisionEnd(int sensor) {
 static void gameStart() {
     printf("game start !\n");
 }
+static void gameStop() {
+    printf("game stop !\n");
+}
+
 
 int main () {
     initRobot();
@@ -19,20 +23,22 @@ int main () {
     onCollisionEnd(collisionEnd);
 
     onGameStart(gameStart);
+    onGameStop(gameStop),
 
     while(1) {
         // config switch
-        printf("Current config : %d\n", getTableConfig());
+        printf("Current config : %d, ", getTableConfig());
         // buttons test
         if(getTeam()==GREEN_TEAM)
-            printf("Team : green\n");
+            printf("Team : green, ");
         else
-            printf("Team : purple\n");
+            printf("Team : purple, ");
         if(getMode()==MATCH_MODE)
             printf("Mode : match\n");
         else
             printf("Mode : test\n");
-        waitFor(100);
+
+        waitFor(500);
     }
     return 0;
 }
