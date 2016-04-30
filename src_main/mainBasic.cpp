@@ -17,7 +17,7 @@ bool blocked = false;
 bool pausePath = false;
 bool seeBlocked = false;
 
-int way = 0;
+int way = -1;
 
 void go()
 {start = true;}
@@ -27,20 +27,21 @@ void checkCollisionAndReact(int)
 
 void endWay()
 {
-	std::cout<<"End of way "<<way<<std::endl;
-	actions[way].start();
-	isMovingToAction = false;
+    std::cout<<"End of way "<<way<<std::endl;
+    way++;
+    if(way<(int)ways.size())
+        actions[way].start();
+    isMovingToAction = false;
 }
 
 void endAction()
 {
-	std::cout<<"End of action "<<way<<std::endl;
-	curPos = PathFollower::getCurrentPos();
-	PathFollower::setCurrentPosition(curPos.first,curPos.second);
-	way++;
-	if(way<(int)ways.size())
-		ffollow(ways[way].c_str(), &endWay);
-	isMovingToAction = true;
+    std::cout<<"End of action "<<way<<std::endl;
+    curPos = PathFollower::getCurrentPos();
+    PathFollower::setCurrentPosition(curPos.first,curPos.second);
+    if(way<(int)ways.size())
+        ffollow(ways[way].c_str(), &endWay);
+    isMovingToAction = true;
 }
 
 int main()
@@ -74,9 +75,10 @@ int main()
 		}
 
 		if(!isMovingToAction)
-			if(actions[way].isFinished()){
-				endAction();
+			if(actions[way].isFinished())
+			{
 				actions[way].stopAction();
+				endAction();
 			}
 
 		if(seeBlocked)
