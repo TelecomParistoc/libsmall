@@ -13,7 +13,6 @@
 static void fishstep();
 static void fishstep2();
 
-static int nbFish = 0;
 static int step = 0;
 static int straight = 0;
 static int finished = 0;
@@ -137,8 +136,8 @@ void releaseFish(){
 	onMagnetOff(drop);
 	onArmMid(magnetOn);
 	onMagnetOn(finish);
+	setCurrentLocation(getCurrentX(), getCurrentY());
 	magnetOff();
-	nbFish ++;
 }
 
 static void withFish(){
