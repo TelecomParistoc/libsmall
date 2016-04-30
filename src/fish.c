@@ -21,7 +21,7 @@ static int finished = 0;
 
 static void (*endFishingCallback)(void) = NULL;
 
-int fishHasFinidhed(){
+int fishHasFinished(){
 	return finished;
 }
 

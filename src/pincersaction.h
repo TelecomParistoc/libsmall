@@ -1,7 +1,7 @@
 #ifndef PINCERSACTION_H
 #define PINCERSACTION_H
 
-int pincersHasFinshed();
+int pincersHasFinished();
 void pincersStop();
 void catchShells();
 

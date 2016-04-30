@@ -8,12 +8,12 @@
 #include <pathfollower/pathfollower.h>
 #include <stdlib.h>
 
-static void stopAndCatch();
+static void catchSecond();
 
 static int first = 1;
 static int finished = 0;
 
-int pincersHasFinidhed(){
+int pincersHasFinished(){
 	return finished;
 }
 
@@ -25,27 +25,13 @@ static void finish(){
 	finished = 1;
 }
 
-static void getSecond(){
-	setBlockingCallback(stopAndCatch);
-	enableHeadingControl(0);
-	queueSpeedChange(0.15, NULL);
-}
-
-static void catchSecond() {
-	ffollow("start2rocks", getSecond);
-}
-
 static void deliver(){
 	setPosInCorner(getHeading());
+	onOpenPincers(closePincers);
 	if(first) {
-		if(getTableConfig() != 4)
-			onOpenPincers(catchSecond);
-		else
-			onOpenPincers(closePincers);
 		first = 0;
 		ffollow("rocks2start", openPincers);
 	} else {
-		onOpenPincers(closePincers);
 		ffollow("rocks2start2", openPincers);
 	}
 }
@@ -57,9 +43,15 @@ static void back(){
 }
 
 
-static void getFirst(){
-	enableHeadingControl(0);
-	queueSpeedChange(0.15, NULL);
+static void getShell(){
+	if(getTableConfig() != 4){
+		setBlockingCallback(stopAndCatch);
+		enableHeadingControl(0);
+		queueSpeedChange(0.15, NULL);
+	}
+	else{
+		ffollow("rocks2start", closePincers);
+	}
 }
 
 static void stopAndCatch(){
@@ -68,10 +60,13 @@ static void stopAndCatch(){
 	tryCapture();
 }
 
+static void catchSecond() {
+	ffollow("start2rocks", getShell);
+}
+
 void catchShells(){
 	onTryCapture(back);
-	setBlockingCallback(stopAndCatch);
-	onOpenPincers(getFirst);
+	onOpenPincers(getShell);
 	finish();
 	ffollow("water2rocks", openPincers);
 }
