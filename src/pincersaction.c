@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void catchSecond();
+static void turn();
 
 static int first = 1;
 static int finished = 0;
