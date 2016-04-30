@@ -27,4 +27,5 @@ void initWaysAndActions()
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&closePincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
+	setRGB(255, 0, 0);
 }
