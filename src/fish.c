@@ -1,5 +1,6 @@
-#include <librobot/robot.h>
-#include <librobot/fisharm.h>
+#include "robot.h"
+#include "fisharm.h"
+#include "fish.h"
 #include <robotdriver/motioncontroller.h>
 #include <robotdriver/speedcontroller.h>
 #include <robotdriver/headingcontroller.h>
@@ -10,15 +11,26 @@
 #include <stdio.h>
 
 static void releaseFish();
+static void fishstep();
+static void fishstep2();
 
 static int nbFish = 0;
 static int step = 0;
 static int straight = 0;
+static int finished = 0;
 
 static void (*endFishingCallback)(void) = NULL;
 
-static void caca() {
-	printf("lol\n");
+int fishHasFinished(){
+	return finished;
+}
+
+void fishStop(){
+	finished = 0;
+}
+
+static void finish(){
+	finished = 1;
 }
 
 static void withFish2(){
@@ -30,6 +42,7 @@ static void withFish2(){
 		printf("Position en x : %f\n", 800 - getRobotDistance());
 	}
 	printf("Pos de getPosition :  X = %f || Y = %f\n)", getCurrentX(), getCurrentY());
+	finish();
 	ffollow("water2net", releaseFish);
 }
 
@@ -47,11 +60,11 @@ static void fish2(){
 	setRobotDistance(0);
 	onFishCapture(stop2);
 	if(getTeam() == GREEN_TEAM) {
-		queueSpeedChange(-0.05, caca);
-		queueStopAt(-400, caca);
+		queueSpeedChange(-0.05, NULL);
+		queueStopAt(-400, armUp);
 	} else {
-		queueSpeedChange(0.05, caca);
-		queueStopAt(400, caca);
+		queueSpeedChange(0.05, NULL);
+		queueStopAt(400, armUp);
 	}
 }
 
@@ -69,10 +82,10 @@ static void fishstep2(){
 	if(step < 4) {
 		step ++;
 		if(getTeam() == GREEN_TEAM) {
-			queueSpeedChange(-0.05, caca);
+			queueSpeedChange(-0.05, NULL);
 			queueStopAt(-100 * step, schedulestep2);
 		} else {
-			queueSpeedChange(0.05, caca);
+			queueSpeedChange(0.05, NULL);
 			queueStopAt(100 * step, schedulestep2);
 		}
 	} else {
@@ -86,7 +99,7 @@ static void turn2(){
 		onArmDown(fish2);
 	else
 		onArmDown(fishstep2);
-	if(getTeam == GREEN_TEAM)
+	if(getTeam() == GREEN_TEAM)
 		setTargetHeading(0, armDown);
 	else
 		setTargetHeading(180, armDown);
@@ -121,6 +134,7 @@ static void withFish(){
 		printf("Position en x : %f\n", 391 - getRobotDistance());
 	}
 	printf("Position du getPosition X = %f || Y = %f\n", getCurrentX(), getCurrentY());
+	finish();
 	ffollow("water2net", releaseFish);
 }
 
@@ -137,11 +151,11 @@ static void fish(){
 	setRobotDistance(0);
 	onFishCapture(stop);
 	if(getTeam() == GREEN_TEAM){
-		queueSpeedChange(0.05, caca);
-		queueStopAt(400, caca);
+		queueSpeedChange(0.05, NULL);
+		queueStopAt(400, armUp);
 	} else {
-		queueSpeedChange(-0.05, caca);
-		queueStopAt(i-400, caca);
+		queueSpeedChange(-0.05, NULL);
+		queueStopAt(-400, armUp);
 	}
 }
 
@@ -159,10 +173,10 @@ static void fishstep(){
 	if(step < 4) {
 		step ++;
 		if(getTeam() == GREEN_TEAM){
-			queueSpeedChange(0.05, caca);
+			queueSpeedChange(0.05, NULL);
 			queueStopAt(100 * step, schedulestep);
 		} else {
-			queueSpeedChange(-0.05, caca);
+			queueSpeedChange(-0.05, NULL);
 			queueStopAt(-100 * step, schedulestep);
 		}
 	} else {
