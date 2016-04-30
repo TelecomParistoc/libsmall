@@ -27,3 +27,22 @@ void initWaysAndActions()
 
     setRGB(255, 0, 0);
 }
+
+bool start = false;
+
+void go()
+{start = true;}
+
+void allume()
+{
+    std::cout<<"Jack grabed"<<std::endl;
+    onGameStart(&go);
+    /**A completer pour chaque robot**/
+    onStopGame(&exitAndClean);
+}
+
+void exitAndClean()
+{
+    std::cout<<"Exiting"<<std::endl;
+    exit(0);
+}

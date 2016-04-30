@@ -10,7 +10,6 @@
 #include "WaysAndActions.hpp"
 
 
-bool start = false;
 bool isMovingToAction = false;
 bool started = false;
 bool blocked = false;
@@ -18,9 +17,6 @@ bool pausePath = false;
 bool seeBlocked = false;
 
 int way = -1;
-
-void go()
-{start = true;}
 
 void checkCollisionAndReact(int)
 {seeBlocked = true;}
@@ -47,10 +43,10 @@ void endAction()
 int main()
 {
 	initRobot();
-
 	initWaysAndActions();
 
-	onGameStart(&go); //start = true;
+	onStopGame(&allume);
+
 	onCollisionDetect(&checkCollisionAndReact);
 
 	setMoveStartCallback(&PathFollower::updateAngleStartingMove);
@@ -60,7 +56,7 @@ int main()
 
 	typedef std::chrono::high_resolution_clock Clock;
 	typedef std::chrono::milliseconds milliseconds;
-	Clock::time_point clk_start = Clock::now();
+	Clock::time_point clk_start;
 
 	double seconds = 90;
 	endWay();
@@ -70,42 +66,25 @@ int main()
 		{
 			printf("Start\n");
 			started = true;
+			clk_start = Clock::now();
 			ffollow(ways[way].c_str(), &endWay);
 		}
-
-		if(!isMovingToAction)
-			if(actions[way].isFinished())
-			{
-				actions[way].stopAction();
-				endAction();
-			}
-
-		if(seeBlocked)
+		else if(started)
 		{
-			if(PathFollower::isSpeedPositive())
+			if(!isMovingToAction)
+				if(actions[way].isFinished())
+				{
+					actions[way].stopAction();
+					endAction();
+				}
+
+			if(seeBlocked)
 			{
-				if(!isRobotFront())
-					seeBlocked = false;
-				else
-					if(!PathFollower::isPaused())
-					{
-						blocked = true;
-						pausePath = false;
-						if(isMovingToAction)
-						{
-							pausePath = true;
-							PathFollower::pause();
-						}
-						else
-							actions[way].pauseAction();
-					}
-			}
-			else
-			{
-				if(!isRobotBehind())
-					seeBlocked = false;
-				else
-					if(!PathFollower::isSpeedPositive())
+				if(PathFollower::isSpeedPositive())
+				{
+					if(!isRobotFront())
+						seeBlocked = false;
+					else
 						if(!PathFollower::isPaused())
 						{
 							blocked = true;
@@ -118,22 +97,42 @@ int main()
 							else
 								actions[way].pauseAction();
 						}
-			}
-		}
-
-		if(!seeBlocked)
-			if(blocked)
-			{
-				blocked = false;
-				if(pausePath)
-					PathFollower::continueMoving();
+				}
 				else
-					actions[way].continueAction();
+				{
+					if(!isRobotBehind())
+						seeBlocked = false;
+					else
+						if(!PathFollower::isSpeedPositive())
+							if(!PathFollower::isPaused())
+							{
+								blocked = true;
+								pausePath = false;
+								if(isMovingToAction)
+								{
+									pausePath = true;
+									PathFollower::pause();
+								}
+								else
+									actions[way].pauseAction();
+							}
+				}
 			}
 
-		/*curPos = PathFollower::getCurrentPos();
-		  curDir = PathFollower::getCurrentDirection();
-		  std::cout<<curPos.first<<" "<<curPos.second<<";"<<curDir.first<<" "<<curDir.second<<std::endl;*/
+			if(!seeBlocked)
+				if(blocked)
+				{
+					blocked = false;
+					if(pausePath)
+						PathFollower::continueMoving();
+					else
+						actions[way].continueAction();
+				}
+
+			/*curPos = PathFollower::getCurrentPos();
+			  curDir = PathFollower::getCurrentDirection();
+			  std::cout<<curPos.first<<" "<<curPos.second<<";"<<curDir.first<<" "<<curDir.second<<std::endl;*/
+		}
 
 		waitFor(50);
 	}
