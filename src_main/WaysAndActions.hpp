@@ -24,4 +24,6 @@ void initWaysAndActions()
 	actions.push_back(Action(&turn2, NULL, NULL, &fishStop, &fishHasFinished));
 	actions.push_back(Action(&releaseFish, NULL, NULL, &fishStop, &fishHasFinished));
 	actions.push_back(Action(&catchShells, NULL, NULL, &pincersStop, &pincersHasFinished));
+
+    setRGB(255, 0, 0);
 }
