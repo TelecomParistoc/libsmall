@@ -31,6 +31,7 @@ void initWaysAndActions()
 
 void jump(int w)
 {
+	std::cout<<"Jumping to "<<w<<" and current : "<<way<<std::endl;
 	way = w;
 }
 
