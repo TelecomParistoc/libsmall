@@ -29,9 +29,12 @@ void fishStop(){
 
 static void finish(){
 	finished = 1;
+	setRGB(255, 0, 0);
+	printf("Fish action finished\n");
 }
 
 void delayStart(){
+	printf("scheduleIn\n");
 	scheduleIn(3000, finish);
 }
 
