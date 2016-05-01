@@ -38,6 +38,7 @@ void allume()
 
 void end()
 {
+	std::cout<<"Ending"<<std::endl;
 	setRGB(255, 255, 0);
 
 	clearMotionQueue();
