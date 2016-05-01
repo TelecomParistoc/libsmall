@@ -39,7 +39,8 @@ void allume()
 	if(getMode()==TEST_MODE)
 	{
 		std::cout<<"Stopping service. Warning it will exit program."<<std::endl;
-		system("/var/apps/stopLoop.sh");
+		setuid(0);
+    	system("service launchLoop.sh stop");
 		exit(0);
 	}
 }
