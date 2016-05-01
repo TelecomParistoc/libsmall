@@ -3,6 +3,7 @@
 #include <librobot/pincersaction.h>
 #include <librobot/pincers.h>
 #include <librobot/fish.h>
+#include <unistd.h>
 
 //utils.hpp contient ways, actions et curPos
 #include "utils.hpp"
