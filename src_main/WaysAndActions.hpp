@@ -27,21 +27,6 @@ void initWaysAndActions()
 	setRGB(255, 0, 0);
 }
 
-bool start = false;
-
-void go()
-{
-	std::cout<<"GO !"<<std::endl;
-	start = true;
-	endWay();
-}
-
-void exitAndClean()
-{
-    std::cout<<"Exiting"<<std::endl;
-    //exit(0);
-}
-
 void allume()
 {
     std::cout<<"Jack grabed"<<std::endl;

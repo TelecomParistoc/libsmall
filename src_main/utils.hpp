@@ -37,3 +37,18 @@ void endAction()
 		ffollow(ways[way].c_str(), &endWay);
 	isMovingToAction = true;
 }
+
+bool start = false;
+
+void go()
+{
+	std::cout<<"GO !"<<std::endl;
+	start = true;
+	endWay();
+}
+
+void exitAndClean()
+{
+    std::cout<<"Exiting"<<std::endl;
+    exit(0);
+}

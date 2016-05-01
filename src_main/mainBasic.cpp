@@ -37,7 +37,6 @@ int main()
 
 	setMoveStartCallback(&PathFollower::updateAngleStartingMove);
 	setMoveEndCallback(&PathFollower::updatePositionEndingMove);
-	setCurrentLocation(curPos.first,curPos.second);
 	PathFollower::resetPosition(curPos);
 
 	typedef std::chrono::high_resolution_clock Clock;
@@ -55,7 +54,6 @@ int main()
 		}
 		else if(started)
 		{
-			std::cout<<"Cur action : "<<way<<" => "<<actions[way].isFinished()<<std::endl;
 			if(!isMovingToAction)
 				if(actions[way].isFinished())
 				{
@@ -92,6 +90,8 @@ int main()
 				}
 
 			curPos = PathFollower::getCurrentPos();
+			std::cout<<"---------------"<<std::endl;
+			std::cout<<"Cur action : "<<way<<" => "<<actions[way].isFinished()<<std::endl;
 			std::cout<<curPos.first<<" "<<curPos.second<<std::endl;
 			std::cout<<"is blocked ? "<<blocked<<" is paused moving ? "<<pausePath<<" see blocked ? "<<seeBlocked<<std::endl;
 		}
