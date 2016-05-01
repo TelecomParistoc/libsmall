@@ -40,6 +40,7 @@ int main()
 		}
 		else if(started)
 		{
+			std::cout<<"Cur action : "<<way<<" => "<<actions[way].isFinished()<<std::endl;
 			if(!isMovingToAction)
 				if(actions[way].isFinished())
 				{

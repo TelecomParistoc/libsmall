@@ -10,7 +10,7 @@
 void initWaysAndActions()
 {
 	ways = {"start2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2rocks", "rocks2start", "start2rocks", "rocks2start2"};
-	
+
 	actions.push_back(Action(&delayStart, NULL, NULL, &fishStop, &fishHasFinished));
 	actions.push_back(Action(&startFishing, NULL, NULL, &fishStop, &fishHasFinished));
 	actions.push_back(Action(&releaseFish, NULL, NULL, &fishStop, &fishHasFinished));
