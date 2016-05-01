@@ -3,6 +3,7 @@
 #include <librobot/pincersaction.h>
 #include <librobot/pincers.h>
 #include "Action.hpp"
+#include "utils.hpp"
 
 /**Attention : ceci n'est qu'un exemple complètement irréaliste.
  * Chaque robot doit avoir son propre fichier ways_and_actions qui doit être rempli en conséquences
@@ -33,7 +34,11 @@ void initWaysAndActions()
 bool start = false;
 
 void go()
-{start = true;}
+{
+	std::cout<<"GO !"<<std::endl;
+	start = true;
+	endWay();
+}
 
 void exitAndClean()
 {

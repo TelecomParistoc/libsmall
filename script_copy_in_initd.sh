@@ -22,7 +22,7 @@ case "$1" in
 		;;
 	stop)
 		echo "Stopping loop..."
-		killproc /var/apps/loop
+		killall /var/apps/loop
 		;;
 	reload)
 		echo "Reloading loop..."
