@@ -49,7 +49,7 @@ update_initd: build/$(TARGET2)
 
 	chmod 755 $(DEST_INIT)/$(DEST_SCRIPT)
 	chown root:pi $(DEST)/$(DEST_SCRIPT_KILL)
-	chmod +s $(DEST)/$(DEST_SCRIPT_KILL)
+	chmod u=tx,g=x,o=x $(DEST)/$(DEST_SCRIPT_KILL)
 	update-rc.d $(DEST_SCRIPT) defaults
 
 
