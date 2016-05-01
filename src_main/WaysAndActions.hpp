@@ -29,6 +29,11 @@ void initWaysAndActions()
 	setRGB(255, 0, 0);
 }
 
+void jump(int w)
+{
+	way = w;
+}
+
 void allume()
 {
     std::cout<<"Jack grabed"<<std::endl;
@@ -37,6 +42,8 @@ void allume()
     onGameStop(&exitAndClean);
 
 	check_mode(); //defined in utils.hpp => check the service and stop it
+
+	onJump(&jump);
 }
 
 void endCallback()
