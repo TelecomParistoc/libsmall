@@ -1,7 +1,7 @@
 #include <pathfollower/pathFollower.hpp>
-#include <librobot/fish.h>
 #include <librobot/pincersaction.h>
 #include <librobot/pincers.h>
+#include <librobot/fish.h>
 
 //utils.hpp contient ways, actions et curPos
 #include "utils.hpp"
@@ -40,6 +40,6 @@ void end()
 	setRGB(255, 255, 0);
 
 	clearMotionQueue();
-	setTargetHeading(getRobotheading());
+	setTargetHeading(getRobotHeading());
     queueSpeedChange(0, nullptr);
 }
