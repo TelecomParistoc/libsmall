@@ -38,4 +38,8 @@ void allume()
 void end()
 {
 	setRGB(255, 255, 0);
+
+	clearMotionQueue();
+	setTargetHeading(getRobotheading());
+    queueSpeedChange(0, nullptr);
 }
