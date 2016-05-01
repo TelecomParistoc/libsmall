@@ -10,7 +10,7 @@
 #include "WaysAndActions.hpp"
 
 
-void pause()
+void pauseActionOrWay()
 {
 	if(!PathFollower::isPaused())
 	{
@@ -68,14 +68,14 @@ int main()
 					if(!isRobotFront())
 						seeBlocked = false;
 					else
-						pause();
+						pauseActionOrWay();
 				}
 				else
 				{
 					if(!isRobotBehind())
 						seeBlocked = false;
 					else
-						pause();
+						pauseActionOrWay();
 				}
 			}
 
