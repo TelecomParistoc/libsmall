@@ -48,5 +48,5 @@ void endCallback()
     queueSpeedChange(0, nullptr);
 	setTargetHeading(getRobotHeading(),NULL);
 
-	waitFor(50);
+	waitFor(250);
 }
