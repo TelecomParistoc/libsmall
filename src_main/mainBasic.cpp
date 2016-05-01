@@ -90,10 +90,10 @@ int main()
 				}
 
 			curPos = PathFollower::getCurrentPos();
-			std::cout<<"---------------"<<std::endl;
-			std::cout<<"Cur action : "<<way<<" => "<<actions[way].isFinished()<<std::endl;
+			/*std::cout<<"---------------"<<std::endl;
+			std::cout<<"Cur action : "<<way<<" => "<<actions[way].isFinished()<<std::endl;*/
 			std::cout<<curPos.first<<" "<<curPos.second<<std::endl;
-			std::cout<<"is blocked ? "<<blocked<<" is paused moving ? "<<pausePath<<" see blocked ? "<<seeBlocked<<std::endl;
+			//std::cout<<"is blocked ? "<<blocked<<" is paused moving ? "<<pausePath<<" see blocked ? "<<seeBlocked<<std::endl;
 		}
 
 		waitFor(50);
