@@ -1,3 +1,4 @@
+#include <robotdriver/headingcontroller.h>
 #include <pathfollower/pathFollower.hpp>
 #include <librobot/pincersaction.h>
 #include <librobot/pincers.h>
