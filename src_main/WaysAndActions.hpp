@@ -41,6 +41,6 @@ void end()
 	setRGB(255, 255, 0);
 
 	clearMotionQueue();
-	setTargetHeading(getRobotHeading());
     queueSpeedChange(0, nullptr);
+	setTargetHeading(getRobotHeading(),NULL);
 }
