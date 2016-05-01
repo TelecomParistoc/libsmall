@@ -101,6 +101,7 @@ int main()
 
 			curPos = PathFollower::getCurrentPos();
 			std::cout<<curPos.first<<" "<<curPos.second<<std::endl;
+			std::cout<<"is blocked ? "<<blocked<<" is paused moving ? "<<pausePath<<" see blocked ? "<<seeBlocked<<std::endl;
 		}
 
 		waitFor(50);
