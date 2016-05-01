@@ -9,7 +9,9 @@ CC=g++
 CFLAGS = -O2 -std=c++11 -Wall -Werror
 LDFLAGS= -lrobot -lrobotdriver -lpathfollower
 SCRIPT = script_copy_in_initd.sh
+SCRIPT_KILL = script_kill_service.sh
 DEST_SCRIPT = launchLoop.sh
+DEST_SCRIPT_KILL = stopLoop.sh
 DEST = /var/apps
 DEST_INIT = /etc/init.d
 VPATH = build/
@@ -37,12 +39,17 @@ clean:
 	rm $(DEST)/$(TARGET2)
 	rm $(DEST)/$(TARGET3)
 	rm $(DEST_INIT)/$(DEST_SCRIPT)
+	rm $(DEST)/$(DEST_SCRIPT_KILL)
 
 update_initd: build/$(TARGET2)
 	cp build/$(TARGET2) $(DEST)/$(TARGET2)
 	cp build/$(TARGET1) $(DEST)/$(TARGET3)
 	cp $(SCRIPT) $(DEST_INIT)/$(DEST_SCRIPT)
+	cp $(SCRIPT_KILL) $(DEST)/$(DEST_SCRIPT_KILL)
+
 	chmod 755 $(DEST_INIT)/$(DEST_SCRIPT)
+	chown root:pi $(DEST)/$(DEST_SCRIPT_KILL)
+	chmod +s $(DEST)/$(DEST_SCRIPT_KILL)
 	update-rc.d $(DEST_SCRIPT) defaults
 
 

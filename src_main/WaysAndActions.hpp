@@ -34,6 +34,14 @@ void allume()
     onGameStart(&go);
     /**A completer pour chaque robot**/
     onGameStop(&exitAndClean);
+
+	std::cout<<"We are in mode "<<getMode()<<std::endl;
+	if(getMode()==TEST_MODE)
+	{
+		std::cout<<"Stopping service. Warning it will exit program."<<std::endl;
+		system("/var/apps/stopLoop.sh");
+		exit(0);
+	}
 }
 
 void endCallback()
@@ -44,4 +52,6 @@ void endCallback()
 	clearMotionQueue();
     queueSpeedChange(0, nullptr);
 	setTargetHeading(getRobotHeading(),NULL);
+
+	waitFor(50);
 }
