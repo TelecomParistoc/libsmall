@@ -1,3 +1,5 @@
+#include <cunistd>
+#include <cstdlib>
 #include <vector>
 #include <string>
 
@@ -51,4 +53,23 @@ void exitAndClean()
 {
     std::cout<<"Exiting because of jack"<<std::endl;
     exit(0);
+}
+
+void check_mode()
+{
+    std::cout<<"We are in mode "<<getMode()<<std::endl;
+	if(getMode()==TEST_MODE)
+	{
+		int ret = system("ps -Al | grep loop");
+
+	    if(!ret)
+	    {
+			std::cout<<"Stopping service. Warning it will exit program."<<std::endl;
+	        setuid(0);
+	    	system("service launchLoop.sh stop");
+			exit(0);
+	    }
+	    else
+	        printf("No loop service running, robot in test mode, no problem.\n");
+	}
 }

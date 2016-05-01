@@ -3,7 +3,6 @@
 #include <librobot/pincersaction.h>
 #include <librobot/pincers.h>
 #include <librobot/fish.h>
-#include <unistd.h>
 
 //utils.hpp contient ways, actions et curPos
 #include "utils.hpp"
@@ -37,14 +36,7 @@ void allume()
     /**A completer pour chaque robot**/
     onGameStop(&exitAndClean);
 
-	std::cout<<"We are in mode "<<getMode()<<std::endl;
-	if(getMode()==TEST_MODE)
-	{
-		std::cout<<"Stopping service. Warning it will exit program."<<std::endl;
-		setuid(0);
-    	system("service launchLoop.sh stop");
-		exit(0);
-	}
+	check_mode(); //defined in utils.hpp => check the service and stop it
 }
 
 void endCallback()
