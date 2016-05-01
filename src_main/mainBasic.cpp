@@ -10,6 +10,22 @@
 #include "WaysAndActions.hpp"
 
 
+void pause()
+{
+	if(!PathFollower::isPaused())
+	{
+		blocked = true;
+		pausePath = false;
+		if(isMovingToAction)
+		{
+			pausePath = true;
+			PathFollower::pause();
+		}
+		else
+			actions[way].pauseAction();
+	}
+}
+
 int main()
 {
 	initRobot();
@@ -36,7 +52,6 @@ int main()
 			printf("Start\n");
 			started = true;
 			clk_start = Clock::now();
-			//ffollow(ways[way].c_str(), &endWay);
 		}
 		else if(started)
 		{
@@ -55,37 +70,14 @@ int main()
 					if(!isRobotFront())
 						seeBlocked = false;
 					else
-						if(!PathFollower::isPaused())
-						{
-							blocked = true;
-							pausePath = false;
-							if(isMovingToAction)
-							{
-								pausePath = true;
-								PathFollower::pause();
-							}
-							else
-								actions[way].pauseAction();
-						}
+						pause();
 				}
 				else
 				{
 					if(!isRobotBehind())
 						seeBlocked = false;
 					else
-						if(!PathFollower::isSpeedPositive())
-							if(!PathFollower::isPaused())
-							{
-								blocked = true;
-								pausePath = false;
-								if(isMovingToAction)
-								{
-									pausePath = true;
-									PathFollower::pause();
-								}
-								else
-									actions[way].pauseAction();
-							}
+						pause();
 				}
 			}
 
