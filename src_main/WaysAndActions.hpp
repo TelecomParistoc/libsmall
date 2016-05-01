@@ -2,16 +2,11 @@
 #include <librobot/fish.h>
 #include <librobot/pincersaction.h>
 #include <librobot/pincers.h>
-#include "Action.hpp"
+
 #include "utils.hpp"
+//utils.hpp contient ways, actions et curPos
 
-/**Attention : ceci n'est qu'un exemple complètement irréaliste.
- * Chaque robot doit avoir son propre fichier ways_and_actions qui doit être rempli en conséquences
- **/
-
-std::vector<std::string> ways = {"start2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2rocks", "rocks2start", "start2rocks", "rocks2start2"};
-std::vector<Action> actions;
-std::pair<double,double> curPos = std::pair<double,double>(41,1003);
+ways = {"start2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2rocks", "rocks2start", "start2rocks", "rocks2start2"};
 
 void initWaysAndActions()
 {

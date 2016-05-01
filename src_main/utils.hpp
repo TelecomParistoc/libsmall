@@ -1,4 +1,11 @@
-#include "WaysAndActions.hpp"
+#include <vector>
+#include <string>
+
+#include "Action.hpp"
+
+std::vector<std::string> ways;
+std::vector<Action> actions;
+std::pair<double,double> curPos = std::pair<double,double>(41,1003);
 
 
 bool isMovingToAction = false;
