@@ -49,6 +49,6 @@ void go()
 
 void exitAndClean()
 {
-    std::cout<<"Exiting"<<std::endl;
+    std::cout<<"Exiting because of jack"<<std::endl;
     exit(0);
 }

@@ -99,7 +99,7 @@ int main()
 		waitFor(50);
 	}
 
-	end();
+	endCallback();
 
 	return 0;
 }

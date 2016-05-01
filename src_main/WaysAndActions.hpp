@@ -36,7 +36,7 @@ void allume()
     onGameStop(&exitAndClean);
 }
 
-void end()
+void endCallback()
 {
 	std::cout<<"Ending"<<std::endl;
 	setRGB(255, 255, 0);
