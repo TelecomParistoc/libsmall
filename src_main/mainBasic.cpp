@@ -99,5 +99,7 @@ int main()
 		waitFor(50);
 	}
 
+	end();
+
 	return 0;
 }

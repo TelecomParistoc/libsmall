@@ -25,8 +25,6 @@ void initWaysAndActions()
 	actions.push_back(Action(&closePincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	setRGB(255, 0, 0);
-
-	PathFollower::setCruiseSpeed(0.6);
 }
 
 bool start = false;
@@ -50,4 +48,9 @@ void allume()
     onGameStart(&go);
     /**A completer pour chaque robot**/
     onGameStop(&exitAndClean);
+}
+
+void end()
+{
+	setRGB(255, 255, 0);
 }
