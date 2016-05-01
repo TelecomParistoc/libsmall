@@ -36,7 +36,7 @@ int main()
 			printf("Start\n");
 			started = true;
 			clk_start = Clock::now();
-			ffollow(ways[way].c_str(), &endWay);
+			//ffollow(ways[way].c_str(), &endWay);
 		}
 		else if(started)
 		{
