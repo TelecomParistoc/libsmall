@@ -1,13 +1,30 @@
 #include <robotdriver/headingcontroller.h>
 #include <robotdriver/motioncontroller.h>
 #include <pathfollower/pathFollower.hpp>
+#include <robotdriver/toolboxdriver.h>
 #include <librobot/pincersaction.h>
 #include <librobot/pincers.h>
 #include <librobot/fish.h>
+#include <time.h>
 
 //utils.hpp contient ways, actions et curPos
 #include "utils.hpp"
 
+
+static bool hasBegun = false;
+static bool light = true;
+
+void toggleLed()
+{
+	if(!hasBegun)
+	{
+		scheduleIn(200, toggleLed);
+		setLED(0, light);
+		light = 1-light;
+	}
+	else
+		setLED(0, 1);
+}
 
 void initWaysAndActions()
 {
@@ -32,6 +49,7 @@ void initWaysAndActions()
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&closePincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	setRGB(255, 0, 0);
+	toggleLed();
 }
 
 void jump(int w)
@@ -51,6 +69,12 @@ void allume()
 
 	onJump(&jump);
 	setGetTimeCallback(&getTime);
+
+	setLED(1, 1);
+
+	srand(time(NULL));
+	if(rand()%2==13)
+		setLED(2, 1);
 }
 
 void endCallback()
