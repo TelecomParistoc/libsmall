@@ -248,21 +248,23 @@ void pauseFish(){
 }
 
 void resumeFish(){
-	if(!nbfish){
-		if(getTeam() == GREEN_TEAM) {
-			queueSpeedChange(0.10 - 0.02 * nbfish, NULL);
-			queueStopAt(400, end);
+	if(!hasFish()){
+		if(!nbfish){
+			if(getTeam() == GREEN_TEAM) {
+				queueSpeedChange(0.10 - 0.02 * nbfish, NULL);
+				queueStopAt(400, end);
+			} else {
+				queueSpeedChange(-(0.10 - 0.02 * nbfish), NULL);
+				queueStopAt(-400, end);
+			}
 		} else {
-			queueSpeedChange(-(0.10 - 0.02 * nbfish), NULL);
-			queueStopAt(-400, end);
-		}
-	} else {
-		if(getTeam() == GREEN_TEAM) {
-			queueSpeedChange(-(0.10 - 0.02 * nbfish), NULL);
-			queueStopAt(-400, end2);
-		} else {
-			queueSpeedChange(0.10 - 0.02 * nbfish, NULL);
-			queueStopAt(400, end2);
+			if(getTeam() == GREEN_TEAM) {
+				queueSpeedChange(-(0.10 - 0.02 * nbfish), NULL);
+				queueStopAt(-400, end2);
+			} else {
+				queueSpeedChange(0.10 - 0.02 * nbfish, NULL);
+				queueStopAt(400, end2);
+			}
 		}
 	}
 }
