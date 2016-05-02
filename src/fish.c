@@ -40,26 +40,30 @@ void delayStart(){
 
 static void end2(){
 	onFishCapture(NULL);
-	if(getTeam() == GREEN_TEAM){
+	/*if(getTeam() == GREEN_TEAM){
 		setCurrentLocation(816 + getRobotDistance(), 110);
 		printf("Position en x : %f\n", 800 + getRobotDistance());
 	} else {
 		setCurrentLocation(816 - getRobotDistance(), 110);
 		printf("Position en x : %f\n", 796 - getRobotDistance());
-	}
-	jumpCallback(8);
+	}*/
+	setRobotDistance(0);
+	jumpCallback(12);
 	armUp();
+	if(getTableConfig() == 4)
+		setActiveDetectors(all);
 	finish();
 }
 
 static void withFish2(){
-	if(getTeam() == GREEN_TEAM) {
-		setCurrentLocation(816 + getRobotDistance(), 110);
+	/*if(getTeam() == GREEN_TEAM) {
+		setCurrentLocation(796 + getRobotDistance(), 110);
 		printf("Position en x : %f\n", 796 + getRobotDistance());
 	} else {
-		setCurrentLocation(816 - getRobotDistance(), 110);
+		setCurrentLocation(796 - getRobotDistance(), 110);
 		printf("Position en x : %f\n", 796 - getRobotDistance());
-	}
+	}*/
+	setRobotDistance(0);
 	printf("Pos de getPosition :  X = %f || Y = %f\n)", getCurrentX(), getCurrentY());
 	finish();
 }
@@ -127,13 +131,14 @@ void turn2(){
 
 static void end(){
 	onFishCapture(NULL);
-	if(getTeam() == GREEN_TEAM){
+	/*if(getTeam() == GREEN_TEAM){
 		setCurrentLocation(391 + getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 + getRobotDistance());
 	} else {
 		setCurrentLocation(391 - getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 - getRobotDistance());
-	}
+	}*/
+	setRobotDistance(0);
 	onArmMid(finish);
 	armMid();
 }
@@ -144,6 +149,8 @@ void releaseFish(){
 	onArmMid(magnetOn);
 	if(nbfish == 4){
 		onMagnetOn(armUp);
+		if(getTableConfig() == 4)
+			setActiveDetectors(all);
 		onArmUp(finish);
 	} else {
 		onMagnetOn(finish);
@@ -153,13 +160,14 @@ void releaseFish(){
 }
 
 static void withFish(){
-	if(getTeam() == GREEN_TEAM){
+	/*if(getTeam() == GREEN_TEAM){
 		setCurrentLocation(412 + getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 + getRobotDistance());
 	} else {
 		setCurrentLocation(412 - getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 - getRobotDistance());
-	}
+	}*/
+	setRobotDistance(0);
 	printf("Position du getPosition X = %f || Y = %f\n", getCurrentX(), getCurrentY());
 	finish();
 }
@@ -173,6 +181,7 @@ static void stop(){
 }
 
 static void fish(){
+	setActiveDetectors(right);
 	printf("Let's get some fish\n");
 	setRobotDistance(0);
 	onArmDown(fish2);
@@ -213,6 +222,7 @@ static void fishstep(){
 }
 
 void startFishing(){
+	setActiveDetectors(none);
 	straight = 1;
 	onFishCapture(NULL);
 	if (straight)
@@ -233,6 +243,32 @@ void startFishingStep(){
 		setTargetHeading(0, armDown);
 	else
 		setTargetHeading(180, armDown);
+}
+
+void pauseFish(){
+	printf("PAUSE\n");
+	clearMotionQueue();
+	queueSpeedChange(0, NULL);
+}
+
+void resumeFish(){
+	if(!nbfish){
+		if(getTeam() == GREEN_TEAM) {
+			queueSpeedChange(0.10 - 0.02 * nbfish, NULL);
+			queueStopAt(400, end);
+		} else {
+			queueSpeedChange(-(0.10 - 0.02 * nbfish), NULL);
+			queueStopAt(-400, end);
+		}
+	} else {
+		if(getTeam() == GREEN_TEAM) {
+			queueSpeedChange(-(0.10 - 0.02 * nbfish), NULL);
+			queueStopAt(-400, end2);
+		} else {
+			queueSpeedChange(0.10 - 0.02 * nbfish, NULL);
+			queueStopAt(400, end2);
+		}
+	}
 }
 
 void onEndFishing(void (*callback)(void)){

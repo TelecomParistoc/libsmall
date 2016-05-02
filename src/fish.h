@@ -7,6 +7,8 @@ extern "C" {
 
 int fishHasFinished();
 void fishStop();
+void pauseFish();
+void resumeFish();
 void delayStart();
 void turn2();
 void releaseFish();

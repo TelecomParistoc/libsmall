@@ -30,7 +30,7 @@ static void deliver(){
 		onOpenPincers(faceShell);
 		finish();
 	} else {
-		onOpenPincers(finish);
+		onOpenPincers(closePincers);
 		finish();
 	}
 }
@@ -49,6 +49,12 @@ static void stopAndCatch(){
 }
 
 static void getShell(){
+	if(!first) {
+		if(getTeam() == GREEN_TEAM)
+			setActiveDetectors(right);
+		else
+			setActiveDetectors(left);
+	}
 	setBlockingCallback(stopAndCatch);
 	enableHeadingControl(0);
 	queueSpeedChange(0.15, NULL);
@@ -57,12 +63,11 @@ static void getShell(){
 void faceShell(){
 	onTryCapture(back);
 	onOpenPincers(getShell);
+	setActiveDetectors(none);
 	if(getTableConfig() != 4){
 		if(first)
 			setTargetHeading(200, openPincers);
 		else
-			setTargetHeading(250, openPincers);
-	} else {
-		finish();
+			setTargetHeading(240, openPincers);
 	}
 }
