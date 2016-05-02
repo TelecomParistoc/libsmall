@@ -92,11 +92,16 @@ void endCallback()
 	std::cout<<"Ending"<<std::endl;
 	setRGB(255, 255, 0);
 
+	enableHeadingControl(0);
+
 	forceStop(1);
 	setTargetHeading(getRobotHeading(),NULL);
 
 	setLED(1,1);
 	setLED(2,0);
 	setLED(3,0);
+
+	closePincers();
+
 	waitFor(1000);
 }
