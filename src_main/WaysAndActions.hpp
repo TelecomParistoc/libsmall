@@ -1,4 +1,5 @@
 #include <robotdriver/headingcontroller.h>
+#include <robotdriver/motioncontroller.h>
 #include <pathfollower/pathFollower.hpp>
 #include <librobot/pincersaction.h>
 #include <librobot/pincers.h>
@@ -55,8 +56,7 @@ void endCallback()
 	std::cout<<"Ending"<<std::endl;
 	setRGB(255, 255, 0);
 
-	clearMotionQueue();
-    queueSpeedChange(0, nullptr);
+	forceStop(1);
 	setTargetHeading(getRobotHeading(),NULL);
 
 	waitFor(250);
