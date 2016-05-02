@@ -34,7 +34,8 @@ void endAction()
 {
 	std::cout<<"End of action "<<way<<std::endl;
 	curPos = PathFollower::getCurrentPos();
-	PathFollower::setCurrentPosition(curPos.first,curPos.second);
+	std::cout<<"Position au end of action : "<<curPos.first<<" "<<curPos.second<<std::endl;
+	PathFollower::resetPosition(curPos);
 	if(way<(int)ways.size())
 		ffollow(ways[way].c_str(), &endWay);
 	isMovingToAction = true;
