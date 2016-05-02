@@ -49,6 +49,7 @@ void allume()
 	check_mode(); //defined in utils.hpp => check the service and stop it
 
 	onJump(&jump);
+	setGetTimeCallback(&getTime);
 }
 
 void endCallback()

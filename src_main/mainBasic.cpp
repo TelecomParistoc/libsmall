@@ -39,12 +39,10 @@ int main()
 	setMoveEndCallback(&PathFollower::updatePositionEndingMove);
 	PathFollower::resetPosition(curPos);
 
-	typedef std::chrono::high_resolution_clock Clock;
-	typedef std::chrono::milliseconds milliseconds;
-	Clock::time_point clk_start = Clock::now();
+	clk_start = Clock::now();
 
 	double seconds = 90;
-	while(std::chrono::duration_cast<milliseconds>(Clock::now()-clk_start).count()<seconds*1000)
+	while(getTime()<seconds*1000)
 	{
 		if(start&&!started)
 		{

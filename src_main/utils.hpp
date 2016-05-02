@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <vector>
 #include <string>
+#include <chrono>
 
 #include "Action.hpp"
 
@@ -39,6 +40,17 @@ void endAction()
 	if(way<(int)ways.size())
 		ffollow(ways[way].c_str(), &endWay);
 	isMovingToAction = true;
+}
+
+
+static double seconds = 90;
+typedef std::chrono::high_resolution_clock Clock;
+typedef std::chrono::milliseconds milliseconds;
+Clock::time_point clk_start;
+
+double getTime()
+{
+	return std::chrono::duration_cast<milliseconds>(Clock::now()-clk_start).count();
 }
 
 static bool start = false;

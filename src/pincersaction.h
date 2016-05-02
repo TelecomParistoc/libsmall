@@ -8,6 +8,7 @@ extern "C" {
 int pincersHasFinished();
 void pincersStop();
 void faceShell();
+void setGetTimeCallback(double (*callback)(void));
 
 #ifdef __cplusplus
 }

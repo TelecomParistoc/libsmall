@@ -11,6 +11,8 @@
 static int first = 1;
 static int finished = 0;
 
+static double (*getTimeCallback)(void) = NULL;
+
 int pincersHasFinished(){
 	return finished;
 }
@@ -70,4 +72,8 @@ void faceShell(){
 		else
 			setTargetHeading(240, openPincers);
 	}
+}
+
+void setGetTimeCallback(double (* callback)(void)){
+	getTimeCallback = callback;
 }
