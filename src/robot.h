@@ -23,7 +23,6 @@ void onCollisionDetect(void (*callback)(int));
  * argument collisionSensor is the sensor that stopped detecting an obstacle */
 void onCollisionEnd(void (*callback)(int));
 
-// TODO : check left/right
 #define REAR_COLLISION 0
 #define FRONT_LEFT_COLLISION 1
 #define FRONT_RIGHT_COLLISION 2

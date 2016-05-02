@@ -34,6 +34,31 @@ static void finish(){
 	printf("Fish action finished\n");
 }
 
+void pauseFish(){
+	clearMotionQueue();
+	queueSpeedChange(0, NULL);
+}
+
+void resumeFish(){
+	if(!fish){
+		if(getTeam() == GREEN_TEAM) {
+			queueSpeedChange(0.10 - 0.02 * nbfish, NULL);
+			queueStopAt(400, end);
+		} else {
+			queueSpeedChange(-(0.10 - 0.02 * nbfish), NULL);
+			queueStopAt(-400, end);
+		}
+	} else {
+		if(getTeam() == GREEN_TEAM) {
+			queueSpeedChange(-(0.10 - 0.02 * nbfish), NULL);
+			queueStopAt(-400, end2);
+		} else {
+			queueSpeedChange(0.10 - 0.02 * nbfish, NULL);
+			queueStopAt(400, end2);
+		}
+	}
+}
+
 void delayStart(){
 	finish();
 }
@@ -49,6 +74,8 @@ static void end2(){
 	}
 	jumpCallback(12);
 	armUp();
+	if(getTableConfig == 4)
+		setActiveDetectors(all);
 	finish();
 }
 
@@ -144,6 +171,8 @@ void releaseFish(){
 	onArmMid(magnetOn);
 	if(nbfish == 4){
 		onMagnetOn(armUp);
+		if(getTableConfig == 4)
+			setActiveDetectors(all);
 		onArmUp(finish);
 	} else {
 		onMagnetOn(finish);
@@ -173,6 +202,7 @@ static void stop(){
 }
 
 static void fish(){
+	setActiveDetectors(right);
 	printf("Let's get some fish\n");
 	setRobotDistance(0);
 	onArmDown(fish2);
@@ -213,6 +243,7 @@ static void fishstep(){
 }
 
 void startFishing(){
+	setActiveDetectors(none);
 	straight = 1;
 	onFishCapture(NULL);
 	if (straight)
