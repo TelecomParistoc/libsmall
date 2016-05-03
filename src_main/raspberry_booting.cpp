@@ -35,9 +35,9 @@ int main(int argc, char* argv[])
     else
     {
         char* line = NULL;
-        int* n = NULL;
-        getline(line,n,lastLog);
-        if(*n>0)
+        int n = 0;
+        getline(&line,&n,lastLog);
+        if(n>0)
             strncpy(path,line,100);
         free(line);
         printf("get line read : %s\n",path);
