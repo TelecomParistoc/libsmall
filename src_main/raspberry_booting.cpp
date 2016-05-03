@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
     else
     {
         size_t bufsize = 100;
-        getline(&path,&bufsize,lastLog);
+        getline(&((char*)path),&bufsize,lastLog);
     }
 
     int status;
