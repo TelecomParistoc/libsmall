@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
     else
     {
         char* line = NULL;
-        int n = 0;
+        size_t n = 0;
         getline(&line,&n,lastLog);
         if(n>0)
             strncpy(path,line,100);
