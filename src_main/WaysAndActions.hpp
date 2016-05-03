@@ -47,11 +47,14 @@ void initWaysAndActions()
 	actions.push_back(Action(&faceShell, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
+
 	setRGB(255, 0, 0);
 	setLED(1,0);
 	setLED(2,0);
 	setLED(3,0);
 	toggleLed();
+
+	enableHeadingControl(0);
 }
 
 void jump(int w)
@@ -63,6 +66,7 @@ void jump(int w)
 void go()
 {
 	std::cout<<"GO"<<std::endl;
+	enableHeadingControl(1);
 	start = true;
 	setLED(2,1);
 	endWay();
@@ -92,8 +96,6 @@ void endCallback()
 	std::cout<<"Ending"<<std::endl;
 	setRGB(255, 255, 0);
 
-	enableHeadingControl(0);
-
 	forceStop(1);
 	setTargetHeading(getRobotHeading(),NULL);
 
@@ -101,7 +103,7 @@ void endCallback()
 	setLED(2,0);
 	setLED(3,0);
 
-	closePincers();
+	axReset();
 
 	waitFor(1000);
 }
