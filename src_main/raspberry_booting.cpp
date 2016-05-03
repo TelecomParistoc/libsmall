@@ -36,6 +36,7 @@ int main(int argc, char* argv[])
     {
         size_t bufsize = 100;
         getline((char**)path,&bufsize,lastLog);
+        printf("get line read : %s\n",path);
     }
 
     int status;
