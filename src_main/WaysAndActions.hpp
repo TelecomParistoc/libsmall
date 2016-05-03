@@ -29,7 +29,7 @@ void toggleLed()
 void initWaysAndActions()
 {
 	curPos = std::pair<double,double>(196, 940);
-	ways = {"start2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2rocks", "rocks2rocks", "rocks2start", "trololo", "nofish", "rocks2rocks", "rocks2start", "trololo"};
+	ways = {"start2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2water", "water2net", "net2rocks", "rocks2rocks", "rocks2start", "trololo", "nofish", "rocks2rocks", "rocks2start", "notime", "trololo"};
 
 	actions.push_back(Action(&delayStart, NULL, NULL, &fishStop, &fishHasFinished));
 	actions.push_back(Action(&startFishing, &pauseFish, &resumeFish, &fishStop, &fishHasFinished));
@@ -47,11 +47,16 @@ void initWaysAndActions()
 	actions.push_back(Action(&faceShell, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
+	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
+
 	setRGB(255, 0, 0);
 	setLED(1,0);
 	setLED(2,0);
 	setLED(3,0);
 	toggleLed();
+
+	enableHeadingControl(0);
+	closePincers();
 }
 
 void jump(int w)
@@ -63,6 +68,7 @@ void jump(int w)
 void go()
 {
 	std::cout<<"GO"<<std::endl;
+	enableHeadingControl(1);
 	start = true;
 	setLED(2,1);
 	endWay();
@@ -92,8 +98,6 @@ void endCallback()
 	std::cout<<"Ending"<<std::endl;
 	setRGB(255, 255, 0);
 
-	enableHeadingControl(0);
-
 	forceStop(1);
 	setTargetHeading(getRobotHeading(),NULL);
 
@@ -101,7 +105,7 @@ void endCallback()
 	setLED(2,0);
 	setLED(3,0);
 
-	closePincers();
+	axReset();
 
 	waitFor(1000);
 }

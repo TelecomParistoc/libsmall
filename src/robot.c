@@ -20,6 +20,8 @@ static int collisions[3] = {0, 0, 0};
 static int lastJack = 0;
 static collisionConfig_t collConfig = all;
 
+static void (*jumpCallback)(int) = NULL;
+
 static void collisionsCallback() {
     for(int i=0; i<3; i++) {
         if(collisionDetectCallback != NULL && getCollisionDetector(i+3) && (!collisions[i])) {
@@ -139,4 +141,12 @@ int getTeam() {
 }
 int getMode() {
     return getButton(4);
+}
+
+void onJump(void (*callback)(int)){
+	jumpCallback = callback;
+}
+
+void jumpTo(int step){
+	jumpCallback(step);
 }

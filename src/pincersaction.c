@@ -36,20 +36,17 @@ static void flee(){
 	queueStopAt(-500, closePincers);
 }
 
-static void shortcut(){
-	setRobotDistance(0);
-	queueSpeedChange(0.15, NULL);
-	queueStopAt(500, flee);
-}
-
 static void deliver(){
 	setPosInCorner(getHeading());
 	if(first){
 		first = 0;
-		if(getTimeCallback() > 78000)
-			onOpenPincers(shortcut);
+		if(getTimeCallback() > 70000){
+			jumpTo(15);
+			onOpenPincers(flee);
+		}
 		else
 			onOpenPincers(faceShell);
+		printf("Time : %f\n", getTimeCallback());
 		finish();
 	} else {
 		onOpenPincers(closePincers);
