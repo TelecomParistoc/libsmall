@@ -49,6 +49,9 @@ update_initd: build/$(TARGET2)
 print_log:
 	cat /var/log/log_robot/lastLog
 
+clear_logs:
+	rm -rf /var/log/log_robot/*
+
 stop_service:
 	service launchLoop.sh stop
 
