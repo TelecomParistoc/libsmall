@@ -85,12 +85,12 @@ int main(int argc, char* argv[])
         }
         else
         {
-            int lastLogFd = open("/var/log/log_robot/lastLogDate.txt",O_WRONLY|O_CREAT|O_TRUNC,0744);
+            int lastLogFd = open("/var/log/log_robot/lastLogDate.txt",O_WRONLY|O_CREAT|O_TRUNC,0644);
             write(lastLogFd,path,strlen(path));
             close(lastLogFd);
 
             printf("Redirecting stdout to %s\n",path);
-            int fd = open("/var/log/log_robot/lastLog",O_WRONLY|O_CREAT|O_TRUNC,0744);
+            int fd = open("/var/log/log_robot/lastLog",O_WRONLY|O_CREAT|O_TRUNC,0644);
             close(STDOUT_FILENO);
             dup2(fd,STDOUT_FILENO);
             if(execl(argv[1],argv[1],NULL)<0)
