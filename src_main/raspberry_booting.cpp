@@ -28,6 +28,16 @@ int main(int argc, char* argv[])
     char buffer[80];
     char path[100] = "";
 
+    FILE* lastLog = NULL;
+    lastLog = fopen("/var/log/log_robot/lastLogDate.txt","r");
+    if(!lastLog)
+        fprintf(stderr,"/var/log/log_robot/lastLogDate.txt has not been found\n");
+    else
+    {
+        size_t bufsize = 100;
+        getline(&path,&bufSize,lastLog);
+    }
+
     int status;
 
     while(1)
@@ -70,8 +80,12 @@ int main(int argc, char* argv[])
         }
         else
         {
+            int lastLogFd = open("/var/log/log_robot/lastLogDate.txt",O_WRONLY|O_CREAT|O_TRUNC,0744);
+            write(lastLogFd,path,strlen(path));
+            close(lastLogFd);
+
             printf("Redirecting stdout to %s\n",path);
-            int fd = open("/var/log/log_robot/lastLog",O_WRONLY|O_CREAT,0744);
+            int fd = open("/var/log/log_robot/lastLog",O_WRONLY|O_CREAT|O_TRUNC,0744);
             close(STDOUT_FILENO);
             dup2(fd,STDOUT_FILENO);
             if(execl(argv[1],argv[1],NULL)<0)
