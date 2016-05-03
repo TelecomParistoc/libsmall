@@ -34,8 +34,12 @@ int main(int argc, char* argv[])
         fprintf(stderr,"/var/log/log_robot/lastLogDate.txt has not been found\n");
     else
     {
-        size_t bufsize = 100;
-        getline((char**)path,&bufsize,lastLog);
+        char* line = NULL;
+        int* n = NULL;
+        getline(line,n,lastLog);
+        if(*n>0)
+            strncpy(path,line,100);
+        free(line);
         printf("get line read : %s\n",path);
     }
 
