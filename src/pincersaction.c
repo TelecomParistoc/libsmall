@@ -43,6 +43,10 @@ static void deliver(){
 		if(getTimeCallback() > 70000){
 			jumpTo(15);
 			onOpenPincers(flee);
+			if(getTeam() == GREEN_TEAM)
+				setActiveDetectors(left);
+			else
+				setActiveDetectors(right);
 		}
 		else
 			onOpenPincers(faceShell);
