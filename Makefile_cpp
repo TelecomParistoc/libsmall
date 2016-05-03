@@ -49,6 +49,8 @@ update_initd: build/$(TARGET2)
 print_log:
 	cat /var/log/log_robot/lastLog
 
+stop_service:
+	service launchLoop.sh stop
 
 -include $(subst .cpp,.d,$(SRC1))
 -include $(subst .cpp,.d,$(SRC2))
