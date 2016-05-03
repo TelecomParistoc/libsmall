@@ -40,10 +40,9 @@ int main(int argc, char* argv[])
         {
             char cmd[200];
             cmd[0] = 0;
-            strcat(cmd,"cp /var/log/log_robot/lastLog ");
+            strcat(cmd,"cp /var/log/log_robot/lastLog \"");
             strcat(cmd,path);
-            printf("%s\n",path);
-            printf("%s\n",cmd);
+            strcat(cmd,"\"");
             system(cmd);
         }
         path[0] = 0;
