@@ -41,6 +41,10 @@ int getTableConfig();
 /* set the color of the eyes (red greed and blue between 0 and 255) */
 void setRGB(char red, char green, char blue);
 
+/* Set by the main to allow jumping to another step */
+void onJump(void (*callback)(int));
+void jumpTo(int step);
+
 /* returns the selected team */
 int getTeam();
 /* teams defined as : */

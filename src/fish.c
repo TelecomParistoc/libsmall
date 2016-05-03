@@ -19,7 +19,6 @@ static int finished = 0;
 static int nbfish = 0;
 
 static void (*endFishingCallback)(void) = NULL;
-static void (*jumpCallback)(int) = NULL;
 
 int fishHasFinished(){
 	return finished;
@@ -38,6 +37,11 @@ void delayStart(){
 	finish();
 }
 
+static void leave(){
+	armUp();
+	finish();
+}
+
 static void end2(){
 	onFishCapture(NULL);
 	if(getTeam() == GREEN_TEAM){
@@ -47,7 +51,7 @@ static void end2(){
 		setCurrentLocation(816 - getRobotDistance(), 110);
 		printf("Position en x : %f\n", 796 - getRobotDistance());
 	}
-	jumpCallback(12);
+	jumpTo(12);
 	armUp();
 	if(getTableConfig() == 4)
 		setActiveDetectors(all);
@@ -145,10 +149,9 @@ void releaseFish(){
 	onMagnetOff(drop);
 	onArmMid(magnetOn);
 	if(nbfish == 4){
-		onMagnetOn(armUp);
+		onMagnetOn(leave);
 		if(getTableConfig() == 4)
 			setActiveDetectors(all);
-		onArmUp(finish);
 	} else {
 		onMagnetOn(finish);
 	}
@@ -271,8 +274,4 @@ void resumeFish(){
 
 void onEndFishing(void (*callback)(void)){
 	endFishingCallback = callback;
-}
-
-void onJump(void (*callback)(int)){
-	jumpCallback = callback;
 }
