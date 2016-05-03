@@ -56,6 +56,7 @@ void initWaysAndActions()
 	toggleLed();
 
 	enableHeadingControl(0);
+	closePincers();
 }
 
 void jump(int w)
