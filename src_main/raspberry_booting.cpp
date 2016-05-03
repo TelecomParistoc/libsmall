@@ -26,6 +26,7 @@ int main(int argc, char* argv[])
     time_t rawtime;
     struct tm *info;
     char buffer[80];
+    char path[100] = "";
 
     int status;
 
@@ -56,12 +57,19 @@ int main(int argc, char* argv[])
         }
         else
         {
-            char path[100];
+            if(path[0]!=0)
+            {
+                char cmd[200];
+                cmd[0] = 0;
+                strcat(cmd,"cp /var/log/log_robot/lastLog ");
+                strcat(cmd,path);
+                system(cmd);
+            }
             path[0] = 0;
             strcat(path,"/var/log/log_robot/");
             strcat(path,buffer);
             printf("Redirecting stdout to %s\n",path);
-            int fd = open(path,O_WRONLY|O_CREAT,0400);
+            int fd = open("/var/log/log_robot/lastLog",O_WRONLY|O_CREAT,0400,0744);
             close(STDOUT_FILENO);
             dup2(fd,STDOUT_FILENO);
             if(execl(argv[1],argv[1],NULL)<0)

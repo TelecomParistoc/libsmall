@@ -46,6 +46,9 @@ update_initd: build/$(TARGET2)
 	chmod 755 $(DEST_INIT)/$(DEST_SCRIPT)
 	update-rc.d $(DEST_SCRIPT) defaults
 
+print_log:
+	cat /var/log/log_robot/lastLog
+
 
 -include $(subst .cpp,.d,$(SRC1))
 -include $(subst .cpp,.d,$(SRC2))
