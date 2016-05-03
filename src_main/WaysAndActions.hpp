@@ -99,6 +99,8 @@ void endCallback()
 	setRGB(255, 255, 0);
 
 	forceStop(1);
+	clearMotionQueue();
+    queueSpeedChange(0, nullptr);
 	setTargetHeading(getRobotHeading(),NULL);
 
 	setLED(1,1);
