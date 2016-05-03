@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
             strcat(path,"/var/log/log_robot/");
             strcat(path,buffer);
             printf("Redirecting stdout to %s\n",path);
-            int fd = open("/var/log/log_robot/lastLog",O_WRONLY|O_CREAT,0400,0744);
+            int fd = open("/var/log/log_robot/lastLog",O_WRONLY|O_CREAT,0744);
             close(STDOUT_FILENO);
             dup2(fd,STDOUT_FILENO);
             if(execl(argv[1],argv[1],NULL)<0)
