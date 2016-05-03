@@ -36,6 +36,20 @@ int main(int argc, char* argv[])
         info = localtime(&rawtime);
         strftime(buffer,80,"%c", info);
 
+        if(path[0]!=0)
+        {
+            char cmd[200];
+            cmd[0] = 0;
+            strcat(cmd,"cp /var/log/log_robot/lastLog ");
+            strcat(cmd,path);
+            printf("%s\n",path);
+            printf("%s\n",cmd);
+            system(cmd);
+        }
+        path[0] = 0;
+        strcat(path,"/var/log/log_robot/");
+        strcat(path,buffer);
+
         int pid = fork();
         if(pid<0)
         {
@@ -57,19 +71,6 @@ int main(int argc, char* argv[])
         }
         else
         {
-            if(path[0]!=0)
-            {
-                char cmd[200];
-                cmd[0] = 0;
-                strcat(cmd,"cp /var/log/log_robot/lastLog ");
-                strcat(cmd,path);
-                printf("%s\n",path);
-                printf("%s\n",cmd);
-                system(cmd);
-            }
-            path[0] = 0;
-            strcat(path,"/var/log/log_robot/");
-            strcat(path,buffer);
             printf("Redirecting stdout to %s\n",path);
             int fd = open("/var/log/log_robot/lastLog",O_WRONLY|O_CREAT,0744);
             close(STDOUT_FILENO);
