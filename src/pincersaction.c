@@ -40,9 +40,10 @@ static void deliver(){
 	setPosInCorner(getHeading());
 	if(first){
 		first = 0;
-		if(getTimeCallback() > 70000)
+		if(getTimeCallback() > 70000){
 			jumpTo(15);
 			onOpenPincers(flee);
+		}
 		else
 			onOpenPincers(faceShell);
 		printf("Time : %f\n", getTimeCallback());
