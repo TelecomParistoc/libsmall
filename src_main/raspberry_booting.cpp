@@ -63,6 +63,8 @@ int main(int argc, char* argv[])
                 cmd[0] = 0;
                 strcat(cmd,"cp /var/log/log_robot/lastLog ");
                 strcat(cmd,path);
+                std::cout<<path<<std::endl;
+                std::cout<<cmd<<std::endl;
                 system(cmd);
             }
             path[0] = 0;
