@@ -41,13 +41,11 @@ int main()
 
 	clk_start = Clock::now();
 
-	double seconds = 90;
-	scheduleIn(seconds*1000, endCallback);
-	while(1)
+	while(getTime()<seconds*1000||(start&&!started))
 	{
 		if(start&&!started)
 		{
-			printf("Start\n");
+			printf("Start %f\n",getTime());
 			started = true;
 			clk_start = Clock::now();
 		}
@@ -97,6 +95,8 @@ int main()
 
 		waitFor(50);
 	}
+
+	endCallback();
 
 	return 0;
 }
