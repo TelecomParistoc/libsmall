@@ -11,6 +11,7 @@
 
 static int first = 1;
 static int finished = 0;
+static int late = 0;
 
 static double (*getTimeCallback)(void) = NULL;
 
@@ -20,6 +21,10 @@ int pincersHasFinished(){
 
 void pincersStop(){
 	finished = 0;
+}
+
+void toLate(){
+	late = 1;
 }
 
 static void finish(){
@@ -40,8 +45,7 @@ static void deliver(){
 	setPosInCorner(getHeading());
 	if(first){
 		first = 0;
-		if(getTimeCallback() > 70000){
-			jumpTo(15);
+		if(late){
 			onOpenPincers(flee);
 			if(getTeam() == GREEN_TEAM)
 				setActiveDetectors(left);
@@ -50,7 +54,6 @@ static void deliver(){
 		}
 		else
 			onOpenPincers(faceShell);
-		printf("Time : %f\n", getTimeCallback());
 		finish();
 	} else {
 		onOpenPincers(closePincers);

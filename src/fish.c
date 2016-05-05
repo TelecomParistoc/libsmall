@@ -154,7 +154,6 @@ void releaseFish(){
 		if(getTableConfig() == 4)
 			setActiveDetectors(all);
 	} else {
-		jumpTo(8);
 		onMagnetOn(finish);
 	}
 	setCurrentLocation(getCurrentX(), getCurrentY());
@@ -199,7 +198,7 @@ static void delay(){
 
 
 static void fish(){
-	setActiveDetectors(right);
+	//setActiveDetectors(right);
 	printf("Let's get some fish\n");
 	setRobotDistance(0);
 	onArmDown(fish2);
@@ -241,7 +240,7 @@ static void fishstep(){
 }
 
 void startFishing(){
-	setActiveDetectors(none);
+	//setActiveDetectors(none);
 	straight = 1;
 	onFishCapture(NULL);
 	if (straight)
