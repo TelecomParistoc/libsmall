@@ -91,7 +91,7 @@ int main() {
     // init
     initRobot();
     enableHeadingControl(0);
-    setCurrentLocation(129, 1255);
+    setCurrentLocation(196, 940);
     onGameStop(onStop);
     onGameStart(onStart);
     setLED(3, 0);
@@ -110,13 +110,13 @@ int main() {
     // start
     setLED(2, 1);
     setLED(1, 0);
-    setRobotHeading(0);
+    setRobotHeading(90);
     setTargetHeading(0, NULL);
     setRobotDistance(0);
     enableHeadingControl(1);
     setActiveDetectors(all);
     scheduleIn(90000, onEndOfTheGame);
-    
+
     // fishes
     fishStop();
     ffollow("start2water", nearFishes);
