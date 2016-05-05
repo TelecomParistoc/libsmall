@@ -37,22 +37,22 @@ static void checkCollisions() {
         if(isRobotFront()) {
             lastStopped = 1;
             forceStop(1);
-            setLED(3, 1);
+            setLED(1, 1);
         } else if(lastStopped) {
             lastStopped = 0;
             forceStop(0);
-            setLED(3, 0);
+            setLED(1, 0);
         }
     }
     if(getTargetSpeed() <= 0) {
         if(isRobotBehind()) {
             lastStopped = 1;
             forceStop(1);
-            setLED(3, 1);
+            setLED(1, 1);
         } else if(lastStopped) {
             lastStopped = 0;
             forceStop(0);
-            setLED(3, 0);
+            setLED(1, 0);
         }
     }
 }
@@ -84,28 +84,29 @@ int main() {
     setCurrentLocation(196, 940);
     onGameStop(onStop);
     onGameStart(onStart);
-    setLED(3, 0);
+    setLED(1, 0);
     setLED(2, 0);
 
     // wait for start
     while(started != 1) {
     	waitFor(200);
-    	setLED(1, 0);
+    	setLED(3, 0);
     	waitFor(200);
-    	setLED(1, 1);
+    	setLED(3, 1);
     }
     while(started != 2)
     	waitFor(200);
 
     // start
     setLED(2, 1);
-    setLED(1, 0);
+    setLED(3, 0);
     setRobotHeading(90);
     setTargetHeading(0, NULL);
     setRobotDistance(0);
     enableHeadingControl(1);
     setActiveDetectors(all);
     scheduleIn(90000, onEndOfTheGame);
+    scheduleIn(70000, toLate);
 
     // fishes
     fishStop();
