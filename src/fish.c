@@ -154,7 +154,7 @@ void releaseFish(){
 		if(getTableConfig() == 4)
 			setActiveDetectors(all);
 	} else {
-		onMagnetOn(finish);
+		onMagnetOn(leave);
 	}
 	setCurrentLocation(getCurrentX(), getCurrentY());
 	magnetOff();
@@ -206,10 +206,10 @@ static void fish(){
 	//onFishCapture(delay);
 	if(getTeam() == GREEN_TEAM){
 		queueSpeedChange(0.05, NULL);
-		queueStopAt(400, armMid);
+		queueStopAt(450, armMid);
 	} else {
 		queueSpeedChange(-0.05, NULL);
-		queueStopAt(-400, armMid);
+		queueStopAt(-450, armMid);
 	}
 }
 

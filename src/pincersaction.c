@@ -38,7 +38,7 @@ static void jobDone(){
 static void flee(){
 	setRobotDistance(0);
 	queueSpeedChange(-0.15, NULL);
-	queueStopAt(-500, closePincers);
+	queueStopAt(-500, NULL);
 }
 
 static void deliver(){
@@ -47,16 +47,16 @@ static void deliver(){
 		first = 0;
 		if(late){
 			onOpenPincers(flee);
-			if(getTeam() == GREEN_TEAM)
+			/*if(getTeam() == GREEN_TEAM)
 				setActiveDetectors(left);
 			else
-				setActiveDetectors(right);
+				setActiveDetectors(right);*/
 		}
 		else
 			onOpenPincers(faceShell);
 		finish();
 	} else {
-		onOpenPincers(closePincers);
+		onOpenPincers(NULL);
 		finish();
 	}
 }
@@ -76,7 +76,7 @@ static void stopAndCatch(){
 }
 
 static void getShell(){
-	if(!first) {
+	/*if(!first) {
 		if(getTeam() == GREEN_TEAM)
 			setActiveDetectors(right);
 		else
@@ -86,7 +86,7 @@ static void getShell(){
 			setActiveDetectors(left);
 		else
 			setActiveDetectors(right);
-	}
+	}*/
 	setBlockingCallback(stopAndCatch);
 	enableHeadingControl(0);
 	queueSpeedChange(0.15, NULL);
@@ -96,7 +96,7 @@ void faceShell(){
 	onClosePincers(jobDone);
 	onTryCapture(back);
 	onOpenPincers(getShell);
-	setActiveDetectors(none);
+//	setActiveDetectors(none);
 	if(getTableConfig() != 4){
 		if(first)
 			setTargetHeading(200, openPincers);
