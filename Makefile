@@ -7,7 +7,7 @@ CFLAGS = -O2 -std=gnu99 -Wall -Werror -fpic
 LDFLAGS= -shared -lrobotdriver
 PREFIX = /usr/local
 VPATH = build/
-TESTS = tests/fishingtest tests/moveToFish tests/robottest tests/AX12position tests/yeux tests/pincerstest tests/posFish tests/fishing 
+TESTS = tests/fishingtest tests/moveToFish tests/robottest tests/AX12position tests/yeux tests/pincerstest tests/posFish tests/fishing tests/actiontest
 
 vpath %.c src/
 vpath %.h src/
@@ -39,5 +39,6 @@ install: build/$(TARGET)
 	chmod 0755 $(DESTDIR)$(PREFIX)/lib/$(TARGET)
 	ldconfig
 	ldconfig -p | grep robot
+	cp tests/actiontest /var/apps/main_robot/
 
 -include $(subst .c,.d,$(SRCS))
