@@ -12,6 +12,7 @@
 
 static void fishstep();
 static void fishstep2();
+static void delay();
 
 static int step = 0;
 static int straight = 0;
@@ -153,6 +154,7 @@ void releaseFish(){
 		if(getTableConfig() == 4)
 			setActiveDetectors(all);
 	} else {
+		jumpTo(8);
 		onMagnetOn(finish);
 	}
 	setCurrentLocation(getCurrentX(), getCurrentY());
@@ -179,18 +181,36 @@ static void stop(){
 	armMid();
 }
 
+static void falseAlert(){
+	onFishCapture(delay);
+}
+
+static void check(){
+	if (hasFish())
+		stop();
+	else
+		falseAlert();
+}
+
+static void delay(){
+	onFishCapture(NULL);
+	scheduleIn(100, check);
+}
+
+
 static void fish(){
 	setActiveDetectors(right);
 	printf("Let's get some fish\n");
 	setRobotDistance(0);
 	onArmDown(fish2);
-	onFishCapture(stop);
+	onArmMid(withFish);
+	//onFishCapture(delay);
 	if(getTeam() == GREEN_TEAM){
-		queueSpeedChange(0.10-(0.02*nbfish), NULL);
-		queueStopAt(400, end);
+		queueSpeedChange(0.05, NULL);
+		queueStopAt(400, armMid);
 	} else {
-		queueSpeedChange(-(0.10-(0.02*nbfish)), NULL);
-		queueStopAt(-400, end);
+		queueSpeedChange(-0.05, NULL);
+		queueStopAt(-400, armMid);
 	}
 }
 

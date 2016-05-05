@@ -42,7 +42,8 @@ int main()
 	clk_start = Clock::now();
 
 	double seconds = 90;
-	while(getTime()<seconds*1000||(start&&!started))
+	scheduleIn(seconds*1000, endCallback);
+	while(1)
 	{
 		if(start&&!started)
 		{
@@ -96,8 +97,6 @@ int main()
 
 		waitFor(50);
 	}
-
-	endCallback();
 
 	return 0;
 }

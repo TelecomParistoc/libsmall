@@ -78,6 +78,11 @@ static void getShell(){
 			setActiveDetectors(right);
 		else
 			setActiveDetectors(left);
+	} else {
+		if(getTeam() == GREEN_TEAM)
+			setActiveDetectors(left);
+		else
+			setActiveDetectors(right);
 	}
 	setBlockingCallback(stopAndCatch);
 	enableHeadingControl(0);
