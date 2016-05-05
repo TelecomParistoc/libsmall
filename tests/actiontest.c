@@ -12,7 +12,7 @@
 #include <stdio.h>
 
 static int started = 0;
-static int late = 0;
+static int near = 0;
 
 static void onStart() {
 	if(started == 1)
@@ -57,10 +57,6 @@ static void checkCollisions() {
 		}
 	}
 }
-static void tooLate(){
-	late = 1;
-	toLate();
-}
 static void nearNet() {
 	releaseFish();
 	printf("near net\n");
@@ -91,6 +87,7 @@ int main() {
 	onGameStart(onStart);
 	setLED(1, 0);
 	setLED(2, 0);
+	closePincers();
 	if(getTeam() == GREEN_TEAM)
 		setRGB(0, 30, 0);
 	else
@@ -115,7 +112,6 @@ int main() {
 	enableHeadingControl(1);
 	setActiveDetectors(all);
 	scheduleIn(90000, onEndOfTheGame);
-	scheduleIn(70000, tooLate);
 
 	// fishes
 	fishStop();
@@ -131,29 +127,43 @@ int main() {
 		checkCollisions();
 	}
 	pincersStop();
-	ffollow("net2rocks", nearRocks);
+	for (int i = 0 ; i < 3 ; i ++){
+		ffollow("net2rocks", turn2);
+		while(!fishHasFinished()) {
+			waitFor(50);
+			checkCollisions();
+		}
+		fishStop();
+		if(hasFished()){
+			ffollow("water2net", nearNet);
+			while(!fishHasFinished()) {
+				waitFor(50);
+				checkCollisions();
+			}
+			fishStop();
+		} else {
+			near = 1;
+			break;
+		}
+	}
+	if(near)
+		ffollow("nofish", nearRocks);
+	else
+		ffollow("net2rocks", nearRocks);
 	while(!pincersHasFinished()) {
 		waitFor(50);
 		checkCollisions();
 	}
 	pincersStop();
-	if(!late){
-		ffollow("rocks2rocks", nearRocksAgain);
-		while(!pincersHasFinished()) {
-			waitFor(50);
-			checkCollisions();
-		}
-		ffollow("rocks2start", openPincers);
-		while(1) {
-			waitFor(50);
-			checkCollisions();
-		}
-	} else{
-		ffollow("notime", openPincers);
-			while(1) {
-				waitFor(50);
-				checkCollisions();
-			}
+	ffollow("rocks2rocks", nearRocksAgain);
+	while(!pincersHasFinished()) {
+		waitFor(50);
+		checkCollisions();
+	}
+	ffollow("rocks2start", openPincers);
+	while(1) {
+		waitFor(50);
+		checkCollisions();
 	}
 	return 0;
 }

@@ -20,7 +20,7 @@
 
 #define AXMAGNETCONTROL 124
 #define ON              520
-#define OFF             280
+#define OFF             300
 #define MAGNETSPEED     400
 
 static void (*captureCallback)(void) = NULL;

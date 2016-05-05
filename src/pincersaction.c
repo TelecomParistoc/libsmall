@@ -11,7 +11,6 @@
 
 static int first = 1;
 static int finished = 0;
-static int late = 0;
 
 static double (*getTimeCallback)(void) = NULL;
 
@@ -23,40 +22,28 @@ void pincersStop(){
 	finished = 0;
 }
 
-void toLate(){
-	late = 1;
-}
-
 static void finish(){
 	finished = 1;
-}
-
-static void jobDone(){
-	setRGB(0, 255, 0);
 }
 
 static void flee(){
 	setRobotDistance(0);
 	queueSpeedChange(-0.15, NULL);
 	queueStopAt(-500, NULL);
+	if(!first){
+		onClosePincers(faceShell);
+		queueStopAt(-500, closePincers);
+	}
 }
 
 static void deliver(){
 	setPosInCorner(getHeading());
 	if(first){
 		first = 0;
-		if(late){
-			onOpenPincers(flee);
-			/*if(getTeam() == GREEN_TEAM)
-				setActiveDetectors(left);
-			else
-				setActiveDetectors(right);*/
-		}
-		else
-			onOpenPincers(faceShell);
+		onOpenPincers(faceShell);
 		finish();
 	} else {
-		onOpenPincers(NULL);
+		onOpenPincers(flee);
 		finish();
 	}
 }
@@ -93,7 +80,6 @@ static void getShell(){
 }
 
 void faceShell(){
-	onClosePincers(jobDone);
 	onTryCapture(back);
 	onOpenPincers(getShell);
 //	setActiveDetectors(none);
@@ -101,7 +87,7 @@ void faceShell(){
 		if(first)
 			setTargetHeading(200, openPincers);
 		else
-			setTargetHeading(240, getShell);
+			setTargetHeading(255, openPincers);
 	}
 }
 

@@ -18,6 +18,7 @@ static int step = 0;
 static int straight = 0;
 static int finished = 0;
 static int nbfish = 0;
+static int fished = 0;
 
 static void (*endFishingCallback)(void) = NULL;
 
@@ -32,6 +33,10 @@ void fishStop(){
 static void finish(){
 	finished = 1;
 	printf("Fish action finished\n");
+}
+
+int hasFished(){
+	return fished;
 }
 
 void delayStart(){
@@ -60,6 +65,7 @@ static void end2(){
 }
 
 static void withFish2(){
+	fished = 1;
 	if(getTeam() == GREEN_TEAM) {
 		setCurrentLocation(816 + getRobotDistance(), 110);
 		printf("Position en x : %f\n", 816 + getRobotDistance());
@@ -81,6 +87,7 @@ static void stop2(){
 }
 
 static void fish2(){
+	fished = 0;
 	printf("Let's get some fish 2\n");
 	setRobotDistance(0);
 	onFishCapture(stop2);
@@ -206,10 +213,10 @@ static void fish(){
 	//onFishCapture(delay);
 	if(getTeam() == GREEN_TEAM){
 		queueSpeedChange(0.05, NULL);
-		queueStopAt(450, armMid);
+		queueStopAt(370, armMid);
 	} else {
 		queueSpeedChange(-0.05, NULL);
-		queueStopAt(-450, armMid);
+		queueStopAt(-370, armMid);
 	}
 }
 

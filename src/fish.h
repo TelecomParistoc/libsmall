@@ -9,6 +9,7 @@ int fishHasFinished();
 void fishStop();
 void pauseFish();
 void resumeFish();
+int hasFished();
 void delayStart();
 void turn2();
 void releaseFish();
