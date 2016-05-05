@@ -56,16 +56,6 @@ static void checkCollisions() {
         }
     }
 }
-static void enableAllSensors() {
-	setActiveDetectors(all);
-    printf("sensors activated\n");
-}
-static void enableSideSensors() {
-    if(getTeam() == GREEN_TEAM)
-        setActiveDetectors(right);
-    else
-        setActiveDetectors(left);
-}
 static void nearNet() {
     releaseFish();
     printf("near net\n");
