@@ -49,11 +49,26 @@ update_initd: build/$(TARGET2)
 print_log:
 	cat /var/log/log_robot/lastLog
 
+print_log_before:
+	cat /var/log/log_robot/lastLogBefore1
+
+print_log_before:
+	cat /var/log/log_robot/lastLogBefore2
+
+print_log_before:
+	cat /var/log/log_robot/lastLogBefore3
+
+print_log_before:
+	cat /var/log/log_robot/lastLogBefore4
+
 clear_logs:
 	rm -rf /var/log/log_robot/*
 
 stop_service:
 	service launchLoop.sh stop
+
+create_alias:
+	alias make-cpp="make -f Makefile_cpp"
 
 -include $(subst .cpp,.d,$(SRC1))
 -include $(subst .cpp,.d,$(SRC2))

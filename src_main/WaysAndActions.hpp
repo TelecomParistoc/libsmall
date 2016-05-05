@@ -98,7 +98,7 @@ void allume()
 
 void endCallback()
 {
-	std::cout<<"Ending"<<std::endl;
+	std::cout<<"Ending at time "<<getTime()<<std::endl;
 	setRGB(255, 255, 0);
 
 	forceStop(1);

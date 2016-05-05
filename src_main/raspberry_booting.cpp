@@ -59,6 +59,10 @@ int main(int argc, char* argv[])
             strcat(cmd,path);
             strcat(cmd,"\"");
             system(cmd);
+            system("cp /var/log/log_robot/lastLogBefore3 /var/log/log_robot/lastLogBefore4");
+            system("cp /var/log/log_robot/lastLogBefore2 /var/log/log_robot/lastLogBefore3");
+            system("cp /var/log/log_robot/lastLogBefore1 /var/log/log_robot/lastLogBefore2");
+            system("cp /var/log/log_robot/lastLog /var/log/log_robot/lastLogBefore1");
         }
         path[0] = 0;
         strcat(path,"/var/log/log_robot/");
