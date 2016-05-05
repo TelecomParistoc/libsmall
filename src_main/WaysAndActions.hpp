@@ -49,7 +49,10 @@ void initWaysAndActions()
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 	actions.push_back(Action(&openPincers, NULL, NULL, &pincersStop, &pincersHasFinished));
 
-	setRGB(255, 0, 0);
+	if(getTeam() == GREEN_TEAM)
+		setRGB(0, 30, 0);
+	else
+		setRGB(40, 0, 20);
 	setLED(1,0);
 	setLED(2,0);
 	setLED(3,0);

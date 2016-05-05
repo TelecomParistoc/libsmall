@@ -42,7 +42,7 @@ int main()
 	clk_start = Clock::now();
 
 	double seconds = 90;
-	while(getTime()<seconds*1000)
+	while(getTime()<seconds*1000||(start&&!started))
 	{
 		if(start&&!started)
 		{

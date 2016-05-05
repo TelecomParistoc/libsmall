@@ -76,11 +76,6 @@ void onArmDown(void (*callback)(void)) {
 	printf("Changing arm down callback\n");
 }
 
-void waitForFish() {
-	onFishCapture(armMid);
-	printf("Waiting for a fish\n");
-}
-
 void initFishAx12() {
 	axSetTorqueSpeed(AXMAGNETCONTROL, -1, MAGNETSPEED, 0);
 	axSetTorqueSpeed(AXFISHARM      , -1, ARMSPEED   , 0);
@@ -88,11 +83,11 @@ void initFishAx12() {
 
 void magnetOn() {
 	setRGB(0, 0, 0);
-	axMove(AXMAGNETCONTROL, ON, magnetOnCallback, 2000);
+	axMove(AXMAGNETCONTROL, ON, magnetOnCallback, 1000);
 }
 
 void magnetOff() {
-	axMove(AXMAGNETCONTROL, OFF, magnetOffCallback, 2000);
+	axMove(AXMAGNETCONTROL, OFF, magnetOffCallback, 1000);
 }
 
 void armUp() {
@@ -111,4 +106,20 @@ void armDown() {
 
 void drop(){
 	axMove(AXFISHARM, MID - 20, armMid, 1000);
+}
+
+static void check(){
+	if (hasFish())
+		armMid();
+	else
+		waitForFish();
+}
+
+static void delay(){
+	onFishCapture(NULL);
+	scheduleIn(100, check);
+}
+
+void waitForFish() {
+	onFishCapture(delay);
 }
