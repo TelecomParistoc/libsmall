@@ -39,6 +39,6 @@ install: build/$(TARGET)
 	chmod 0755 $(DESTDIR)$(PREFIX)/lib/$(TARGET)
 	ldconfig
 	ldconfig -p | grep robot
-	cp tests/actiontest /var/apps/main_robot/
+	#cp tests/actiontest /var/apps/main_robot/
 
 -include $(subst .c,.d,$(SRCS))

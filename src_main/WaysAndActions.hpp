@@ -99,7 +99,7 @@ void allume()
 void endCallback()
 {
 	std::cout<<"Ending at time "<<getTime()<<std::endl;
-	setRGB(255, 255, 0);
+	setRGB(0, 255, 255);
 
 	forceStop(1);
 	clearMotionQueue();

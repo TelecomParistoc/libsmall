@@ -19,8 +19,12 @@ int main(int argc, char* argv[])
     f = fopen("/var/log/log_robot/main.txt","a");
     if(!f)
     {
-        fprintf(stderr,"/var/log/log_robot/main.txt has not been found\n");
-        return 1;
+        f = fopen("/var/log/log_robot/main.txt","w+");
+        if(!f)
+        {
+            fprintf(stderr,"/var/log/log_robot/main.txt has not been found\n");
+            return 1;
+        }
     }
 
     time_t rawtime;

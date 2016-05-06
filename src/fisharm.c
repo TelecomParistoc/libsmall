@@ -12,16 +12,16 @@
 
 #define AXFISHARM 121
 #define UP        790
-#define MID       600
-#define DOWN      480
+#define MID       650
+#define DOWN      500
 #define ARMSPEED  400
 
 // Ax-12 that controls the magnet
 
-#define AXMAGNETCONTROL 124
-#define ON              520
+#define AXMAGNETCONTROL 126
+#define ON              495
 #define OFF             300
-#define MAGNETSPEED     400
+#define MAGNETSPEED     200
 
 static void (*captureCallback)(void) = NULL;
 static void (*releaseCallback)(void) = NULL;
@@ -77,17 +77,17 @@ void onArmDown(void (*callback)(void)) {
 }
 
 void initFishAx12() {
-	axSetTorqueSpeed(AXMAGNETCONTROL, -1, MAGNETSPEED, 0);
+	axSetTorqueSpeed(AXMAGNETCONTROL, 200, MAGNETSPEED, 0);
 	axSetTorqueSpeed(AXFISHARM      , -1, ARMSPEED   , 0);
 }
 
 void magnetOn() {
 	setRGB(0, 0, 0);
-	axMove(AXMAGNETCONTROL, ON, magnetOnCallback, 1000);
+	axMove(AXMAGNETCONTROL, ON, magnetOnCallback, 5000);
 }
 
 void magnetOff() {
-	axMove(AXMAGNETCONTROL, OFF, magnetOffCallback, 1000);
+	axMove(AXMAGNETCONTROL, OFF, magnetOffCallback, 5000);
 }
 
 void armUp() {

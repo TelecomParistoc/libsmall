@@ -43,11 +43,6 @@ void delayStart(){
 	finish();
 }
 
-static void leave(){
-	armUp();
-	finish();
-}
-
 static void end2(){
 	onFishCapture(NULL);
 	if(getTeam() == GREEN_TEAM){
@@ -86,11 +81,27 @@ static void stop2(){
 	armMid();
 }
 
+static void falseAlert(){
+	onFishCapture(delay);
+}
+
+static void check2(){
+	if (hasFish())
+		stop2();
+	else
+		falseAlert();
+}
+
+static void delay2(){
+	onFishCapture(NULL);
+	scheduleIn(100, check2);
+}
+
 static void fish2(){
 	fished = 0;
 	printf("Let's get some fish 2\n");
 	setRobotDistance(0);
-	onFishCapture(stop2);
+	onFishCapture(delay2);
 	if(hasFish()){
 		onFishCapture(NULL);
 		stop2();
@@ -157,11 +168,11 @@ void releaseFish(){
 	onMagnetOff(drop);
 	onArmMid(magnetOn);
 	if(nbfish == 4){
-		onMagnetOn(leave);
+		onMagnetOn(finish);
 		if(getTableConfig() == 4)
 			setActiveDetectors(all);
 	} else {
-		onMagnetOn(leave);
+		onMagnetOn(finish);
 	}
 	setCurrentLocation(getCurrentX(), getCurrentY());
 	magnetOff();
@@ -169,10 +180,10 @@ void releaseFish(){
 
 static void withFish(){
 	if(getTeam() == GREEN_TEAM){
-		setCurrentLocation(412 + getRobotDistance(), 111);
+		setCurrentLocation(462 + getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 + getRobotDistance());
 	} else {
-		setCurrentLocation(412 - getRobotDistance(), 111);
+		setCurrentLocation(462 - getRobotDistance(), 111);
 		printf("Position en x : %f\n", 391 - getRobotDistance());
 	}
 	printf("Position du getPosition X = %f || Y = %f\n", getCurrentX(), getCurrentY());
@@ -185,10 +196,6 @@ static void stop(){
 	onFishCapture(NULL);
 	onArmMid(withFish);
 	armMid();
-}
-
-static void falseAlert(){
-	onFishCapture(delay);
 }
 
 static void check(){
@@ -210,12 +217,12 @@ static void fish(){
 	setRobotDistance(0);
 	onArmDown(fish2);
 	onArmMid(withFish);
-	//onFishCapture(delay);
+	onFishCapture(delay);
 	if(getTeam() == GREEN_TEAM){
-		queueSpeedChange(0.05, NULL);
+		queueSpeedChange(0.10, NULL);
 		queueStopAt(370, armMid);
 	} else {
-		queueSpeedChange(-0.05, NULL);
+		queueSpeedChange(-0.10, NULL);
 		queueStopAt(-370, armMid);
 	}
 }

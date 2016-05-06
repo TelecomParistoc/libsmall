@@ -6,7 +6,7 @@
 #
 
 ### BEGIN INIT INFO
-# Provides:          LaunchLoop.sh
+# Provides:          launchLoop.sh
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5

@@ -1,5 +1,6 @@
 #include <librobot/robot.h>
 #include <librobot/fish.h>
+#include <librobot/fisharm.h>
 #include <librobot/pincers.h>
 #include <librobot/pincersaction.h>
 #include <pathfollower/pathfollower.h>
@@ -100,6 +101,7 @@ int main() {
 		waitFor(200);
 		setLED(3, 1);
 	}
+	axReset();
 	while(started != 2)
 		waitFor(200);
 
@@ -114,6 +116,7 @@ int main() {
 	scheduleIn(90000, onEndOfTheGame);
 
 	// fishes
+	initFishAx12();
 	fishStop();
 	ffollow("start2water", nearFishes);
 	while(!fishHasFinished()) {
@@ -126,7 +129,7 @@ int main() {
 		waitFor(50);
 		checkCollisions();
 	}
-	pincersStop();
+	fishStop();
 	for (int i = 0 ; i < 3 ; i ++){
 		ffollow("net2rocks", turn2);
 		while(!fishHasFinished()) {
@@ -146,6 +149,7 @@ int main() {
 			break;
 		}
 	}
+	armUp();
 	if(near)
 		ffollow("nofish", nearRocks);
 	else

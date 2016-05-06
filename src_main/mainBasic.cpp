@@ -48,6 +48,7 @@ int main()
 			printf("Start %f\n",getTime());
 			started = true;
 			clk_start = Clock::now();
+			printf("Get time after : %f\n",getTime());
 		}
 		else if(started)
 		{

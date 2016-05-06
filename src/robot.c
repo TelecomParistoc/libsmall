@@ -35,10 +35,10 @@ static void collisionsCallback() {
 }
 static void sensorsCallback() {
     fishSensorManager();
-    if(gameStartCallback != NULL && getSensor(1) && !lastJack) {
+    if(gameStartCallback != NULL && getSensor(3) && !lastJack) {
         gameStartCallback();
         lastJack = 1;
-    } else if(gameStopCallback != NULL && !getSensor(1) && lastJack){
+    } else if(gameStopCallback != NULL && !getSensor(3) && lastJack){
         gameStopCallback();
         lastJack = 0;
     }
@@ -55,9 +55,9 @@ void initRobot() {
 	axReset();
 	setRotationDirection(getTeam() == PURPLE_TEAM);
 
-	enableSensorCallback(1);
+	disableSensorCallback(1);
 	disableSensorCallback(2);
-	disableSensorCallback(3);
+	enableSensorCallback(3);
 	disableSensorCallback(4);
 	disableSensorCallback(5);
 	setSensorsCallback(sensorsCallback);
@@ -81,11 +81,11 @@ void initRobot() {
 }
 
 void onGameStart(void (*callback)(void)) {
-    enableSensorCallback(1);
+    enableSensorCallback(3);
     gameStartCallback = callback;
 }
 void onGameStop(void (*callback)(void)) {
-    enableSensorCallback(1);
+    enableSensorCallback(3);
     gameStopCallback = callback;
 }
 

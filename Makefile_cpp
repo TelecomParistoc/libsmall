@@ -44,21 +44,22 @@ update_initd: build/$(TARGET2)
 	cp $(SCRIPT) $(DEST_INIT)/$(DEST_SCRIPT)
 
 	chmod 755 $(DEST_INIT)/$(DEST_SCRIPT)
+	update-rc.d $(DEST_SCRIPT) remove
 	update-rc.d $(DEST_SCRIPT) defaults
 
 print_log:
 	cat /var/log/log_robot/lastLog
 
-print_log_before:
+print_log_before1:
 	cat /var/log/log_robot/lastLogBefore1
 
-print_log_before:
+print_log_before2:
 	cat /var/log/log_robot/lastLogBefore2
 
-print_log_before:
+print_log_before3:
 	cat /var/log/log_robot/lastLogBefore3
 
-print_log_before:
+print_log_before4:
 	cat /var/log/log_robot/lastLogBefore4
 
 clear_logs:
