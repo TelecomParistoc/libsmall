@@ -51,7 +51,7 @@ static void deliver(){
 static void back(){
 	setRobotDistance(0);
 	queueSpeedChange(-0.15, NULL);
-	queueStopAt(-70, deliver);
+	queueStopAt(-100, deliver);
 }
 
 static void stopAndCatch(){

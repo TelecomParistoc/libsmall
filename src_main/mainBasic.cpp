@@ -38,6 +38,7 @@ int main()
 	setMoveStartCallback(&PathFollower::updateAngleStartingMove);
 	setMoveEndCallback(&PathFollower::updatePositionEndingMove);
 	PathFollower::resetPosition(curPos);
+	closePincers();
 
 	clk_start = Clock::now();
 
