@@ -14,7 +14,7 @@ static void check(){
 
 static void delay(){
 	onFishCapture(NULL);
-	scheduleIn(1000, check);
+	scheduleIn(100, check);
 }
 
 static void waitf(){
