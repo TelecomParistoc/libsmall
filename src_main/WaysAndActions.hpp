@@ -82,7 +82,7 @@ void allume()
     std::cout<<"Jack grabed"<<std::endl;
     onGameStart(&go);
     /**A completer pour chaque robot**/
-    onGameStop(&exitAndClean);
+    onGameStop(NULL);
 
 	check_mode(); //defined in utils.hpp => check the service and stop it
 

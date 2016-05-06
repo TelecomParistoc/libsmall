@@ -43,6 +43,9 @@ int main()
 
 	while(getTime()<seconds*1000||(start&&!started))
 	{
+		if(!start)
+			clk_start = Clock::now();
+
 		if(start&&!started)
 		{
 			printf("Start %f\n",getTime());
