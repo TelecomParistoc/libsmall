@@ -5,7 +5,12 @@
 extern "C" {
 #endif
 
-#include "actionhandler.h"
+// call actions from input text file
+int readAndCall(FILE * file, char c);
+
+void initRobot();
+
+void stopGame();
 
 #ifdef __cplusplus
 }
