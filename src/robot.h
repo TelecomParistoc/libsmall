@@ -5,8 +5,7 @@
 extern "C" {
 #endif
 
-// call actions from input text file
-int readAndCall(FILE * file, char c);
+#include "actionhandler.h"
 
 #ifdef __cplusplus
 }

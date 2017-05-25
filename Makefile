@@ -1,5 +1,5 @@
 TARGET = librobot.so
-SRCS = actionhandler.c pinces.c
+SRCS = actionhandler.c pinces.c robot.c
 HEADERS = $(addprefix src/, ${SRCS:.c=.h})
 OBJECTS = $(addprefix build/,${SRCS:.c=.o})
 CC=gcc
