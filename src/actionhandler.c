@@ -23,6 +23,9 @@ static int team = 0;
 static int mov = 0;
 // 0: forward, 1: backward
 static int dir = 0;
+// nombre cylindres dans petit robot 
+//(hors fusée)
+static int nbrCylindre = 0;
 
 int readAndCall(FILE * file, char c)
 {
@@ -100,9 +103,6 @@ int readAndCall(FILE * file, char c)
     	int y = atoi(initYchar);
     	int a = atoi(initAchar);
 	setHeading(a);
-	// ==============================================================
-    	// MUST INIT X AND Y
-	// ==============================================================
 	printf("[FILE] init [%d,%d] %d\n", x, y, a);
         return 0;
     }
@@ -126,18 +126,50 @@ int readAndCall(FILE * file, char c)
     }
     // Take four cylinders into spaceship
     else if(c == 'F'){
+        catchRocketTubes();
         printf("[FILE] It's a F \n");
     }
     // Take a cylinder
     else if(c == 'P'){
+        catchOneTube();
         printf("[FILE] It's a P \n");
     }
     // Store a cylinder
     else if(c == 'S'){
+        switch(nbrCylindre){
+            case 0:
+                storeFirstTube();
+                break;
+            case 1:
+                storeSecondTube();
+                break;
+            case 2:
+                storeThirdTube();
+                break;
+            default:
+                printf("[FILE] nbrCylindre store pb \n");
+                break;
+        }
+        nbrCylindre++;       
         printf("[FILE] It's a S \n");
     }
     // Release a cylinder
     else if(c == 'D'){
+        switch(nbrCylindre){
+            case 3:
+                putFirstTube();
+                break;
+            case 2:
+                putSecondTube();
+                break;
+            case 1:
+                putLastTube();
+                break;
+            default:
+                printf("[FILE] nbrCylindre realpb \n");
+                break;
+        }
+        nbrCylindre--;
         printf("[FILE] It's a D \n");
     }
     else if(c == '#'){}
