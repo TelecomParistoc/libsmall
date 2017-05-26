@@ -33,98 +33,90 @@ void initPinces(){
 }
 
 void catchOneTube(){
-	if(isTube())
-	    printf("capteur de proximite a faire !");
-
+	int dist = 0;
+	int tube = 0;
+	while(dist <= 40)
+	{
+	    if(isTube()){
+		tube = 1;
+		break;
+	    }
+            setGoalMeanDist(10);
+            dist += 10;
+	}
+	if(!tube && !isTube())
+	     return;
 	printf("[INFO] catch tube\n");
-	// firstly, to catch tube by using motor 20
 	move_to_block(ID_3, POS_3_CLOSE);
 	wait();
 }
 
+void adjustAngle(){
+	move_to_block(ID_1 , POS_1_MIDDLE);
+	move_to_block(ID_2 , POS_2_VERTICAL);
+}
+
 void storeFirstTube(){
 	// secondly, to go up to the middle for turning an angle
-	move_to_block(ID_1, POS_1_MIDDLE);
-	// thirdly, to turn a angle
-	move_to_block(ID_2, POS_2_VERTICAL);
-
 	move_to_block(ID_1, POS_1_TOP);
-	// seventhly, to lock the container
+	// thirdly, to turn a angle
 	move_to_block(ID_4, POS_4_CLOSE);
-	// eighthly, to release the tube
-	move_to_block(ID_3, POS_3_OPEN);
-	// ninethly, to go back to the start place
+
+	move_to_block(ID_3, POS_3_OPEN;
+	// seventhly, to lock the container
 	move_to_block(ID_1, POS_1_BOTTOM);
-	// tenthly,  to turn an angle for catching a new tube.
+	// eighthly, to release the tube
 	move_to_block(ID_2, POS_2_HORIZONTAL);
 	wait();
 }
 
 void storeSecondTube(){
 	// secondly, to go up to the middle for turning an angle
-	move_to_block(ID_1, POS_1_MIDDLE);
-	// thirdly, to turn a angle
-	move_to_block(ID_2, POS_2_VERTICAL);
-	// fourthly, to continue going up to a higher place for the opening of the "lock"
 	move_to_block(ID_1, POS_1_HIGH);
-	// fifthly, to open the lock
+	// thirdly, to turn a angle
 	move_to_block(ID_4, POS_4_OPEN);
-	// sixthly, to push up the tube to the container
+	// fourthly, to continue going up to a higher place for the opening of the "lock"
 	move_to_block(ID_1, POS_1_TOP);
-	// seventhly, to lock the container
+	// fifthly, to open the lock
 	move_to_block(ID_4, POS_4_CLOSE);
-	// eighthly, to release the tube
+	// sixthly, to push up the tube to the container
 	move_to_block(ID_3, POS_3_OPEN);
-	// ninethly, to go back to the start place
-	move_to_block(ID_1, POS_1_BOTTOM);
-	// tenthly,  to turn an angle for catching a new tube.
-	move_to_block(ID_2, POS_2_HORIZONTAL);
+	// seventhly, to lock the container
+	move_to_block(ID_1, POS_1_BOTTOM));
+	// eighthly, to release the tube
+	move_to_block(ID_2, POS_2_HORIZOTAL);
 	wait();
 }
 
 void storeThirdTube(){
 	// secondly, to go up to the middle for turning an angle
-	move_to_block(ID_1, POS_1_MIDDLE);
-	// thirdly, to turn a angle
-	move_to_block(ID_2, POS_2_VERTICAL);
-	// fourthly, to continue going up to a higher place for the opening of the "lock"
 	move_to_block(ID_1, POS_1_HIGH);
-	// fifthly, to open the lock
+	// thirdly, to turn a angle
 	move_to_block(ID_4, POS_4_OPEN);
-	// sixthly, to push up the tube to the container
+	// fourthly, to continue going up to a higher place for the opening of the "lock"
 	move_to_block(ID_1, POS_1_TOP-3);
-	// seventhly, to lock the container
+	// fifthly, to open the lock
 	move_to_block(ID_4, POS_4_CLOSE);
-	// eighthly, to release the tube
+	// sixthly, to push up the tube to the container
 	move_to_block(ID_3, POS_3_OPEN);
-	// ninethly, to go back to the start place
+	// seventhly, t lock the container
 	move_to_block(ID_1, POS_1_BOTTOM);
-	// tenthly,  to turn an angle for catching a new tube.
-	move_to_block(ID_2, POS_2_HORIZONTAL);
+	// eighthly, to release the tube
+	move_to_block(ID_2, POS_2_HORIZONTAL)
 	wait();
 }
 
 void putFirstTube()
 {
-
 	printf("[INFO] release tube\n");
 	// getchar();
-	move_to_block(ID_2, POS_2_VERTICAL);
-	move_to_block(ID_1, POS_1_TOP);
-	move_to_block(ID_3, POS_3_CLOSE);
-	move_to_block(ID_4, POS_4_OPEN);
-	move_to_block(ID_1, POS_1_HIGH);
-	move_to_block(ID_4, POS_4_CLOSE);
 	move_to_block(ID_1, POS_1_BOTTOM);
 	move_to_block(ID_3, POS_3_OPEN);
-
 }
 
 void putSecondTube()
 {
-
 	printf("[INFO] release tube\n");
-
 	move_to_block(ID_1, POS_1_TOP);
 	move_to_block(ID_3, POS_3_CLOSE);
 	move_to_block(ID_4, POS_4_OPEN);
@@ -132,31 +124,36 @@ void putSecondTube()
 	move_to_block(ID_4, POS_4_CLOSE);
 	move_to_block(ID_1, POS_1_BOTTOM);
 	move_to_block(ID_3, POS_3_OPEN);
-
 }
 
 void putLastTube()
 {
-
 	printf("[INFO] release tube\n");
 	// getchar();
-
 	move_to_block(ID_1, POS_1_TOP);
 	move_to_block(ID_3, POS_3_CLOSE);
 	move_to_block(ID_4, POS_4_OPEN);
-
 	move_to_block(ID_1, POS_1_BOTTOM);
 	move_to_block(ID_3, POS_3_OPEN);
-
 }
 
 void catchRocketTubes()
 {
 	catchOneTube();
+        setGoalMeanDist(-DIST_ROCKET);
+	adjustAngle();
 	storeFirstTube();
+        setGoalMeanDist(DIST_ROCKET);
 	catchOneTube();
+        setGoalMeanDist(-DIST_ROCKET);
+	adjustAngle();
 	storeSecondTube();
+        setGoalMeanDist(DIST_ROCKET);
 	catchOneTube();
+        setGoalMeanDist(-DIST_ROCKET);
+	adjustAngle();
 	storeThirdTube();
+        setGoalMeanDist(DIST_ROCKET);
 	catchOneTube();
+	adjustAngle();
 }

@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 // call actions from input text file
+#include <stdio.h>
 int readAndCall(FILE * file, char c);
 
 void initRobot();
